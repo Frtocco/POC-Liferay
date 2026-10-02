@@ -1,0 +1,10 @@
+Bundle-Name: netflix-profile-service-api
+Bundle-SymbolicName: com.netflixpoc.profile.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.netflixpoc.profile.exception,\
+	com.netflixpoc.profile.model,\
+	com.netflixpoc.profile.service,\
+	com.netflixpoc.profile.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../netflix-profile-service-service/service.xml

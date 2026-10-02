@@ -1,0 +1,16 @@
+assemble:
+    - from: site-initializer
+      into: site-initializer
+netflix-site-initializer:
+    name: Netflix POC Site Initializer
+    oAuthApplicationHeadlessServer: netflix-site-initializer-oauth-headless-server
+    siteExternalReferenceCode: netflix-poc
+    siteName: Netflix POC
+    type: siteInitializer
+netflix-site-initializer-oauth-headless-server:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: Netflix POC Site Initializer OAuth Headless Server
+    scopes:
+        - Liferay.Headless.Site.everything
+    type: oAuthApplicationHeadlessServer

@@ -1,0 +1,12 @@
+dependencies {
+	api project(":modules:netflix-profile-service:netflix-profile-service-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+}
+
+buildService {
+	apiDir = "../netflix-profile-service-api/src/main/java"
+	testDir = "../netflix-profile-service-test/src/testIntegration/java"
+}
+
+group = "com.netflixpoc.profile"

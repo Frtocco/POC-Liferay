@@ -1,0 +1,22 @@
+.nf-movie-card {
+  width: 200px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #141414;
+  color: #fff;
+  transition: transform 0.25s ease;
+}
+.nf-movie-card:hover {
+  transform: scale(1.08);
+}
+.nf-movie-card__poster img {
+  width: 100%;
+  display: block;
+}
+.nf-movie-card__info {
+  padding: 8px;
+}
+.nf-movie-card__info h3 {
+  font-size: 14px;
+  margin: 0;
+}
