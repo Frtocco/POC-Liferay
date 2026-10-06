@@ -1,0 +1,121 @@
+.nf-row {
+  background: #141414;
+  color: #e5e5e5;
+  padding: 20px 0;
+}
+
+.nf-row__title {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  padding: 0 4%;
+}
+
+.nf-row__viewport {
+  position: relative;
+}
+
+.nf-row__track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 16px 4%;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.nf-row__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Flechas laterales */
+.nf-row__nav {
+  background: rgba(20, 20, 20, 0.7);
+  border: none;
+  bottom: 16px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.5rem;
+  opacity: 0;
+  position: absolute;
+  top: 16px;
+  transition: opacity 0.2s ease;
+  width: 4%;
+  min-width: 32px;
+  z-index: 2;
+}
+
+.nf-row__nav--prev {
+  left: 0;
+}
+
+.nf-row__nav--next {
+  right: 0;
+}
+
+.nf-row__viewport:hover .nf-row__nav:not(:disabled),
+.nf-row__nav:focus-visible {
+  opacity: 1;
+}
+
+.nf-row__nav:disabled {
+  visibility: hidden;
+}
+
+.nf-row__nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.nf-row__status {
+  color: #b3b3b3;
+  margin: 8px 0 0;
+  padding: 0 4%;
+}
+
+/* Card de título (mismo look que el fragment Movie Card) */
+.nf-row .nf-movie-card {
+  background: #1f1f1f;
+  border-radius: 6px;
+  color: #fff;
+  flex: 0 0 auto;
+  overflow: hidden;
+  scroll-snap-align: start;
+  width: clamp(140px, 16vw, 220px);
+}
+
+.nf-row .nf-movie-card__poster {
+  aspect-ratio: 2 / 3;
+  background: #2a2a2a;
+}
+
+.nf-row .nf-movie-card__poster img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.nf-row .nf-movie-card__info {
+  padding: 8px;
+}
+
+.nf-row .nf-movie-card__info h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nf-row .nf-movie-card {
+    transition: transform 0.25s ease;
+  }
+
+  .nf-row .nf-movie-card:hover {
+    transform: scale(1.06);
+  }
+}
