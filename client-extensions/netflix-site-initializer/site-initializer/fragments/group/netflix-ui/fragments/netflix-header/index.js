@@ -8,14 +8,6 @@ const toggle = fragmentElement.querySelector('.nf-header__toggle');
 const menu = fragmentElement.querySelector('.nf-header__menu');
 const links = fragmentElement.querySelectorAll('.nf-header__link');
 
-// --- 1. Fondo al hacer scroll ---------------------------------------------
-
-function updateBackground() {
-	header.classList.toggle('is-scrolled', window.scrollY > 0);
-}
-
-window.addEventListener('scroll', updateBackground, {passive: true});
-updateBackground();
 
 // --- 2. Sección activa ------------------------------------------------------
 

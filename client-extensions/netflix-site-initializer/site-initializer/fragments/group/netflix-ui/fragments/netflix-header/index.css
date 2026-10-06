@@ -7,14 +7,10 @@
   padding: 0 4%;
   position: sticky;
   top: 0;
-  transition: background-color 0.4s ease;
   z-index: 100;
 }
 
-/* Al bajar, el header pasa a fondo sólido (lo activa index.js) */
-.nf-header.is-scrolled {
-  background-color: #141414;
-}
+
 
 .nf-header__brand {
   display: flex;
