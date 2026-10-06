@@ -1,0 +1,126 @@
+.nf-header {
+  align-items: center;
+  background-color: #000;
+  display: flex;
+  gap: 40px;
+  height: 68px;
+  padding: 0 4%;
+  position: sticky;
+  top: 0;
+  transition: background-color 0.4s ease;
+  z-index: 100;
+}
+
+/* Al bajar, el header pasa a fondo sólido (lo activa index.js) */
+.nf-header.is-scrolled {
+  background-color: #141414;
+}
+
+.nf-header__brand {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.nf-header__logo {
+  display: block;
+  height: 32px;
+  object-fit: contain;
+  width: auto;
+}
+
+.nf-header__nav {
+  position: relative;
+}
+
+.nf-header__menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-header__link {
+  color: #e5e5e5;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nf-header__link:hover,
+.nf-header__link:focus-visible {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.nf-header__link:focus-visible,
+.nf-header__toggle:focus-visible,
+.nf-header__brand:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* Sección de la página actual */
+.nf-header__link[aria-current="page"] {
+  color: #fff;
+  cursor: default;
+  font-weight: 700;
+}
+
+/* Botón "Explorar": solo en pantallas chicas */
+.nf-header__toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .nf-header {
+    gap: 24px;
+  }
+
+  .nf-header__logo {
+    height: 24px;
+  }
+
+  .nf-header__toggle {
+    display: block;
+  }
+
+  .nf-header__menu {
+    background: rgba(0, 0, 0, 0.92);
+    border-top: 2px solid #e5e5e5;
+    flex-direction: column;
+    gap: 0;
+    left: 50%;
+    min-width: 220px;
+    position: absolute;
+    top: calc(100% + 16px);
+    transform: translateX(-50%);
+  }
+
+  .nf-header__menu:not(.is-open) {
+    display: none;
+  }
+
+  .nf-header__menu li {
+    text-align: center;
+  }
+
+  .nf-header__link {
+    display: block;
+    padding: 14px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-header,
+  .nf-header__link {
+    transition: none;
+  }
+}
