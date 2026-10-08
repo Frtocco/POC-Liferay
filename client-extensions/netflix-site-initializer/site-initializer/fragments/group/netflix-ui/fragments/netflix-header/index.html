@@ -1,0 +1,38 @@
+[#assign base = configuration.basePath?remove_ending("/")]
+[#assign sections = [
+  {"label": configuration.homeLabel, "path": configuration.homePath},
+  {"label": configuration.seriesLabel, "path": configuration.seriesPath},
+  {"label": configuration.moviesLabel, "path": configuration.moviesPath},
+  {"label": configuration.myListLabel, "path": configuration.myListPath}
+]]
+
+<header class="nf-header">
+  <a class="nf-header__brand" href="${base}${configuration.homePath}">
+    <img
+      alt="Logo"
+      class="nf-header__logo"
+      data-lfr-editable-id="logo"
+      data-lfr-editable-type="image"
+      src="https://placehold.co/184x50/141414/e50914?text=LOGO"
+    />
+  </a>
+
+  <nav class="nf-header__nav" aria-label="Navegación principal">
+    <button
+      aria-controls="nf-header-menu-${fragmentEntryLinkNamespace}"
+      aria-expanded="false"
+      class="nf-header__toggle"
+      type="button"
+    >
+      Explorar <span aria-hidden="true">&#9662;</span>
+    </button>
+
+    <ul class="nf-header__menu" id="nf-header-menu-${fragmentEntryLinkNamespace}">
+      [#list sections as section]
+        <li>
+          <a class="nf-header__link" href="${base}${section.path}">${section.label}</a>
+        </li>
+      [/#list]
+    </ul>
+  </nav>
+</header>

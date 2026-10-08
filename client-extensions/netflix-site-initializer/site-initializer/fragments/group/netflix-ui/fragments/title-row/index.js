@@ -1,6 +1,7 @@
 // Fila de títulos
 // Busca los contenidos del Content Type "Título" del sitio y muestra los que
-// tienen la categoría de género configurada (y opcionalmente la de tipo).
+// tienen la categoría de género configurada (y opcionalmente la de tipo),
+// en orden aleatorio para que la fila cambie en cada carga.
 // Liferay inyecta "fragmentElement" (el HTML de este fragment) y
 // "configuration" (los valores cargados en el panel de configuración).
 
@@ -52,6 +53,21 @@ function categoryNames(item) {
 	return (item.taxonomyCategoryBriefs || []).map((category) =>
 		normalize(category.taxonomyCategoryName)
 	);
+}
+
+// Mezcla la lista al azar (algoritmo Fisher-Yates): recorre el array de atrás
+// hacia adelante e intercambia cada elemento con otro elegido al azar entre
+// los que todavía no se movieron. Devuelve una copia y no toca el original.
+function shuffle(list) {
+	const result = [...list];
+
+	for (let i = result.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+
+		[result[i], result[j]] = [result[j], result[i]];
+	}
+
+	return result;
 }
 
 function posterUrl(item) {
@@ -132,7 +148,7 @@ async function load() {
 		}
 
 		const contents = await getJSON(
-			`/o/headless-delivery/v1.0/content-structures/${structure.id}/structured-contents?pageSize=100&sort=dateCreated:desc`
+			`/o/headless-delivery/v1.0/content-structures/${structure.id}/structured-contents?pageSize=100`
 		);
 
 		const items = contents.items.filter((item) => {
@@ -147,7 +163,7 @@ async function load() {
 			return;
 		}
 
-		track.replaceChildren(...items.map(buildCard));
+		track.replaceChildren(...shuffle(items).map(buildCard));
 		updateNav();
 	}
 	catch (error) {

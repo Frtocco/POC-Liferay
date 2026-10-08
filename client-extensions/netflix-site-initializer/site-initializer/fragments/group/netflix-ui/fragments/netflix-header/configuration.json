@@ -1,0 +1,78 @@
+{
+  "fieldSets": [
+    {
+      "label": "Sitio",
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc",
+          "description": "Prefijo de las URLs del sitio. Se ve en Configuración del sitio → URL del sitio.",
+          "label": "Ruta base del sitio",
+          "name": "basePath",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "label": "Secciones",
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Home",
+          "label": "Texto de Home",
+          "name": "homeLabel",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/home",
+          "label": "Ruta de Home",
+          "name": "homePath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "Series",
+          "label": "Texto de Series",
+          "name": "seriesLabel",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/series",
+          "label": "Ruta de Series",
+          "name": "seriesPath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "Películas",
+          "label": "Texto de Películas",
+          "name": "moviesLabel",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/peliculas",
+          "label": "Ruta de Películas",
+          "name": "moviesPath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "Mi lista",
+          "label": "Texto de Mi lista",
+          "name": "myListLabel",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/mi-lista",
+          "label": "Ruta de Mi lista",
+          "name": "myListPath",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
