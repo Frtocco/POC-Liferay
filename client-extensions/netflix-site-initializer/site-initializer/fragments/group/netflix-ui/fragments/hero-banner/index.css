@@ -1,0 +1,262 @@
+/* ---------- Hero ---------- */
+
+.nf-hero {
+  background: #141414;
+  color: #fff;
+  height: 90vh;
+  height: 90svh;
+  min-height: 480px;
+  overflow: hidden;
+  position: relative;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.nf-hero__backdrop {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.nf-hero__backdrop.is-loaded {
+  opacity: 1;
+}
+
+/* Oscurece la izquierda (para leer el texto) y funde la parte de abajo
+   con el fondo de las filas de títulos */
+.nf-hero__shade {
+  background:
+    linear-gradient(77deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 80%),
+    linear-gradient(180deg, rgba(20, 20, 20, 0) 55%, #141414 100%);
+  inset: 0;
+  position: absolute;
+}
+
+.nf-hero__content {
+  bottom: 22%;
+  left: 4%;
+  position: absolute;
+  width: min(40%, 620px);
+  z-index: 1;
+}
+
+.nf-hero__title {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 16px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.nf-hero__synopsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+  line-height: 1.4;
+  margin: 0 0 24px;
+  overflow: hidden;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nf-hero__button {
+  align-items: center;
+  background: rgba(109, 109, 110, 0.7);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  font-weight: 600;
+  gap: 10px;
+  padding: 0.65em 1.6em 0.65em 1.2em;
+}
+
+.nf-hero__button:hover {
+  background: rgba(109, 109, 110, 0.45);
+}
+
+.nf-hero__button:focus-visible,
+.nf-hero__dialog-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.nf-hero__icon {
+  height: 1.4em;
+  width: 1.4em;
+}
+
+.nf-hero__status {
+  bottom: 22%;
+  color: #b3b3b3;
+  left: 4%;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+/* ---------- Modal "Más información" ---------- */
+
+.nf-hero__dialog {
+  background: #181818;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.75);
+  color: #fff;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 0;
+  width: min(850px, 94vw);
+}
+
+.nf-hero__dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.nf-hero__dialog-media {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  position: relative;
+}
+
+.nf-hero__dialog-image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.nf-hero__dialog-media::after {
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0) 50%, #181818 100%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.nf-hero__dialog-title {
+  bottom: 24px;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  left: 48px;
+  line-height: 1.1;
+  margin: 0;
+  position: absolute;
+  right: 48px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.nf-hero__dialog-close {
+  align-items: center;
+  background: #181818;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.75rem;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 40px;
+  z-index: 2;
+}
+
+.nf-hero__dialog-body {
+  padding: 8px 48px 48px;
+}
+
+.nf-hero__dialog-meta {
+  align-items: center;
+  color: #bcbcbc;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.nf-hero__dialog-meta .nf-hero__badge {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 0.85em;
+  padding: 0 0.45em;
+}
+
+.nf-hero__dialog-synopsis {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin: 0 0 20px;
+  white-space: pre-line;
+}
+
+.nf-hero__dialog-extra {
+  color: #ddd;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.nf-hero__dialog-label {
+  color: #777;
+}
+
+/* Evita que la página de fondo se scrollee con el modal abierto */
+html.nf-hero-lock {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nf-hero__backdrop {
+    transition: opacity 0.6s ease;
+  }
+
+  .nf-hero__dialog[open] {
+    animation: nf-hero-pop 0.25s ease-out;
+  }
+
+  @keyframes nf-hero-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .nf-hero {
+    height: 70vh;
+    height: 70svh;
+    min-height: 420px;
+  }
+
+  .nf-hero__content,
+  .nf-hero__status {
+    bottom: 12%;
+    width: 92%;
+  }
+
+  .nf-hero__dialog-title {
+    left: 20px;
+    right: 20px;
+  }
+
+  .nf-hero__dialog-body {
+    padding: 8px 20px 32px;
+  }
+}

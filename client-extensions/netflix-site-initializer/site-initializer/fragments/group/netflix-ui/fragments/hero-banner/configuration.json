@@ -1,0 +1,47 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "",
+          "description": "Si lo completás, se muestra ese título. Si lo dejás vacío, se elige uno al azar en cada carga.",
+          "label": "Título destacado (opcional)",
+          "name": "tituloDestacado",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "",
+          "description": "Para el modo al azar: limita la elección a un género. Vacío = todos.",
+          "label": "Género (opcional)",
+          "name": "genero",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "todos",
+          "label": "Elegir entre",
+          "name": "tipo",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Películas y series",
+                "value": "todos"
+              },
+              {
+                "label": "Solo películas",
+                "value": "Película"
+              },
+              {
+                "label": "Solo series",
+                "value": "Serie"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<section class="nf-hero" aria-label="Título destacado">
+  <img alt="" class="nf-hero__backdrop" decoding="async" fetchpriority="high" hidden />
+  <div class="nf-hero__shade" aria-hidden="true"></div>
+
+  <div class="nf-hero__content" hidden>
+    <h1 class="nf-hero__title"></h1>
+    <p class="nf-hero__synopsis"></p>
+    <button class="nf-hero__button" type="button" aria-haspopup="dialog">
+      <svg aria-hidden="true" class="nf-hero__icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+        <line x1="12" y1="11" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <circle cx="12" cy="7.5" r="1.25" fill="currentColor" />
+      </svg>
+      Más información
+    </button>
+  </div>
+
+  <p class="nf-hero__status" hidden></p>
+
+  <dialog class="nf-hero__dialog">
+    <div class="nf-hero__dialog-inner">
+      <div class="nf-hero__dialog-media">
+        <img alt="" class="nf-hero__dialog-image" />
+        <h2 class="nf-hero__dialog-title"></h2>
+        <button class="nf-hero__dialog-close" type="button" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="nf-hero__dialog-body">
+        <ul class="nf-hero__dialog-meta"></ul>
+        <p class="nf-hero__dialog-synopsis"></p>
+        <p class="nf-hero__dialog-extra" data-field="elenco" hidden>
+          <span class="nf-hero__dialog-label">Elenco:</span> <span class="nf-hero__dialog-value"></span>
+        </p>
+        <p class="nf-hero__dialog-extra" data-field="generos" hidden>
+          <span class="nf-hero__dialog-label">Géneros:</span> <span class="nf-hero__dialog-value"></span>
+        </p>
+      </div>
+    </div>
+  </dialog>
+</section>
