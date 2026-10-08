@@ -1,0 +1,77 @@
+.nf-footer {
+  background: #141414;
+  color: #b3b3b3;
+  padding: 48px 4% 24px;
+  width: 100%;
+}
+
+.nf-footer__container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.nf-footer__brand {
+  margin-bottom: 32px;
+}
+
+.nf-footer__logo {
+  display: block;
+  height: 64px;
+  margin-bottom: 12px;
+  object-fit: contain;
+  width: auto;
+}
+
+.nf-footer__description {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.nf-footer__navigation {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-bottom: 40px;
+}
+
+.nf-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-footer__links li + li {
+  margin-top: 14px;
+}
+
+.nf-footer__links a {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.nf-footer__links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.nf-footer__links a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.nf-footer__bottom {
+  border-top: 1px solid #333;
+  font-size: 0.75rem;
+  padding-top: 20px;
+}
+
+.nf-footer__bottom p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .nf-footer {
+    padding-top: 36px;
+  }
+}
