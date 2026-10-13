@@ -1,0 +1,17 @@
+[
+  {
+    "dataType": 15,
+    "modelResource": "com.liferay.portal.kernel.model.User",
+    "name": "plan"
+  },
+  {
+    "dataType": 15,
+    "modelResource": "com.liferay.portal.kernel.model.User",
+    "name": "tarjetaMarca"
+  },
+  {
+    "dataType": 15,
+    "modelResource": "com.liferay.portal.kernel.model.User",
+    "name": "tarjetaUltimos4"
+  }
+]
