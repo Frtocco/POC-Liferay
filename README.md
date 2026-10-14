@@ -157,7 +157,21 @@ Y en **Panel de control → Configuración del sistema → Fragments de página*
 2. Entrá al sitio → **Publicación → Importar** y subí el LAR más reciente de `exports/`.
 3. Volvé a correr `blade gw deploy` del site initializer, para que los fragments queden con la versión del repo aunque el LAR sea un poco más viejo.
 
-### 9. Probar
+### 9. Activar la URL de login propia
+
+Recién ahora que existe la página `/login`, agregá esta línea al final de `bundles\portal-ext.properties` (**no** en `configs/local`) y reiniciá el servidor:
+
+```properties
+auth.login.url=/web/netflix-poc/login
+```
+
+No va en `configs/local` porque `blade server init` la copiaría a cada instalación nueva antes de que exista el sitio, y el login daría 404. Si te pasa, entrá con el login nativo:
+
+```
+http://localhost:8080/web/guest/home?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_state=maximized
+```
+
+### 10. Probar
 
 1. Abrí `http://localhost:8080` en una ventana de incógnito: tiene que aparecer el login de Netflix POC.
 2. Creá un usuario de prueba (por ahora con el registro nativo, desde `http://localhost:8080/c/portal/login` → **Create Account**).
@@ -348,6 +362,10 @@ Al abrir una URL `/o/...` directamente, la API te atiende como **usuario anónim
 
 La verificación de email está activada en la configuración de la instancia. Desactivala (paso 7). No hay servidor de correo en local, así que el código nunca llega.
 
+### El Sign In muestra un 404 y no se puede iniciar sesión
+
+`auth.login.url` apunta a `/web/netflix-poc/login`, pero esa página todavía no existe (instancia nueva sin el LAR importado). Entrá con el login nativo (URL del paso 9), terminá la preparación y recién después activá la propiedad. Si no funciona, comentá la línea en `bundles\portal-ext.properties` y reiniciá.
+
 ### Después del login no va a `/perfiles`
 
 - Si entraste por la ventana emergente de "Sign In", Liferay te devuelve a la página donde estabas. La página de destino solo se usa cuando el login no indica a dónde volver (por ejemplo, desde `/login` o `/c/portal/login`).
@@ -367,7 +385,7 @@ El PATH está mal configurado o truncado. Revisalo desde *Variables de entorno* 
 
 - **Selector de perfiles** en `/perfiles`: lista los perfiles del usuario (`r_perfiles_userId`), guarda el perfil activo en `sessionStorage` y lleva a `/home`.
 - **Registro propio** en `/registro`: custom element en React + microservicio Spring Boot que crea el usuario, sus campos (`plan`, tarjeta) y un perfil inicial.
-- **Páginas privadas:** quitar la vista al rol Guest en todas las páginas salvo Login y Registro, y agregar `auth.login.url=/web/netflix-poc/login` al `portal-ext.properties`.
+- **Páginas privadas:** quitar la vista al rol Guest en todas las páginas salvo Login y Registro.
 - **Mi lista:** Object con perfil + título, y su página.
 - **Detalle de título:** display page template y link desde las cards.
 - **Opcional:** mover el acceso a perfiles al microservicio (más seguro), y las funciones comunes de los fragments a un client extension global JS.
