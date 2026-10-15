@@ -25,3 +25,5 @@
 /plugins-sdk/dist
 /plugins-sdk/lib
 test-results
+tools/catalog/.env.local
+tools/catalog/images/_tmdb/

@@ -1,0 +1,6 @@
+{
+  "description": "Generos usados para agrupar titulos en el POC Netflix.",
+  "externalReferenceCode": "generos",
+  "name": "generos",
+  "numberOfTaxonomyCategories": 9
+}

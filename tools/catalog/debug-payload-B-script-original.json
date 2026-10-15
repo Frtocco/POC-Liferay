@@ -1,0 +1,115 @@
+﻿{
+    "taxonomyCategoryIds":  [
+                                33683,
+                                33686,
+                                33679,
+                                33917
+                            ],
+    "contentFields":  [
+                          {
+                              "name":  "CopyOfsinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Una piloto de carga acepta una mision cerca de Marte y descubre una transmision que puede cambiar el futuro de la colonia."
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "Una piloto de carga acepta una mision cerca de Marte y descubre una transmision que puede cambiar el futuro de la colonia."
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOfposter",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34150,
+                                                                      "description":  "titulo-horizonte-rojo-poster"
+                                                                  }
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "image":  {
+                                                                                         "id":  34150,
+                                                                                         "description":  "titulo-horizonte-rojo-poster"
+                                                                                     }
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOffondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34162,
+                                                                      "description":  "titulo-horizonte-rojo-fondo"
+                                                                  }
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "image":  {
+                                                                                         "id":  34162,
+                                                                                         "description":  "titulo-horizonte-rojo-fondo"
+                                                                                     }
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOfanio",
+                              "contentFieldValue":  {
+                                                        "data":  "2026"
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "2026"
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "clasificacion",
+                              "contentFieldValue":  {
+                                                        "data":  "[\"Mas13\"]",
+                                                        "value":  "Mas13"
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "[\"Mas13\"]",
+                                                                           "value":  "Mas13"
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Sofia Marquez"
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "Sofia Marquez"
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Ivan Torres"
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "Ivan Torres"
+                                                                       }
+                                                         }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Nadia Lemos"
+                                                    },
+                              "contentFieldValue_i18n":  {
+                                                             "en_US":  {
+                                                                           "data":  "Nadia Lemos"
+                                                                       }
+                                                         }
+                          }
+                      ],
+    "externalReferenceCode":  "debug-cc1d7ae1",
+    "title":  "DEBUG B-script-original",
+    "contentStructureId":  34374
+}

@@ -1,0 +1,79 @@
+﻿{
+    "taxonomyCategoryIds":  [
+                                33683,
+                                33686,
+                                33679,
+                                33917
+                            ],
+    "contentFields":  [
+                          {
+                              "name":  "sinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Una piloto de carga acepta una mision cerca de Marte y descubre una transmision que puede cambiar el futuro de la colonia."
+                                                    }
+                          },
+                          {
+                              "name":  "poster",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "contentType":  "Document",
+                                                                      "contentUrl":  "/documents/d/netflix-poc/mv5byzdjmdaxzgitmji2my00oda1ltlknzitowfjmdu5zdjlywy3xkeyxkfqcgc-_v1_fmjpg_ux1000_-jpg",
+                                                                      "description":  "poster",
+                                                                      "encodingFormat":  "image/jpeg",
+                                                                      "fileExtension":  "jpg",
+                                                                      "id":  33625,
+                                                                      "sizeInBytes":  336255,
+                                                                      "title":  "MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "fondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "contentType":  "Document",
+                                                                      "contentUrl":  "/documents/d/netflix-poc/fondo-interstellar-jpg",
+                                                                      "description":  "",
+                                                                      "encodingFormat":  "image/jpeg",
+                                                                      "fileExtension":  "jpg",
+                                                                      "id":  33649,
+                                                                      "sizeInBytes":  26476,
+                                                                      "title":  "fondo interstellar.jpg"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "anio",
+                              "contentFieldValue":  {
+                                                        "data":  "2015"
+                                                    }
+                          },
+                          {
+                              "name":  "clasificacion",
+                              "contentFieldValue":  {
+                                                        "data":  "Mas13"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Sofia Marquez"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Ivan Torres"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Nadia Lemos"
+                                                    }
+                          }
+                      ],
+    "externalReferenceCode":  "debug-cf9417b8",
+    "title":  "DEBUG F-mixto-campos-de-ref",
+    "contentStructureId":  33666
+}

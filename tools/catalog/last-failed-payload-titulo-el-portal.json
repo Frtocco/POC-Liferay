@@ -1,0 +1,130 @@
+﻿{
+    "externalReferenceCode":  "titulo-el-portal",
+    "title":  "El Portal",
+    "contentStructureId":  33666,
+    "taxonomyCategoryIds":  [
+                                33905,
+                                33686,
+                                33679
+                            ],
+    "contentFields":  [
+                          {
+                              "name":  "sinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Una cientifica descubre una senal imposible y abre una investigacion que conecta ciudades, recuerdos y universos paralelos."
+                                                    }
+                          },
+                          {
+                              "name":  "poster",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34174,
+                                                                      "description":  "titulo-el-portal-poster"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "fondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34186,
+                                                                      "description":  "titulo-el-portal-fondo"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "anio",
+                              "contentFieldValue":  {
+                                                        "data":  "2026"
+                                                    }
+                          },
+                          {
+                              "name":  "Select05014083",
+                              "contentFieldValue":  {
+                                                        "data":  "Option68597923"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Laura Vega"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Mateo Ruiz"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Clara Sosa"
+                                                    }
+                          },
+                          {
+                              "name":  "temporadas",
+                              "contentFieldValue":  {
+                                                        "data":  "1"
+                                                    }
+                          },
+                          {
+                              "name":  "episodio",
+                              "nestedContentFields":  [
+                                                          {
+                                                              "name":  "episodioTemporada",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNumero",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNombre",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "La senal"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioDuracion",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "48"
+                                                                                    }
+                                                          }
+                                                      ]
+                          },
+                          {
+                              "name":  "episodio",
+                              "nestedContentFields":  [
+                                                          {
+                                                              "name":  "episodioTemporada",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNumero",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "2"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNombre",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "Materia oscura"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioDuracion",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "52"
+                                                                                    }
+                                                          }
+                                                      ]
+                          }
+                      ]
+}

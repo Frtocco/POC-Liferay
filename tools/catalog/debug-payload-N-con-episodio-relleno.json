@@ -1,0 +1,96 @@
+﻿{
+    "taxonomyCategoryIds":  [
+                                33683,
+                                33686,
+                                33679,
+                                33917
+                            ],
+    "contentFields":  [
+                          {
+                              "name":  "CopyOfsinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Una piloto de carga acepta una mision cerca de Marte y descubre una transmision que puede cambiar el futuro de la colonia."
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfposter",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34150,
+                                                                      "description":  "titulo-horizonte-rojo-poster"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOffondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34162,
+                                                                      "description":  "titulo-horizonte-rojo-fondo"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfanio",
+                              "contentFieldValue":  {
+                                                        "data":  "2026"
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfSelect05014083",
+                              "contentFieldValue":  {
+                                                        "data":  "Option16420715"
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Sofia Marquez"
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Ivan Torres"
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfelenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Nadia Lemos"
+                                                    }
+                          },
+                          {
+                              "name":  "CopyOfepisodio",
+                              "nestedContentFields":  [
+                                                          {
+                                                              "name":  "episodioTemporada",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNumero",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioNombre",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "test"
+                                                                                    }
+                                                          },
+                                                          {
+                                                              "name":  "episodioDuracion",
+                                                              "contentFieldValue":  {
+                                                                                        "data":  "1"
+                                                                                    }
+                                                          }
+                                                      ]
+                          }
+                      ],
+    "externalReferenceCode":  "debug-b6707ee7",
+    "title":  "DEBUG N-con-episodio-relleno",
+    "contentStructureId":  34374
+}

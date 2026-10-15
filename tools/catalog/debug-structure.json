@@ -1,0 +1,178 @@
+﻿{
+  "availableLanguages" : [ "en-US" ],
+  "contentStructureFields" : [ {
+    "dataType" : "string",
+    "inputControl" : "text",
+    "label" : "Sinopsis",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOfsinopsis",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "image",
+    "label" : "Poster",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOfposter",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "{}",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "image",
+    "label" : "Imagen de fondo",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOffondo",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "{}",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "integer",
+    "label" : "AÃ±o",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOfanio",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "string",
+    "inputControl" : "select",
+    "label" : "Clasificacion",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOfSelect05014083",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ {
+      "label" : "ATP",
+      "value" : "Option23070560"
+    }, {
+      "label" : "+13",
+      "value" : "Option16420715"
+    }, {
+      "label" : "+16",
+      "value" : "Option68597923"
+    }, {
+      "label" : "+18",
+      "value" : "Option57595566"
+    } ],
+    "predefinedValue" : "[]",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "string",
+    "inputControl" : "text",
+    "label" : "Elenco",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOfelenco",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "",
+    "repeatable" : true,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "integer",
+    "label" : "Temporadas",
+    "localizable" : true,
+    "multiple" : false,
+    "name" : "CopyOftemporadas",
+    "nestedContentStructureFields" : [ ],
+    "options" : [ ],
+    "predefinedValue" : "",
+    "repeatable" : false,
+    "required" : false,
+    "showLabel" : true
+  }, {
+    "dataType" : "",
+    "label" : "Episodio",
+    "localizable" : false,
+    "multiple" : false,
+    "name" : "CopyOfepisodio",
+    "nestedContentStructureFields" : [ {
+      "dataType" : "integer",
+      "label" : "Temporada",
+      "localizable" : true,
+      "multiple" : false,
+      "name" : "episodioTemporada",
+      "nestedContentStructureFields" : [ ],
+      "options" : [ ],
+      "predefinedValue" : "",
+      "repeatable" : false,
+      "required" : false,
+      "showLabel" : true
+    }, {
+      "dataType" : "integer",
+      "label" : "NÃºmero",
+      "localizable" : true,
+      "multiple" : false,
+      "name" : "episodioNumero",
+      "nestedContentStructureFields" : [ ],
+      "options" : [ ],
+      "predefinedValue" : "",
+      "repeatable" : false,
+      "required" : false,
+      "showLabel" : true
+    }, {
+      "dataType" : "string",
+      "inputControl" : "text",
+      "label" : "Nombre de Episodio",
+      "localizable" : true,
+      "multiple" : false,
+      "name" : "episodioNombre",
+      "nestedContentStructureFields" : [ ],
+      "options" : [ ],
+      "predefinedValue" : "",
+      "repeatable" : false,
+      "required" : false,
+      "showLabel" : true
+    }, {
+      "dataType" : "integer",
+      "label" : "Duracion",
+      "localizable" : true,
+      "multiple" : false,
+      "name" : "episodioDuracion",
+      "nestedContentStructureFields" : [ ],
+      "options" : [ ],
+      "predefinedValue" : "",
+      "repeatable" : false,
+      "required" : false,
+      "showLabel" : true
+    } ],
+    "options" : [ ],
+    "predefinedValue" : "",
+    "repeatable" : true,
+    "required" : false,
+    "showLabel" : true
+  } ],
+  "creator" : {
+    "additionalName" : "",
+    "contentType" : "UserAccount",
+    "familyName" : "Test",
+    "givenName" : "Test",
+    "id" : 20123,
+    "name" : "Test Test"
+  },
+  "dateCreated" : "2026-10-13T21:49:46Z",
+  "dateModified" : "2026-10-13T21:50:12Z",
+  "description" : "",
+  "id" : 34374,
+  "name" : "TÃ­tulo copia",
+  "siteId" : 33503
+}

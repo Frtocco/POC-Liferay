@@ -1,0 +1,176 @@
+﻿{
+    "contentFields":  {
+                          "value":  [
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "data":  "Interestelar (Interstellar) es una pelÃ­cula de ciencia ficciÃ³n de 2014 dirigida por Christopher Nolan que cuenta la historia de un grupo de astronautas que viaja a travÃ©s de un agujero de gusano en busca de un nuevo planeta habitable para salvar a la humanidad"
+                                                                  },
+                                            "dataType":  "string",
+                                            "inputControl":  "text",
+                                            "label":  "Sinopsis",
+                                            "name":  "sinopsis",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "image":  {
+                                                                                    "contentType":  "Document",
+                                                                                    "contentUrl":  "/documents/d/netflix-poc/mv5byzdjmdaxzgitmji2my00oda1ltlknzitowfjmdu5zdjlywy3xkeyxkfqcgc-_v1_fmjpg_ux1000_-jpg",
+                                                                                    "description":  "poster",
+                                                                                    "encodingFormat":  "image/jpeg",
+                                                                                    "fileExtension":  "jpg",
+                                                                                    "id":  33625,
+                                                                                    "sizeInBytes":  336255,
+                                                                                    "title":  "MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                                                                                }
+                                                                  },
+                                            "dataType":  "image",
+                                            "label":  "Poster",
+                                            "name":  "poster",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "image":  {
+                                                                                    "contentType":  "Document",
+                                                                                    "contentUrl":  "/documents/d/netflix-poc/fondo-interstellar-jpg",
+                                                                                    "description":  "",
+                                                                                    "encodingFormat":  "image/jpeg",
+                                                                                    "fileExtension":  "jpg",
+                                                                                    "id":  33649,
+                                                                                    "sizeInBytes":  26476,
+                                                                                    "title":  "fondo interstellar.jpg"
+                                                                                }
+                                                                  },
+                                            "dataType":  "image",
+                                            "label":  "Imagen de fondo",
+                                            "name":  "fondo",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "data":  "2015"
+                                                                  },
+                                            "dataType":  "integer",
+                                            "label":  "AÃ±o",
+                                            "name":  "anio",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "data":  "+13",
+                                                                      "value":  "Option16420715"
+                                                                  },
+                                            "dataType":  "string",
+                                            "inputControl":  "select",
+                                            "label":  "Clasificacion",
+                                            "name":  "Select05014083",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "data":  "Matthew McConaughey"
+                                                                  },
+                                            "dataType":  "string",
+                                            "inputControl":  "text",
+                                            "label":  "Elenco",
+                                            "name":  "elenco",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  true
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+                                                                      "data":  ""
+                                                                  },
+                                            "dataType":  "integer",
+                                            "label":  "Temporadas",
+                                            "name":  "temporadas",
+                                            "nestedContentFields":  [
+
+                                                                    ],
+                                            "repeatable":  false
+                                        },
+                                        {
+                                            "contentFieldValue":  {
+
+                                                                  },
+                                            "dataType":  "",
+                                            "label":  "Episodio",
+                                            "name":  "episodio",
+                                            "nestedContentFields":  [
+                                                                        {
+                                                                            "contentFieldValue":  {
+                                                                                                      "data":  ""
+                                                                                                  },
+                                                                            "dataType":  "integer",
+                                                                            "label":  "Temporada",
+                                                                            "name":  "episodioTemporada",
+                                                                            "nestedContentFields":  [
+
+                                                                                                    ],
+                                                                            "repeatable":  false
+                                                                        },
+                                                                        {
+                                                                            "contentFieldValue":  {
+                                                                                                      "data":  ""
+                                                                                                  },
+                                                                            "dataType":  "integer",
+                                                                            "label":  "NÃºmero",
+                                                                            "name":  "episodioNumero",
+                                                                            "nestedContentFields":  [
+
+                                                                                                    ],
+                                                                            "repeatable":  false
+                                                                        },
+                                                                        {
+                                                                            "contentFieldValue":  {
+                                                                                                      "data":  ""
+                                                                                                  },
+                                                                            "dataType":  "string",
+                                                                            "inputControl":  "text",
+                                                                            "label":  "Nombre de Episodio",
+                                                                            "name":  "episodioNombre",
+                                                                            "nestedContentFields":  [
+
+                                                                                                    ],
+                                                                            "repeatable":  false
+                                                                        },
+                                                                        {
+                                                                            "contentFieldValue":  {
+                                                                                                      "data":  ""
+                                                                                                  },
+                                                                            "dataType":  "integer",
+                                                                            "label":  "Duracion",
+                                                                            "name":  "episodioDuracion",
+                                                                            "nestedContentFields":  [
+
+                                                                                                    ],
+                                                                            "repeatable":  false
+                                                                        }
+                                                                    ],
+                                            "repeatable":  true
+                                        }
+                                    ],
+                          "Count":  8
+                      },
+    "externalReferenceCode":  "debug-a2c6b182",
+    "title":  "DEBUG A-clon-manual",
+    "contentStructureId":  33666
+}

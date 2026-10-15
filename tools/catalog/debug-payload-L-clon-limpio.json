@@ -1,0 +1,48 @@
+﻿{
+    "contentFields":  [
+                          {
+                              "name":  "sinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Interestelar (Interstellar) es una pelÃ­cula de ciencia ficciÃ³n de 2014 dirigida por Christopher Nolan que cuenta la historia de un grupo de astronautas que viaja a travÃ©s de un agujero de gusano en busca de un nuevo planeta habitable para salvar a la humanidad"
+                                                    }
+                          },
+                          {
+                              "name":  "poster",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  33625
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "fondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  33649
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "anio",
+                              "contentFieldValue":  {
+                                                        "data":  "2015"
+                                                    }
+                          },
+                          {
+                              "name":  "Select05014083",
+                              "contentFieldValue":  {
+                                                        "data":  "+13",
+                                                        "value":  "Option16420715"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Matthew McConaughey"
+                                                    }
+                          }
+                      ],
+    "externalReferenceCode":  "debug-278c0324",
+    "title":  "DEBUG L-clon-limpio",
+    "contentStructureId":  33666
+}

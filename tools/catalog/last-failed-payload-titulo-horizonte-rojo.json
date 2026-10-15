@@ -1,0 +1,67 @@
+﻿{
+    "externalReferenceCode":  "titulo-horizonte-rojo",
+    "title":  "Horizonte Rojo",
+    "contentStructureId":  33666,
+    "taxonomyCategoryIds":  [
+                                33683,
+                                33686,
+                                33679,
+                                33917
+                            ],
+    "contentFields":  [
+                          {
+                              "name":  "sinopsis",
+                              "contentFieldValue":  {
+                                                        "data":  "Una piloto de carga acepta una mision cerca de Marte y descubre una transmision que puede cambiar el futuro de la colonia."
+                                                    }
+                          },
+                          {
+                              "name":  "poster",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34150,
+                                                                      "description":  "titulo-horizonte-rojo-poster"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "fondo",
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "id":  34162,
+                                                                      "description":  "titulo-horizonte-rojo-fondo"
+                                                                  }
+                                                    }
+                          },
+                          {
+                              "name":  "anio",
+                              "contentFieldValue":  {
+                                                        "data":  "2026"
+                                                    }
+                          },
+                          {
+                              "name":  "Select05014083",
+                              "contentFieldValue":  {
+                                                        "data":  "Option16420715"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Sofia Marquez"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Ivan Torres"
+                                                    }
+                          },
+                          {
+                              "name":  "elenco",
+                              "contentFieldValue":  {
+                                                        "data":  "Nadia Lemos"
+                                                    }
+                          }
+                      ]
+}

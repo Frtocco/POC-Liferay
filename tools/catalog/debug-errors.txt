@@ -1,0 +1,42 @@
+﻿--- B-script-original ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+
+--- C-sin-i18n ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+
+--- D-sin-i18n-select-plano ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+
+--- E-select-label ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+
+--- G-imagen-solo-id ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+
+--- H-locale-es-ES ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Structured content must include the default language en-US"
+}
+
+--- I-sin-locale ---
+{
+  "status" : "BAD_REQUEST",
+  "title" : "Unable to get content field value for \"clasificacion\" for content structure 34374"
+}
+

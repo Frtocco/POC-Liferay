@@ -1,0 +1,6 @@
+{
+  "description": "Clasificacion de titulos entre peliculas y series.",
+  "externalReferenceCode": "tipo",
+  "name": "tipo",
+  "numberOfTaxonomyCategories": 2
+}

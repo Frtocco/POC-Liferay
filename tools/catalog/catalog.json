@@ -1,0 +1,387 @@
+[
+  {
+    "erc": "titulo-gran-hotel-budapest",
+    "titulo": "El Gran Hotel Budapest",
+    "tipo": "Pelicula",
+    "generos": ["Comedia", "Drama"],
+    "sinopsis": "En un elegante hotel de una república europea imaginaria, un conserje legendario y su joven botones quedan envueltos en el robo de una pintura invaluable y en una disputa por una herencia millonaria.",
+    "anio": 2014,
+    "clasificacion": "+13",
+    "elenco": ["Ralph Fiennes", "Tony Revolori", "Saoirse Ronan"],
+    "tmdb": {"busqueda": "The Grand Budapest Hotel", "anio": 2014}
+  },
+  {
+    "erc": "titulo-brooklyn-nine-nine",
+    "titulo": "Brooklyn Nine-Nine",
+    "tipo": "Serie",
+    "generos": ["Comedia"],
+    "sinopsis": "Un detective talentoso pero inmaduro de una comisaría de Brooklyn tiene que adaptarse a un nuevo capitán, serio y exigente, decidido a convertir a su equipo en el mejor de la ciudad.",
+    "anio": 2013,
+    "clasificacion": "+13",
+    "elenco": ["Andy Samberg", "Andre Braugher", "Stephanie Beatriz"],
+    "tmdb": {"busqueda": "Brooklyn Nine-Nine", "anio": 2013},
+    "temporadas": 8,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Piloto", "duracion": 22},
+      {"temporada": 1, "numero": 2, "nombre": "El grafitero", "duracion": 22}
+    ]
+  },
+  {
+    "erc": "titulo-matrix",
+    "titulo": "Matrix",
+    "tipo": "Pelicula",
+    "generos": ["Ciencia Ficcion", "Accion"],
+    "sinopsis": "Un programador que de noche trabaja como hacker descubre que el mundo que conoce es una simulación creada por máquinas, y se une a un grupo de rebeldes dispuestos a liberar a la humanidad.",
+    "anio": 1999,
+    "clasificacion": "+13",
+    "elenco": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+    "tmdb": {"busqueda": "The Matrix", "anio": 1999}
+  },
+  {
+    "erc": "titulo-la-llegada",
+    "titulo": "La llegada",
+    "tipo": "Pelicula",
+    "generos": ["Ciencia Ficcion", "Drama"],
+    "sinopsis": "Cuando doce naves extraterrestres aparecen en distintos puntos del planeta, una lingüista es convocada para descifrar su idioma antes de que la desconfianza entre países desate una guerra.",
+    "anio": 2016,
+    "clasificacion": "+13",
+    "elenco": ["Amy Adams", "Jeremy Renner", "Forest Whitaker"],
+    "tmdb": {"busqueda": "Arrival", "anio": 2016}
+  },
+  {
+    "erc": "titulo-mad-max-furia-en-el-camino",
+    "titulo": "Mad Max: Furia en el camino",
+    "tipo": "Pelicula",
+    "generos": ["Accion", "Aventura", "Ciencia Ficcion"],
+    "sinopsis": "En un desierto postapocalíptico, una guerrera rebelde escapa de un tirano junto a un grupo de mujeres cautivas, y un vagabundo atormentado termina sumándose a la huida.",
+    "anio": 2015,
+    "clasificacion": "+16",
+    "elenco": ["Tom Hardy", "Charlize Theron", "Nicholas Hoult"],
+    "tmdb": {"busqueda": "Mad Max: Fury Road", "anio": 2015}
+  },
+  {
+    "erc": "titulo-john-wick",
+    "titulo": "John Wick",
+    "tipo": "Pelicula",
+    "generos": ["Accion"],
+    "sinopsis": "Un asesino a sueldo retirado vuelve a las andanzas cuando unos matones le arrebatan lo último que le quedaba de su vida tranquila, y se enfrenta a toda una organización criminal.",
+    "anio": 2014,
+    "clasificacion": "+16",
+    "elenco": ["Keanu Reeves", "Michael Nyqvist", "Alfie Allen"],
+    "tmdb": {"busqueda": "John Wick", "anio": 2014}
+  },
+  {
+    "erc": "titulo-indiana-jones-arca-perdida",
+    "titulo": "Indiana Jones y los cazadores del arca perdida",
+    "tipo": "Pelicula",
+    "generos": ["Aventura", "Accion"],
+    "sinopsis": "Un arqueólogo aventurero recorre el mundo en una carrera contra agentes nazis para encontrar una reliquia bíblica de poder legendario antes que ellos.",
+    "anio": 1981,
+    "clasificacion": "ATP",
+    "elenco": ["Harrison Ford", "Karen Allen", "Paul Freeman"],
+    "tmdb": {"busqueda": "Raiders of the Lost Ark", "anio": 1981}
+  },
+  {
+    "erc": "titulo-jurassic-park",
+    "titulo": "Jurassic Park",
+    "tipo": "Pelicula",
+    "generos": ["Aventura", "Ciencia Ficcion"],
+    "sinopsis": "Un grupo de científicos visita un parque temático en una isla donde se recrearon dinosaurios a partir de ADN antiguo, pero una falla en la seguridad deja a los animales sueltos.",
+    "anio": 1993,
+    "clasificacion": "+13",
+    "elenco": ["Sam Neill", "Laura Dern", "Jeff Goldblum"],
+    "tmdb": {"busqueda": "Jurassic Park", "anio": 1993}
+  },
+  {
+    "erc": "titulo-piratas-del-caribe-perla-negra",
+    "titulo": "Piratas del Caribe: La maldición del Perla Negra",
+    "tipo": "Pelicula",
+    "generos": ["Aventura", "Accion", "Comedia"],
+    "sinopsis": "Un excéntrico capitán pirata y un joven herrero unen fuerzas para rescatar a la hija del gobernador, secuestrada por una tripulación condenada por una antigua maldición.",
+    "anio": 2003,
+    "clasificacion": "+13",
+    "elenco": ["Johnny Depp", "Geoffrey Rush", "Orlando Bloom"],
+    "tmdb": {"busqueda": "Pirates of the Caribbean: The Curse of the Black Pearl", "anio": 2003}
+  },
+  {
+    "erc": "titulo-el-conjuro",
+    "titulo": "El conjuro",
+    "tipo": "Pelicula",
+    "generos": ["Terror"],
+    "sinopsis": "Una pareja de investigadores de fenómenos paranormales acude en ayuda de una familia que, al mudarse a una granja aislada, empieza a sufrir sucesos cada vez más aterradores.",
+    "anio": 2013,
+    "clasificacion": "+16",
+    "elenco": ["Vera Farmiga", "Patrick Wilson", "Lili Taylor"],
+    "tmdb": {"busqueda": "The Conjuring", "anio": 2013}
+  },
+  {
+    "erc": "titulo-huye",
+    "titulo": "¡Huye!",
+    "tipo": "Pelicula",
+    "generos": ["Terror"],
+    "sinopsis": "Un joven fotógrafo viaja a conocer a la familia de su novia y, durante un fin de semana en la casa de campo, descubre que la amabilidad de sus anfitriones esconde algo perturbador.",
+    "anio": 2017,
+    "clasificacion": "+16",
+    "elenco": ["Daniel Kaluuya", "Allison Williams", "Catherine Keener"],
+    "tmdb": {"busqueda": "Get Out", "anio": 2017}
+  },
+  {
+    "erc": "titulo-la-la-land",
+    "titulo": "La La Land: Una historia de amor",
+    "tipo": "Pelicula",
+    "generos": ["Musical", "Romance", "Drama"],
+    "sinopsis": "En Los Ángeles, una aspirante a actriz y un pianista de jazz se enamoran mientras persiguen sus sueños, y descubren que el éxito puede poner a prueba lo que sienten.",
+    "anio": 2016,
+    "clasificacion": "ATP",
+    "elenco": ["Ryan Gosling", "Emma Stone", "John Legend"],
+    "tmdb": {"busqueda": "La La Land", "anio": 2016}
+  },
+  {
+    "erc": "titulo-el-gran-showman",
+    "titulo": "El gran showman",
+    "tipo": "Pelicula",
+    "generos": ["Musical", "Drama"],
+    "sinopsis": "Un soñador de origen humilde crea un espectáculo que reúne a artistas marginados por la sociedad y, entre canciones, busca el reconocimiento que siempre le fue negado.",
+    "anio": 2017,
+    "clasificacion": "ATP",
+    "elenco": ["Hugh Jackman", "Zac Efron", "Zendaya"],
+    "tmdb": {"busqueda": "The Greatest Showman", "anio": 2017}
+  },
+  {
+    "erc": "titulo-orgullo-y-prejuicio",
+    "titulo": "Orgullo y prejuicio",
+    "tipo": "Pelicula",
+    "generos": ["Romance", "Drama"],
+    "sinopsis": "En la Inglaterra rural del siglo XIX, una joven de carácter fuerte y un aristócrata reservado se juzgan mal desde el primer encuentro, hasta que tienen que enfrentar sus propios prejuicios.",
+    "anio": 2005,
+    "clasificacion": "ATP",
+    "elenco": ["Keira Knightley", "Matthew Macfadyen", "Rosamund Pike"],
+    "tmdb": {"busqueda": "Pride & Prejudice", "anio": 2005}
+  },
+  {
+    "erc": "titulo-diario-de-una-pasion",
+    "titulo": "Diario de una pasión",
+    "tipo": "Pelicula",
+    "generos": ["Romance", "Drama"],
+    "sinopsis": "Un hombre mayor le lee a una mujer internada la historia de dos jóvenes de clases sociales distintas que se enamoraron un verano y fueron separados por sus familias.",
+    "anio": 2004,
+    "clasificacion": "+13",
+    "elenco": ["Ryan Gosling", "Rachel McAdams", "Gena Rowlands"],
+    "tmdb": {"busqueda": "The Notebook", "anio": 2004}
+  },
+  {
+    "erc": "titulo-el-viaje-de-chihiro",
+    "titulo": "El viaje de Chihiro",
+    "tipo": "Pelicula",
+    "generos": ["Animacion", "Aventura"],
+    "sinopsis": "Durante una mudanza, una niña queda atrapada en un mundo de espíritus donde sus padres son transformados, y tiene que trabajar en una casa de baños mágica para encontrar la forma de volver.",
+    "anio": 2001,
+    "clasificacion": "ATP",
+    "elenco": ["Rumi Hiiragi", "Miyu Irino", "Mari Natsuki"],
+    "tmdb": {"busqueda": "Spirited Away", "anio": 2001}
+  },
+  {
+    "erc": "titulo-toy-story",
+    "titulo": "Toy Story",
+    "tipo": "Pelicula",
+    "generos": ["Animacion", "Comedia", "Aventura"],
+    "sinopsis": "Los juguetes de un chico cobran vida cuando nadie los ve, y la llegada de un moderno muñeco astronauta pone en peligro el lugar del vaquero favorito de la habitación.",
+    "anio": 1995,
+    "clasificacion": "ATP",
+    "elenco": ["Tom Hanks", "Tim Allen", "Don Rickles"],
+    "tmdb": {"busqueda": "Toy Story", "anio": 1995}
+  },
+  {
+    "erc": "titulo-relatos-salvajes",
+    "titulo": "Relatos salvajes",
+    "tipo": "Pelicula",
+    "generos": ["Comedia", "Drama"],
+    "sinopsis": "Seis historias independientes muestran a personas comunes que, frente a una injusticia o una provocación, pierden el control y se dejan llevar por el placer de la venganza.",
+    "anio": 2014,
+    "clasificacion": "+16",
+    "elenco": ["Ricardo Darín", "Érica Rivas", "Leonardo Sbaraglia"],
+    "tmdb": {"busqueda": "Relatos salvajes", "anio": 2014}
+  },
+  {
+    "erc": "titulo-el-secreto-de-sus-ojos",
+    "titulo": "El secreto de sus ojos",
+    "tipo": "Pelicula",
+    "generos": ["Drama"],
+    "sinopsis": "Un empleado judicial retirado decide escribir una novela sobre un crimen que investigó veinticinco años atrás, y al hacerlo revive tanto el caso como un amor que nunca se animó a confesar.",
+    "anio": 2009,
+    "clasificacion": "+16",
+    "elenco": ["Ricardo Darín", "Soledad Villamil", "Guillermo Francella"],
+    "tmdb": {"busqueda": "El secreto de sus ojos", "anio": 2009}
+  },
+  {
+    "erc": "titulo-parasitos",
+    "titulo": "Parásitos",
+    "tipo": "Pelicula",
+    "generos": ["Drama", "Comedia"],
+    "sinopsis": "Una familia pobre se las ingenia para conseguir trabajo, uno por uno, en la casa de una familia adinerada, hasta que un descubrimiento inesperado cambia todo.",
+    "anio": 2019,
+    "clasificacion": "+16",
+    "elenco": ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"],
+    "tmdb": {"id": 496243}
+  },
+  {
+    "erc": "titulo-stranger-things",
+    "titulo": "Stranger Things",
+    "tipo": "Serie",
+    "generos": ["Ciencia Ficcion", "Terror", "Drama"],
+    "sinopsis": "En un pueblo de los años 80, la desaparición de un chico destapa experimentos secretos del gobierno, fuerzas sobrenaturales y a una niña muy particular con poderes extraños.",
+    "anio": 2016,
+    "clasificacion": "+13",
+    "elenco": ["Winona Ryder", "David Harbour", "Millie Bobby Brown"],
+    "tmdb": {"busqueda": "Stranger Things", "anio": 2016},
+    "temporadas": 5,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "La desaparición de Will Byers", "duracion": 48},
+      {"temporada": 1, "numero": 2, "nombre": "El bicho raro de la calle Maple", "duracion": 55}
+    ]
+  },
+  {
+    "erc": "titulo-dark",
+    "titulo": "Dark",
+    "tipo": "Serie",
+    "generos": ["Ciencia Ficcion", "Drama"],
+    "sinopsis": "La desaparición de dos chicos en un pequeño pueblo alemán expone los secretos de cuatro familias y un misterio que se extiende a lo largo de varias generaciones.",
+    "anio": 2017,
+    "clasificacion": "+16",
+    "elenco": ["Louis Hofmann", "Lisa Vicari", "Oliver Masucci"],
+    "tmdb": {"busqueda": "Dark", "anio": 2017},
+    "temporadas": 3,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Secretos", "duracion": 51},
+      {"temporada": 1, "numero": 2, "nombre": "Mentiras", "duracion": 44}
+    ]
+  },
+  {
+    "erc": "titulo-la-casa-de-papel",
+    "titulo": "La casa de papel",
+    "tipo": "Serie",
+    "generos": ["Accion", "Drama"],
+    "sinopsis": "Un misterioso estratega reúne a ocho delincuentes con un plan tan ambicioso como arriesgado: tomar la Fábrica Nacional de Moneda y Timbre e imprimir su propio botín.",
+    "anio": 2017,
+    "clasificacion": "+16",
+    "elenco": ["Úrsula Corberó", "Álvaro Morte", "Itziar Ituño"],
+    "tmdb": {"busqueda": "La casa de papel", "anio": 2017},
+    "temporadas": 5,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Efectuar lo acordado", "duracion": 47},
+      {"temporada": 1, "numero": 2, "nombre": "Imprudencias letales", "duracion": 41}
+    ]
+  },
+  {
+    "erc": "titulo-la-maldicion-de-hill-house",
+    "titulo": "La maldición de Hill House",
+    "tipo": "Serie",
+    "generos": ["Terror", "Drama"],
+    "sinopsis": "Cinco hermanos que crecieron en la mansión embrujada más famosa del país vuelven a reunirse tras una tragedia y tienen que enfrentar los fantasmas de su pasado, en todos los sentidos.",
+    "anio": 2018,
+    "clasificacion": "+16",
+    "elenco": ["Michiel Huisman", "Carla Gugino", "Victoria Pedretti"],
+    "tmdb": {"busqueda": "The Haunting of Hill House", "anio": 2018},
+    "temporadas": 1,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Steven ve un fantasma", "duracion": 59},
+      {"temporada": 1, "numero": 2, "nombre": "Ataúd abierto", "duracion": 59}
+    ]
+  },
+  {
+    "erc": "titulo-glee",
+    "titulo": "Glee",
+    "tipo": "Serie",
+    "generos": ["Musical", "Comedia"],
+    "sinopsis": "Un profesor de secundaria intenta revivir el club de coro de su escuela reuniendo a un grupo de alumnos inadaptados con mucho talento y aún más problemas.",
+    "anio": 2009,
+    "clasificacion": "+13",
+    "elenco": ["Lea Michele", "Matthew Morrison", "Jane Lynch"],
+    "tmdb": {"busqueda": "Glee", "anio": 2009},
+    "temporadas": 6,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Piloto", "duracion": 48},
+      {"temporada": 1, "numero": 2, "nombre": "Showmance", "duracion": 44}
+    ]
+  },
+  {
+    "erc": "titulo-normal-people",
+    "titulo": "Normal People",
+    "tipo": "Serie",
+    "generos": ["Romance", "Drama"],
+    "sinopsis": "Dos jóvenes de un pueblo irlandés, de mundos sociales muy distintos, comparten una relación intensa e intermitente que los acompaña desde el final del colegio hasta la universidad.",
+    "anio": 2020,
+    "clasificacion": "+16",
+    "elenco": ["Daisy Edgar-Jones", "Paul Mescal", "Sarah Greene"],
+    "tmdb": {"busqueda": "Normal People", "anio": 2020},
+    "temporadas": 1,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Episodio 1", "duracion": 30},
+      {"temporada": 1, "numero": 2, "nombre": "Episodio 2", "duracion": 30}
+    ]
+  },
+  {
+    "erc": "titulo-the-mandalorian",
+    "titulo": "The Mandalorian",
+    "tipo": "Serie",
+    "generos": ["Ciencia Ficcion", "Aventura", "Accion"],
+    "sinopsis": "Tras la caída del Imperio, un cazarrecompensas solitario recorre los confines de la galaxia y acepta un encargo que lo obliga a proteger a una misteriosa criatura.",
+    "anio": 2019,
+    "clasificacion": "+13",
+    "elenco": ["Pedro Pascal", "Gina Carano", "Giancarlo Esposito"],
+    "tmdb": {"busqueda": "The Mandalorian", "anio": 2019},
+    "temporadas": 3,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Capítulo 1: El mandaloriano", "duracion": 39},
+      {"temporada": 1, "numero": 2, "nombre": "Capítulo 2: El niño", "duracion": 32}
+    ]
+  },
+  {
+    "erc": "titulo-avatar-la-leyenda-de-aang",
+    "titulo": "Avatar: La leyenda de Aang",
+    "tipo": "Serie",
+    "generos": ["Animacion", "Aventura"],
+    "sinopsis": "En un mundo dividido en cuatro naciones, un niño que despierta tras cien años congelado en el hielo es el único capaz de dominar los cuatro elementos y frenar una guerra.",
+    "anio": 2005,
+    "clasificacion": "ATP",
+    "elenco": ["Zach Tyler Eisen", "Mae Whitman", "Jack DeSena"],
+    "tmdb": {"busqueda": "Avatar: The Last Airbender", "anio": 2005},
+    "temporadas": 3,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "El niño en el iceberg", "duracion": 23},
+      {"temporada": 1, "numero": 2, "nombre": "El regreso del Avatar", "duracion": 23}
+    ]
+  },
+  {
+    "erc": "titulo-the-office",
+    "titulo": "The Office",
+    "tipo": "Serie",
+    "generos": ["Comedia"],
+    "sinopsis": "Un falso documental retrata el día a día en la sucursal de una empresa de papel, donde un jefe convencido de ser gracioso pone a prueba la paciencia de sus empleados.",
+    "anio": 2005,
+    "clasificacion": "+13",
+    "elenco": ["Steve Carell", "Rainn Wilson", "John Krasinski"],
+    "tmdb": {"busqueda": "The Office", "anio": 2005},
+    "temporadas": 9,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Piloto", "duracion": 23},
+      {"temporada": 1, "numero": 2, "nombre": "Día de la diversidad", "duracion": 22}
+    ]
+  },
+  {
+    "erc": "titulo-breaking-bad",
+    "titulo": "Breaking Bad",
+    "tipo": "Serie",
+    "generos": ["Drama"],
+    "sinopsis": "Un profesor de química con un diagnóstico terminal se asocia con un exalumno para fabricar drogas y asegurar el futuro de su familia, y de a poco se transforma en alguien irreconocible.",
+    "anio": 2008,
+    "clasificacion": "+16",
+    "elenco": ["Bryan Cranston", "Aaron Paul", "Anna Gunn"],
+    "tmdb": {"busqueda": "Breaking Bad", "anio": 2008},
+    "temporadas": 5,
+    "episodios": [
+      {"temporada": 1, "numero": 1, "nombre": "Piloto", "duracion": 58},
+      {"temporada": 1, "numero": 2, "nombre": "El gato está en la bolsa", "duracion": 48}
+    ]
+  }
+]

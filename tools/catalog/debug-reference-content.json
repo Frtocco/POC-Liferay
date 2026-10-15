@@ -1,0 +1,269 @@
+﻿{
+    "actions":  {
+                    "get-rendered-content":  {
+                                                 "method":  "GET",
+                                                 "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690/rendered-content/{contentTemplateId}"
+                                             },
+                    "get-rendered-content-by-display-page":  {
+                                                                 "method":  "GET",
+                                                                 "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690/rendered-content-by-display-page/{displayPageKey}"
+                                                             },
+                    "subscribe":  {
+                                      "method":  "PUT",
+                                      "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690/subscribe"
+                                  },
+                    "unsubscribe":  {
+                                        "method":  "PUT",
+                                        "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690/unsubscribe"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690"
+                            },
+                    "replace":  {
+                                    "method":  "PUT",
+                                    "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690"
+                                },
+                    "update":  {
+                                   "method":  "PATCH",
+                                   "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/headless-delivery/v1.0/structured-contents/33690"
+                               }
+                },
+    "availableLanguages":  [
+                               "en-US"
+                           ],
+    "contentFields":  [
+                          {
+                              "contentFieldValue":  {
+                                                        "data":  "Interestelar (Interstellar) es una pelÃ­cula de ciencia ficciÃ³n de 2014 dirigida por Christopher Nolan que cuenta la historia de un grupo de astronautas que viaja a travÃ©s de un agujero de gusano en busca de un nuevo planeta habitable para salvar a la humanidad"
+                                                    },
+                              "dataType":  "string",
+                              "inputControl":  "text",
+                              "label":  "Sinopsis",
+                              "name":  "sinopsis",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "contentType":  "Document",
+                                                                      "contentUrl":  "/documents/d/netflix-poc/mv5byzdjmdaxzgitmji2my00oda1ltlknzitowfjmdu5zdjlywy3xkeyxkfqcgc-_v1_fmjpg_ux1000_-jpg",
+                                                                      "description":  "poster",
+                                                                      "encodingFormat":  "image/jpeg",
+                                                                      "fileExtension":  "jpg",
+                                                                      "id":  33625,
+                                                                      "sizeInBytes":  336255,
+                                                                      "title":  "MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                                                                  }
+                                                    },
+                              "dataType":  "image",
+                              "label":  "Poster",
+                              "name":  "poster",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "image":  {
+                                                                      "contentType":  "Document",
+                                                                      "contentUrl":  "/documents/d/netflix-poc/fondo-interstellar-jpg",
+                                                                      "description":  "",
+                                                                      "encodingFormat":  "image/jpeg",
+                                                                      "fileExtension":  "jpg",
+                                                                      "id":  33649,
+                                                                      "sizeInBytes":  26476,
+                                                                      "title":  "fondo interstellar.jpg"
+                                                                  }
+                                                    },
+                              "dataType":  "image",
+                              "label":  "Imagen de fondo",
+                              "name":  "fondo",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "data":  "2015"
+                                                    },
+                              "dataType":  "integer",
+                              "label":  "AÃ±o",
+                              "name":  "anio",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "data":  "+13",
+                                                        "value":  "Option16420715"
+                                                    },
+                              "dataType":  "string",
+                              "inputControl":  "select",
+                              "label":  "Clasificacion",
+                              "name":  "Select05014083",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "data":  "Matthew McConaughey"
+                                                    },
+                              "dataType":  "string",
+                              "inputControl":  "text",
+                              "label":  "Elenco",
+                              "name":  "elenco",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  true
+                          },
+                          {
+                              "contentFieldValue":  {
+                                                        "data":  ""
+                                                    },
+                              "dataType":  "integer",
+                              "label":  "Temporadas",
+                              "name":  "temporadas",
+                              "nestedContentFields":  [
+
+                                                      ],
+                              "repeatable":  false
+                          },
+                          {
+                              "contentFieldValue":  {
+
+                                                    },
+                              "dataType":  "",
+                              "label":  "Episodio",
+                              "name":  "episodio",
+                              "nestedContentFields":  [
+                                                          {
+                                                              "contentFieldValue":  {
+                                                                                        "data":  ""
+                                                                                    },
+                                                              "dataType":  "integer",
+                                                              "label":  "Temporada",
+                                                              "name":  "episodioTemporada",
+                                                              "nestedContentFields":  [
+
+                                                                                      ],
+                                                              "repeatable":  false
+                                                          },
+                                                          {
+                                                              "contentFieldValue":  {
+                                                                                        "data":  ""
+                                                                                    },
+                                                              "dataType":  "integer",
+                                                              "label":  "NÃºmero",
+                                                              "name":  "episodioNumero",
+                                                              "nestedContentFields":  [
+
+                                                                                      ],
+                                                              "repeatable":  false
+                                                          },
+                                                          {
+                                                              "contentFieldValue":  {
+                                                                                        "data":  ""
+                                                                                    },
+                                                              "dataType":  "string",
+                                                              "inputControl":  "text",
+                                                              "label":  "Nombre de Episodio",
+                                                              "name":  "episodioNombre",
+                                                              "nestedContentFields":  [
+
+                                                                                      ],
+                                                              "repeatable":  false
+                                                          },
+                                                          {
+                                                              "contentFieldValue":  {
+                                                                                        "data":  ""
+                                                                                    },
+                                                              "dataType":  "integer",
+                                                              "label":  "Duracion",
+                                                              "name":  "episodioDuracion",
+                                                              "nestedContentFields":  [
+
+                                                                                      ],
+                                                              "repeatable":  false
+                                                          }
+                                                      ],
+                              "repeatable":  true
+                          }
+                      ],
+    "contentStructureId":  33666,
+    "creator":  {
+                    "additionalName":  "",
+                    "contentType":  "UserAccount",
+                    "familyName":  "Test",
+                    "givenName":  "Test",
+                    "id":  20123,
+                    "name":  "Test Test"
+                },
+    "customFields":  [
+
+                     ],
+    "dateCreated":  "2026-10-05T14:45:05Z",
+    "dateModified":  "2026-10-06T17:02:05Z",
+    "description":  "\u003cp\u003eÂ \u003c/p\u003e\n\n\u003cp\u003eLa pelÃ­cula muestra un futuro cercano donde la Tierra se vuelve inhabitable debido a plagas que destruyen las cosechas y reducen el oxÃ­geno en la atmÃ³sfera. Ante la extinciÃ³n inminente, un grupo de cientÃ­ficos y exastronautas de la NASA emprende una misiÃ³n espacial. Su objetivo es buscar un nuevo hogar en otra galaxia cruzando un agujero de gusano cerca de Saturno.\u0026nbsp;\u003c/p\u003e",
+    "externalReferenceCode":  "32480",
+    "friendlyUrlPath":  "interstellar",
+    "id":  33690,
+    "key":  "32480",
+    "keywords":  [
+
+                 ],
+    "neverExpire":  true,
+    "numberOfComments":  0,
+    "priority":  0.0,
+    "relatedContents":  [
+
+                        ],
+    "renderedContents":  [
+
+                         ],
+    "siteId":  33503,
+    "structuredContentFolderId":  0,
+    "subscribed":  false,
+    "taxonomyCategoryBriefs":  [
+                                   {
+                                       "taxonomyCategoryId":  33679,
+                                       "taxonomyCategoryName":  "Drama",
+                                       "taxonomyCategoryReference":  {
+                                                                         "externalReferenceCode":  "6a8dba34-d6ed-da87-38db-ae6ce1c2f2b0",
+                                                                         "siteKey":  "Netflix POC"
+                                                                     }
+                                   },
+                                   {
+                                       "taxonomyCategoryId":  33683,
+                                       "taxonomyCategoryName":  "Pelicula",
+                                       "taxonomyCategoryReference":  {
+                                                                         "externalReferenceCode":  "6e3ff3f3-c346-6100-fccf-13f430f1de06",
+                                                                         "siteKey":  "Netflix POC"
+                                                                     }
+                                   },
+                                   {
+                                       "taxonomyCategoryId":  33686,
+                                       "taxonomyCategoryName":  "Ciencia FicciÃ³n",
+                                       "taxonomyCategoryReference":  {
+                                                                         "externalReferenceCode":  "338073a3-c893-512c-19fa-5a1e6d77dc39",
+                                                                         "siteKey":  "Netflix POC"
+                                                                     }
+                                   }
+                               ],
+    "title":  "Interstellar",
+    "uuid":  "cfd036a8-1f00-815e-9bdb-1c36b643cd7e"
+}

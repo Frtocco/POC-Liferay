@@ -1,0 +1,265 @@
+{
+  "availableLanguageIds": [
+    "en_US"
+  ],
+  "defaultLanguageId": "en_US",
+  "definitionSchemaVersion": "2.0",
+  "fields": [
+    {
+      "dataType": "string",
+      "displayStyle": "singleline",
+      "fieldReference": "sinopsis",
+      "indexType": "keyword",
+      "label": {
+        "en_US": "Sinopsis"
+      },
+      "localizable": true,
+      "name": "sinopsis",
+      "predefinedValue": {
+        "en_US": ""
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": true,
+      "showLabel": true,
+      "type": "text"
+    },
+    {
+      "dataType": "image",
+      "fieldReference": "poster",
+      "indexType": "text",
+      "label": {
+        "en_US": "Poster"
+      },
+      "localizable": true,
+      "name": "poster",
+      "predefinedValue": {
+        "en_US": "{}"
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": true,
+      "requiredDescription": true,
+      "showLabel": true,
+      "type": "image"
+    },
+    {
+      "dataType": "image",
+      "fieldReference": "fondo",
+      "indexType": "text",
+      "label": {
+        "en_US": "Imagen de fondo"
+      },
+      "localizable": true,
+      "name": "fondo",
+      "predefinedValue": {
+        "en_US": "{}"
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": true,
+      "requiredDescription": false,
+      "showLabel": true,
+      "type": "image"
+    },
+    {
+      "dataType": "integer",
+      "fieldReference": "anio",
+      "indexType": "keyword",
+      "label": {
+        "en_US": "Anio"
+      },
+      "localizable": true,
+      "name": "anio",
+      "predefinedValue": {
+        "en_US": ""
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": true,
+      "showLabel": true,
+      "type": "numeric"
+    },
+    {
+      "dataType": "string",
+      "fieldReference": "clasificacion",
+      "indexType": "keyword",
+      "label": {
+        "en_US": "Clasificacion"
+      },
+      "localizable": true,
+      "multiple": false,
+      "name": "clasificacion",
+      "options": [
+        {
+          "label": {
+            "en_US": "ATP"
+          },
+          "reference": "ATP",
+          "value": "ATP"
+        },
+        {
+          "label": {
+            "en_US": "+13"
+          },
+          "reference": "Mas13",
+          "value": "Mas13"
+        },
+        {
+          "label": {
+            "en_US": "+16"
+          },
+          "reference": "Mas16",
+          "value": "Mas16"
+        },
+        {
+          "label": {
+            "en_US": "+18"
+          },
+          "reference": "Mas18",
+          "value": "Mas18"
+        }
+      ],
+      "predefinedValue": {
+        "en_US": "[]"
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": true,
+      "showLabel": true,
+      "type": "select"
+    },
+    {
+      "dataType": "string",
+      "displayStyle": "singleline",
+      "fieldReference": "elenco",
+      "indexType": "keyword",
+      "label": {
+        "en_US": "Elenco"
+      },
+      "localizable": true,
+      "name": "elenco",
+      "predefinedValue": {
+        "en_US": ""
+      },
+      "readOnly": false,
+      "repeatable": true,
+      "required": false,
+      "showLabel": true,
+      "type": "text"
+    },
+    {
+      "dataType": "integer",
+      "fieldReference": "temporadas",
+      "indexType": "keyword",
+      "label": {
+        "en_US": "Temporadas"
+      },
+      "localizable": true,
+      "name": "temporadas",
+      "predefinedValue": {
+        "en_US": ""
+      },
+      "readOnly": false,
+      "repeatable": false,
+      "required": false,
+      "showLabel": true,
+      "type": "numeric"
+    },
+    {
+      "dataType": "string",
+      "fieldReference": "episodio",
+      "indexType": "",
+      "label": {
+        "en_US": "Episodio"
+      },
+      "localizable": false,
+      "name": "episodio",
+      "nestedFields": [
+        {
+          "dataType": "integer",
+          "fieldReference": "episodioTemporada",
+          "indexType": "keyword",
+          "label": {
+            "en_US": "Temporada"
+          },
+          "localizable": true,
+          "name": "episodioTemporada",
+          "predefinedValue": {
+            "en_US": ""
+          },
+          "readOnly": false,
+          "repeatable": false,
+          "required": false,
+          "showLabel": true,
+          "type": "numeric"
+        },
+        {
+          "dataType": "integer",
+          "fieldReference": "episodioNumero",
+          "indexType": "keyword",
+          "label": {
+            "en_US": "Numero"
+          },
+          "localizable": true,
+          "name": "episodioNumero",
+          "predefinedValue": {
+            "en_US": ""
+          },
+          "readOnly": false,
+          "repeatable": false,
+          "required": false,
+          "showLabel": true,
+          "type": "numeric"
+        },
+        {
+          "dataType": "string",
+          "displayStyle": "singleline",
+          "fieldReference": "episodioNombre",
+          "indexType": "keyword",
+          "label": {
+            "en_US": "Nombre de Episodio"
+          },
+          "localizable": true,
+          "name": "episodioNombre",
+          "predefinedValue": {
+            "en_US": ""
+          },
+          "readOnly": false,
+          "repeatable": false,
+          "required": false,
+          "showLabel": true,
+          "type": "text"
+        },
+        {
+          "dataType": "integer",
+          "fieldReference": "episodioDuracion",
+          "indexType": "keyword",
+          "label": {
+            "en_US": "Duracion"
+          },
+          "localizable": true,
+          "name": "episodioDuracion",
+          "predefinedValue": {
+            "en_US": ""
+          },
+          "readOnly": false,
+          "repeatable": false,
+          "required": false,
+          "showLabel": true,
+          "type": "numeric"
+        }
+      ],
+      "readOnly": false,
+      "repeatable": true,
+      "required": false,
+      "showLabel": true,
+      "type": "fieldset"
+    }
+  ],
+  "successPage": {
+    "body": {},
+    "enabled": false,
+    "title": {}
+  }
+}
