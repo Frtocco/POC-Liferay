@@ -1,0 +1,27 @@
+<section class="nf-login" data-lfr-background-image-id="fondo" data-layout-mode="${layoutMode!""}" data-redirect="${configuration.perfilesPath}">
+  <div class="nf-login__shade" aria-hidden="true"></div>
+
+  <header class="nf-login__top">
+    <img
+      alt="Logo"
+      class="nf-login__logo"
+      data-lfr-editable-id="logo"
+      data-lfr-editable-type="image"
+      src="https://placehold.co/184x50/000000/e50914?text=LOGO"
+    />
+  </header>
+
+  <div class="nf-login__card">
+    <h1 class="nf-login__title">${configuration.titulo}</h1>
+
+    <div class="nf-login__form">
+      <lfr-drop-zone></lfr-drop-zone>
+    </div>
+
+    <p class="nf-login__signup">
+      ${configuration.textoRegistro}
+      <a class="nf-login__signup-link" href="${configuration.registroPath}">${configuration.linkRegistro}</a>
+    </p>
+  </div>
+</section>
+

@@ -1,0 +1,194 @@
+/* ---------- Estructura de la pantalla ---------- */
+
+.nf-login {
+  background-color: #000;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+}
+
+/* Oscurece la imagen de fondo para que la caja se lea bien */
+.nf-login__shade {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.8) 100%),
+    rgba(0, 0, 0, 0.4);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.nf-login__top {
+  padding: 24px 4%;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-login__logo {
+  display: block;
+  height: 40px;
+  object-fit: contain;
+  width: auto;
+}
+
+.nf-login__card {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 24px auto 64px;
+  max-width: 450px;
+  padding: 48px 68px 40px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.nf-login__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 28px;
+}
+
+.nf-login__signup {
+  color: #737373;
+  font-size: 1rem;
+  margin: 32px 0 0;
+}
+
+.nf-login__signup-link {
+  color: #fff;
+  font-weight: 500;
+}
+
+.nf-login__signup-link:hover,
+.nf-login__signup-link:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Mientras se redirige a un usuario ya logueado, no se muestra el formulario */
+.nf-login.is-redirecting .nf-login__card {
+  visibility: hidden;
+}
+
+/* ---------- Widget nativo "Iniciar sesión" dentro de la zona ---------- */
+
+/* Sin título ni barra del widget (también se puede usar la decoración "Barebone") */
+.nf-login__form .portlet-header,
+.nf-login__form .portlet-topper,
+.nf-login__form .portlet-title-default {
+  display: none;
+}
+
+.nf-login__form .portlet,
+.nf-login__form .portlet-content,
+.nf-login__form .portlet-body {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-login__form .form-group {
+  margin-bottom: 16px;
+}
+
+.nf-login__form label {
+  color: #b3b3b3;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.nf-login .nf-login__form .form-control {
+  background: rgba(22, 22, 22, 0.7);
+  border: 1px solid rgba(128, 128, 128, 0.7);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  height: 52px;
+  padding: 0 16px;
+}
+
+.nf-login .nf-login__form .form-control:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+/* Botón principal */
+.nf-login .nf-login__form .btn-primary {
+  background: #e50914;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 44px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.nf-login .nf-login__form .btn-primary:hover,
+.nf-login .nf-login__form .btn-primary:focus-visible {
+  background: #c11119;
+}
+
+.nf-login .nf-login__form .btn-primary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* "Recordarme" */
+.nf-login__form .custom-control-label,
+.nf-login__form .form-check-label,
+.nf-login__form .checkbox label {
+  color: #b3b3b3;
+}
+
+/* Errores (contraseña incorrecta, usuario inexistente) */
+.nf-login__form .alert {
+  background: #e87c03;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* Links de abajo: se mantiene "Olvidé mi contraseña" y se oculta el
+   "Crear cuenta" nativo, porque el registro es nuestra página propia */
+.nf-login__form .navigation,
+.nf-login__form .taglib-icon-list {
+  margin-top: 16px;
+}
+
+.nf-login__form a {
+  color: #b3b3b3;
+}
+
+.nf-login__form a:hover {
+  color: #fff;
+}
+
+.nf-login__form li:has(a[href*="create_account"]),
+.nf-login__form a[href*="create_account"] {
+  display: none;
+}
+
+/* ---------- Pantallas chicas: sin caja, como en Netflix ---------- */
+
+@media (max-width: 740px) {
+  .nf-login__shade {
+    display: none;
+  }
+
+  .nf-login__card {
+    background: #000;
+    margin: 0;
+    max-width: none;
+    padding: 24px 5%;
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Iniciar sesión",
+          "label": "Título",
+          "name": "titulo",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "¿Primera vez aquí?",
+          "label": "Texto antes del link de registro",
+          "name": "textoRegistro",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "Suscribite ya.",
+          "label": "Texto del link de registro",
+          "name": "linkRegistro",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/registro",
+          "label": "URL de la página de registro",
+          "name": "registroPath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/perfiles",
+          "description": "Si el usuario ya inició sesión, se lo manda directo a esta página.",
+          "label": "URL a la que ir si ya hay sesión",
+          "name": "perfilesPath",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
