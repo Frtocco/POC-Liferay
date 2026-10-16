@@ -389,3 +389,8 @@ El PATH está mal configurado o truncado. Revisalo desde *Variables de entorno* 
 - **Mi lista:** Object con perfil + título, y su página.
 - **Detalle de título:** display page template y link desde las cards.
 - **Opcional:** mover el acceso a perfiles al microservicio (más seguro), y las funciones comunes de los fragments a un client extension global JS.
+
+Si el log in no te deja entrar, logearse de este link
+```
+http://localhost:8080/web/guest/home?p_p_id=com_liferay_login_web_portlet_LoginPortlet&p_p_state=maximized
+```
