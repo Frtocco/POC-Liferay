@@ -1,13 +1,14 @@
 .nf-footer {
   background: #141414;
   color: #b3b3b3;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 48px 4% 24px;
   width: 100%;
 }
 
+/* Sin ancho máximo: queda alineado al 4% del header y las filas */
 .nf-footer__container {
-  margin: 0 auto;
-  max-width: 1200px;
+  width: 100%;
 }
 
 .nf-footer__brand {

@@ -18,12 +18,17 @@ const FIELDS = {
 };
 
 const TIPOS = ['pelicula', 'serie'];
+const LONG_TITLE_LENGTH = 32;
+const EXTRA_LONG_TITLE_LENGTH = 45;
 
+const hero = fragmentElement.querySelector('.nf-hero');
 const backdrop = fragmentElement.querySelector('.nf-hero__backdrop');
 const content = fragmentElement.querySelector('.nf-hero__content');
 const heroTitle = fragmentElement.querySelector('.nf-hero__title');
 const heroSynopsis = fragmentElement.querySelector('.nf-hero__synopsis');
-const infoButton = fragmentElement.querySelector('.nf-hero__button');
+const playButton = fragmentElement.querySelector('.nf-hero__button--play');
+const infoButton = fragmentElement.querySelector('.nf-hero__button--info');
+const skeleton = fragmentElement.querySelector('.nf-hero__skeleton');
 const status = fragmentElement.querySelector('.nf-hero__status');
 
 const dialog = fragmentElement.querySelector('.nf-hero__dialog');
@@ -66,6 +71,7 @@ async function getJSON(path) {
 }
 
 function showStatus(message) {
+	skeleton.hidden = true;
 	status.textContent = message;
 	status.hidden = false;
 }
@@ -86,6 +92,19 @@ function fieldText(item, name) {
 
 function fieldImage(item, name) {
 	return fieldValues(item, name)[0]?.image?.contentUrl || '';
+}
+
+// El catálogo original asoció a Chihiro una imagen de otra película. La
+// corrección viaja como recurso del fragment para que sea igual en cada entorno.
+function heroImage(item) {
+	if (
+		normalize(item.title).includes('viaje de chihiro') &&
+		hero.dataset.chihiroBackdrop
+	) {
+		return hero.dataset.chihiroBackdrop;
+	}
+
+	return fieldImage(item, FIELDS.fondo) || fieldImage(item, FIELDS.poster);
 }
 
 function categories(item) {
@@ -143,7 +162,7 @@ function pickTitle(items) {
 // ---------- Render ----------
 
 function renderHero(item) {
-	const image = fieldImage(item, FIELDS.fondo) || fieldImage(item, FIELDS.poster);
+	const image = heroImage(item);
 
 	if (image) {
 		backdrop.addEventListener('load', () => backdrop.classList.add('is-loaded'), {
@@ -153,8 +172,19 @@ function renderHero(item) {
 		backdrop.hidden = false;
 	}
 
+	const titleLength = item.title.trim().length;
+
+	content.classList.toggle(
+		'nf-hero__content--long-title',
+		titleLength >= LONG_TITLE_LENGTH
+	);
+	content.classList.toggle(
+		'nf-hero__content--extra-long-title',
+		titleLength >= EXTRA_LONG_TITLE_LENGTH
+	);
 	heroTitle.textContent = item.title;
 	heroSynopsis.textContent = fieldText(item, FIELDS.sinopsis);
+	skeleton.hidden = true;
 	content.hidden = false;
 }
 
@@ -185,7 +215,7 @@ function renderDialog(item) {
 	const names = categories(item);
 	const esSerie = names.some((name) => normalize(name) === 'serie');
 
-	dialogImage.src = fieldImage(item, FIELDS.fondo) || fieldImage(item, FIELDS.poster);
+	dialogImage.src = heroImage(item);
 	dialogTitle.textContent = item.title;
 	dialogSynopsis.textContent = fieldText(item, FIELDS.sinopsis);
 
@@ -215,12 +245,18 @@ function renderDialog(item) {
 
 // ---------- Modal ----------
 
-function openDialog() {
+// Botón que abrió el modal, para devolverle el foco al cerrarlo
+let opener = infoButton;
+
+function openDialog(event) {
+	opener = event.currentTarget;
 	dialog.showModal();
 	document.documentElement.classList.add('nf-hero-lock');
 	closeButton.focus();
 }
 
+// Todavía no hay video para reproducir: "Reproducir" abre la misma ficha
+playButton.addEventListener('click', openDialog);
 infoButton.addEventListener('click', openDialog);
 closeButton.addEventListener('click', () => dialog.close());
 
@@ -234,7 +270,7 @@ dialog.addEventListener('click', (event) => {
 // Escape cierra el modal de forma nativa; en cualquier cierre se libera el scroll
 dialog.addEventListener('close', () => {
 	document.documentElement.classList.remove('nf-hero-lock');
-	infoButton.focus();
+	opener.focus();
 });
 
 // ---------- Carga ----------
