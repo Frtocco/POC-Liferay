@@ -35,5 +35,25 @@
       [/#list]
     </ul>
   </nav>
+
+  <div class="nf-header__profile" hidden>
+    <button
+      aria-controls="nf-header-profile-menu-${fragmentEntryLinkNamespace}"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-label="Menú del perfil"
+      class="nf-header__profile-toggle"
+      type="button"
+    >
+      <span class="nf-header__avatar"></span>
+      <span class="nf-header__caret" aria-hidden="true">&#9662;</span>
+    </button>
+
+    <div class="nf-header__profile-menu" id="nf-header-profile-menu-${fragmentEntryLinkNamespace}" hidden>
+      <p class="nf-header__profile-name"></p>
+      <a class="nf-header__profile-link" href="${base}${configuration.perfilesPath}">Cambiar de perfil</a>
+      <a class="nf-header__profile-link" data-action="logout" href="${configuration.logoutPath}">Cerrar sesión</a>
+    </div>
+  </div>
 </header>
 <div class="nf-header-spacer" aria-hidden="true"></div>

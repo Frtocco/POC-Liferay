@@ -1,0 +1,8 @@
+{
+  "configurationPath": "configuration.json",
+  "cssPath": "index.css",
+  "htmlPath": "index.html",
+  "jsPath": "index.js",
+  "name": "Selector de perfiles",
+  "type": "component"
+}

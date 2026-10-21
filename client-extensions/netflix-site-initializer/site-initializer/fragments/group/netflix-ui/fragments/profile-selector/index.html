@@ -1,0 +1,56 @@
+<section
+  class="nf-profiles"
+  data-home-path="${configuration.homePath}"
+  data-layout-mode="${layoutMode!""}"
+  data-login-path="${configuration.loginPath}"
+  data-max="${configuration.maxPerfiles}"
+>
+  <div class="nf-profiles__inner">
+    <h1 class="nf-profiles__title">${configuration.titulo}</h1>
+
+    <ul class="nf-profiles__list" aria-live="polite"></ul>
+
+    <p class="nf-profiles__status" hidden></p>
+
+    <button class="nf-profiles__manage" type="button" aria-pressed="false" hidden>
+      Administrar perfiles
+    </button>
+  </div>
+
+  <dialog class="nf-profiles__dialog">
+    <form class="nf-profiles__form" method="dialog" novalidate>
+      <h2 class="nf-profiles__form-title">Agregar perfil</h2>
+
+      <div class="nf-profiles__field">
+        <label class="nf-profiles__label" for="nf-profile-name-${fragmentEntryLinkNamespace}">Nombre</label>
+        <input
+          autocomplete="off"
+          class="nf-profiles__input"
+          id="nf-profile-name-${fragmentEntryLinkNamespace}"
+          maxlength="30"
+          name="nombre"
+          required
+          type="text"
+        />
+        <p class="nf-profiles__error" hidden>Escribí un nombre para el perfil.</p>
+      </div>
+
+      <fieldset class="nf-profiles__field nf-profiles__avatars">
+        <legend class="nf-profiles__label">Avatar</legend>
+      </fieldset>
+
+      <label class="nf-profiles__check">
+        <input name="infantil" type="checkbox" />
+        <span>Perfil infantil <small>(solo títulos ATP y +13)</small></span>
+      </label>
+
+      <p class="nf-profiles__form-status" hidden></p>
+
+      <div class="nf-profiles__actions">
+        <button class="nf-profiles__btn nf-profiles__btn--primary" type="submit" value="save">Guardar</button>
+        <button class="nf-profiles__btn" type="button" data-action="cancel">Cancelar</button>
+        <button class="nf-profiles__btn nf-profiles__btn--danger" type="button" data-action="delete" hidden>Eliminar perfil</button>
+      </div>
+    </form>
+  </dialog>
+</section>

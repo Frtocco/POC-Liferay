@@ -1,0 +1,38 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "¿Quién está viendo ahora?",
+          "label": "Título",
+          "name": "titulo",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/home",
+          "description": "A dónde ir después de elegir un perfil.",
+          "label": "URL de la Home",
+          "name": "homePath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/login",
+          "description": "A dónde mandar a un visitante sin sesión.",
+          "label": "URL del login",
+          "name": "loginPath",
+          "type": "text"
+        },
+        {
+          "dataType": "int",
+          "defaultValue": "5",
+          "label": "Máximo de perfiles por cuenta",
+          "name": "maxPerfiles",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

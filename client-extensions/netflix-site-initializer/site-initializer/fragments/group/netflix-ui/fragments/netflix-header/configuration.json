@@ -73,6 +73,26 @@
           "type": "text"
         }
       ]
+    },
+    {
+      "label": "Perfil",
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "/perfiles",
+          "description": "Ruta del selector de perfiles, relativa a la ruta base del sitio.",
+          "label": "Ruta del selector de perfiles",
+          "name": "perfilesPath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/c/portal/logout",
+          "label": "URL para cerrar sesión",
+          "name": "logoutPath",
+          "type": "text"
+        }
+      ]
     }
   ]
 }
