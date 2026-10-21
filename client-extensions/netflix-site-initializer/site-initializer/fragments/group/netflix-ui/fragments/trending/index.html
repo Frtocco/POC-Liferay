@@ -1,0 +1,35 @@
+<section class="nf-trending">
+  <h2 class="nf-trending__title">${configuration.rowTitle}</h2>
+
+  <div class="nf-trending__viewport">
+    <button
+      aria-label="Ver tendencias anteriores"
+      class="nf-trending__nav nf-trending__nav--prev"
+      disabled
+      type="button"
+    >&#8249;</button>
+
+    <div
+      aria-busy="true"
+      aria-label="Ranking de tendencias"
+      class="nf-trending__track"
+      role="list"
+    >
+      [#list 1..5 as rank]
+        <div class="nf-trending-card nf-trending-card--skeleton" aria-hidden="true">
+          <span class="nf-trending-card__rank">${rank}</span>
+          <div class="nf-trending-card__poster"></div>
+        </div>
+      [/#list]
+    </div>
+
+    <button
+      aria-label="Ver tendencias siguientes"
+      class="nf-trending__nav nf-trending__nav--next"
+      disabled
+      type="button"
+    >&#8250;</button>
+  </div>
+
+  <p class="nf-trending__status" hidden></p>
+</section>

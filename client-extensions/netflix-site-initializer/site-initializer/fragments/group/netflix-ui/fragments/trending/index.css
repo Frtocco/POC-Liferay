@@ -1,0 +1,218 @@
+.nf-trending {
+  --nf-trending-page-gutter: 4%;
+
+  background: #141414;
+  color: #e5e5e5;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 20px 0 28px;
+}
+
+.nf-trending__title {
+  color: #fff;
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 2px;
+  padding: 0 var(--nf-trending-page-gutter);
+}
+
+.nf-trending__viewport {
+  position: relative;
+}
+
+.nf-trending__track {
+  align-items: flex-end;
+  display: flex;
+  gap: clamp(8px, 1vw, 18px);
+  overflow-x: auto;
+  padding: 14px var(--nf-trending-page-gutter) 12px;
+  scroll-padding-inline: var(--nf-trending-page-gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.nf-trending__track::-webkit-scrollbar {
+  display: none;
+}
+
+.nf-trending__nav {
+  align-items: center;
+  background: rgba(20, 20, 20, 0.78);
+  border: 0;
+  bottom: 12px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
+  min-width: 32px;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 14px;
+  transition: opacity 0.2s ease;
+  width: var(--nf-trending-page-gutter);
+  z-index: 4;
+}
+
+.nf-trending__nav--prev {
+  left: 0;
+}
+
+.nf-trending__nav--next {
+  right: 0;
+}
+
+.nf-trending__viewport:hover .nf-trending__nav:not(:disabled),
+.nf-trending__nav:focus-visible {
+  opacity: 1;
+}
+
+.nf-trending__nav:disabled {
+  visibility: hidden;
+}
+
+.nf-trending__nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.nf-trending__status {
+  color: #b3b3b3;
+  margin: 8px 0 0;
+  padding: 0 var(--nf-trending-page-gutter);
+}
+
+.nf-trending-card {
+  align-items: flex-end;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 clamp(190px, 21vw, 285px);
+  min-width: 0;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.nf-trending-card__rank {
+  color: #141414;
+  flex: 0 0 auto;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(8.5rem, 16vw, 14rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+  margin-left: -0.03em;
+  margin-right: -0.04em;
+  paint-order: stroke fill;
+  text-align: right;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  -webkit-text-stroke: clamp(2px, 0.22vw, 4px) #595959;
+}
+
+.nf-trending-card--double-digit .nf-trending-card__rank {
+  font-size: clamp(7.6rem, 14vw, 12.5rem);
+  letter-spacing: -0.13em;
+  margin-left: -0.12em;
+}
+
+.nf-trending-card__poster {
+  aspect-ratio: 2 / 3;
+  background: #242424;
+  border-radius: 3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  flex: 0 0 53%;
+  margin-left: -0.04em;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-trending-card--double-digit .nf-trending-card__poster {
+  flex-basis: 45%;
+}
+
+.nf-trending-card__poster img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.nf-trending-card:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.nf-trending-card__title {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.nf-trending-card--skeleton {
+  cursor: default;
+  pointer-events: none;
+}
+
+.nf-trending-card--skeleton .nf-trending-card__rank {
+  color: #1d1d1d;
+}
+
+.nf-trending-card--skeleton .nf-trending-card__poster {
+  background: linear-gradient(90deg, #242424 25%, #333 50%, #242424 75%);
+  background-size: 200% 100%;
+}
+
+@media (max-width: 700px) {
+  .nf-trending-card {
+    flex-basis: clamp(165px, 52vw, 220px);
+  }
+
+  .nf-trending-card__rank {
+    font-size: clamp(7.5rem, 35vw, 10rem);
+  }
+
+  .nf-trending-card--double-digit .nf-trending-card__rank {
+    font-size: clamp(6.8rem, 31vw, 9rem);
+  }
+}
+
+@media (hover: none) {
+  .nf-trending__nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nf-trending-card__poster {
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .nf-trending-card:hover .nf-trending-card__poster,
+  .nf-trending-card:focus-visible .nf-trending-card__poster {
+    filter: brightness(1.08);
+    transform: scale(1.035);
+  }
+
+  .nf-trending-card--skeleton .nf-trending-card__poster {
+    animation: nf-trending-shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes nf-trending-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+
+    to {
+      background-position: -100% 0;
+    }
+  }
+}
