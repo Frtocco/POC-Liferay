@@ -5,14 +5,21 @@
   color: #e5e5e5;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 20px 0 28px;
+  position: relative;
+  z-index: 1;
 }
 
 .nf-trending__title {
   color: #fff;
+  display: block;
   font-size: clamp(1rem, 1.4vw, 1.5rem);
   font-weight: 700;
+  line-height: 1.25;
   margin: 0 0 2px;
+  min-height: 1.25em;
   padding: 0 var(--nf-trending-page-gutter);
+  position: relative;
+  z-index: 2;
 }
 
 .nf-trending__viewport {
@@ -24,6 +31,7 @@
   display: flex;
   gap: clamp(8px, 1vw, 18px);
   overflow-x: auto;
+  overflow-y: hidden;
   padding: 14px var(--nf-trending-page-gutter) 12px;
   scroll-padding-inline: var(--nf-trending-page-gutter);
   scroll-snap-type: x mandatory;
