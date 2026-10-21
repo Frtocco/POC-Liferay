@@ -3,17 +3,39 @@
 // exista un backoffice, readPopularity() puede reemplazarse por una API.
 
 const STRUCTURE_NAME = 'Título';
-const POSTER_FIELD = 'poster';
+const FIELDS = {
+	anio: 'anio',
+	clasificacion: 'clasificacion',
+	duracion: 'duracion',
+	elenco: 'elenco',
+	fondo: 'fondo',
+	poster: 'poster',
+	sinopsis: 'sinopsis',
+	temporadas: 'temporadas',
+};
+const TIPOS = ['pelicula', 'serie'];
 const TOP_LIMIT = 10;
 
+const trending = fragmentElement.querySelector('.nf-trending');
 const track = fragmentElement.querySelector('.nf-trending__track');
 const status = fragmentElement.querySelector('.nf-trending__status');
 const prevButton = fragmentElement.querySelector('.nf-trending__nav--prev');
 const nextButton = fragmentElement.querySelector('.nf-trending__nav--next');
+const dialog = fragmentElement.querySelector('.nf-trending__dialog');
+const dialogImage = fragmentElement.querySelector('.nf-trending__dialog-image');
+const dialogTitle = fragmentElement.querySelector('.nf-trending__dialog-title');
+const dialogMeta = fragmentElement.querySelector('.nf-trending__dialog-meta');
+const dialogSynopsis = fragmentElement.querySelector('.nf-trending__dialog-synopsis');
+const closeButton = fragmentElement.querySelector('.nf-trending__dialog-close');
 
 const siteId = Liferay.ThemeDisplay.getScopeGroupId();
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const popularityStorageKey = `nf-title-popularity:v1:${siteId}`;
+const dialogId = `nf-trending-dialog-${Math.random().toString(36).slice(2, 8)}`;
+
+dialog.id = dialogId;
+dialogTitle.id = `${dialogId}-title`;
+dialog.setAttribute('aria-labelledby', dialogTitle.id);
 
 function normalize(value) {
 	return (value || '')
@@ -97,13 +119,140 @@ function recordClick(item) {
 	}
 }
 
-function posterUrl(item) {
-	const field = (item.contentFields || []).find(
-		(contentField) => contentField.name === POSTER_FIELD
-	);
-
-	return field?.contentFieldValue?.image?.contentUrl || '';
+function fieldValues(item, name) {
+	return (item.contentFields || [])
+		.filter((field) => field.name === name)
+		.map((field) => field.contentFieldValue)
+		.filter(Boolean);
 }
+
+function fieldValue(item, name) {
+	return fieldValues(item, name)[0];
+}
+
+function fieldText(item, name) {
+	const value = fieldValue(item, name);
+
+	return value?.data ? String(value.data).trim() : '';
+}
+
+function posterUrl(item) {
+	return fieldValue(item, FIELDS.poster)?.image?.contentUrl || '';
+}
+
+function backdropUrl(item) {
+	if (normalize(item.title).includes('viaje de chihiro') && trending.dataset.chihiroBackdrop) {
+		return trending.dataset.chihiroBackdrop;
+	}
+
+	return (
+		fieldValue(item, FIELDS.fondo)?.image?.contentUrl ||
+		posterUrl(item)
+	);
+}
+
+function formatDuration(minutes) {
+	const total = parseInt(minutes, 10);
+
+	if (!total) {
+		return '';
+	}
+
+	const hours = Math.floor(total / 60);
+	const rest = total % 60;
+
+	return hours ? `${hours} h ${rest} min` : `${rest} min`;
+}
+
+function addDialogMeta(text, badge = false) {
+	if (!text) {
+		return;
+	}
+
+	const entry = document.createElement('li');
+
+	entry.textContent = text;
+
+	if (badge) {
+		entry.className = 'nf-trending__dialog-badge';
+	}
+
+	dialogMeta.appendChild(entry);
+}
+
+function setDialogExtra(field, values) {
+	const detail = dialog.querySelector(`.nf-trending__dialog-extra[data-field="${field}"]`);
+
+	detail.querySelector('.nf-trending__dialog-value').textContent = values.join(', ');
+	detail.hidden = !values.length;
+}
+
+function renderDialog(item) {
+	const names = (item.taxonomyCategoryBriefs || []).map(
+		(category) => category.taxonomyCategoryName
+	);
+	const esSerie = names.some((name) => normalize(name) === 'serie');
+	const image = backdropUrl(item);
+
+	dialogImage.hidden = !image;
+
+	if (image) {
+		dialogImage.src = image;
+	}
+	else {
+		dialogImage.removeAttribute('src');
+	}
+
+	dialogTitle.textContent = item.title;
+	dialogSynopsis.textContent = fieldText(item, FIELDS.sinopsis);
+
+	dialogMeta.replaceChildren();
+	addDialogMeta(fieldText(item, FIELDS.anio));
+	addDialogMeta(fieldText(item, FIELDS.clasificacion), true);
+
+	if (esSerie) {
+		const temporadas = parseInt(fieldText(item, FIELDS.temporadas), 10);
+
+		addDialogMeta(
+			temporadas ? `${temporadas} ${temporadas === 1 ? 'temporada' : 'temporadas'}` : ''
+		);
+	}
+	else {
+		addDialogMeta(formatDuration(fieldText(item, FIELDS.duracion)));
+	}
+
+	const elenco = fieldValues(item, FIELDS.elenco)
+		.map((value) => String(value.data || '').trim())
+		.filter(Boolean);
+	const generos = names.filter((name) => !TIPOS.includes(normalize(name)));
+
+	setDialogExtra('elenco', elenco);
+	setDialogExtra('generos', generos);
+}
+
+let dialogOpener = null;
+
+function openDialog(item, opener) {
+	dialogOpener = opener;
+	renderDialog(item);
+	dialog.scrollTop = 0;
+	dialog.showModal();
+	document.documentElement.classList.add('nf-trending-dialog-lock');
+	closeButton.focus();
+}
+
+closeButton.addEventListener('click', () => dialog.close());
+
+dialog.addEventListener('click', (event) => {
+	if (event.target === dialog) {
+		dialog.close();
+	}
+});
+
+dialog.addEventListener('close', () => {
+	document.documentElement.classList.remove('nf-trending-dialog-lock');
+	dialogOpener?.focus();
+});
 
 function compareByPopularity(popularity) {
 	return (left, right) => {
@@ -152,6 +301,8 @@ function buildCard(item, index) {
 	);
 
 	card.setAttribute('aria-label', `Puesto ${rank}: ${item.title}`);
+	card.setAttribute('aria-controls', dialogId);
+	card.setAttribute('aria-haspopup', 'dialog');
 	card.setAttribute('role', 'listitem');
 	card.tabIndex = 0;
 
@@ -172,11 +323,15 @@ function buildCard(item, index) {
 	const title = createElement('h3', 'nf-trending-card__title', item.title);
 
 	card.append(rankNumber, poster, title);
-	card.addEventListener('click', () => recordClick(item));
+	card.addEventListener('click', () => {
+		recordClick(item);
+		openDialog(item, card);
+	});
 	card.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			recordClick(item);
+			openDialog(item, card);
 		}
 	});
 
