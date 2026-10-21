@@ -148,6 +148,24 @@
   width: 100%;
 }
 
+.nf-trending-card__poster::after {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0) 0%,
+    rgba(8, 8, 8, 0.78) 48%,
+    rgba(8, 8, 8, 0.98) 100%
+  );
+  bottom: -1px;
+  content: "";
+  left: -1px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: -1px;
+  top: 36%;
+  z-index: 2;
+}
+
 .nf-trending-card:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 4px;
@@ -166,16 +184,15 @@
 }
 
 .nf-trending-card__info {
-  background: linear-gradient(0deg, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.86) 62%, transparent 100%);
-  bottom: -1px;
-  left: -1px;
+  bottom: 0;
+  left: 0;
   opacity: 0;
   padding: 46px 9px 10px;
   pointer-events: none;
   position: absolute;
-  right: -1px;
+  right: 0;
   transform: translateY(10px);
-  z-index: 2;
+  z-index: 3;
 }
 
 .nf-trending-card__meta,
@@ -209,6 +226,11 @@
 .nf-trending-card:focus-visible .nf-trending-card__info {
   opacity: 1;
   transform: translateY(0);
+}
+
+.nf-trending-card:hover .nf-trending-card__poster::after,
+.nf-trending-card:focus-visible .nf-trending-card__poster::after {
+  opacity: 1;
 }
 
 .nf-trending-card--skeleton {
@@ -396,6 +418,10 @@ html.nf-trending-dialog-lock {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .nf-trending-card__poster::after {
+    transition: opacity 0.2s ease;
+  }
+
   .nf-trending-card__info {
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
