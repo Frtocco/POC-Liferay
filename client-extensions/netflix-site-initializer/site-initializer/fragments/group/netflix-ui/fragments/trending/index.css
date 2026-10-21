@@ -144,9 +144,7 @@
 .nf-trending-card__poster img {
   display: block;
   height: 100%;
-  inset: 0;
   object-fit: cover;
-  position: absolute;
   width: 100%;
 }
 
@@ -169,14 +167,13 @@
 
 .nf-trending-card__info {
   background: linear-gradient(0deg, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.86) 62%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  inset: 0;
-  justify-content: flex-end;
+  bottom: -1px;
+  left: -1px;
   opacity: 0;
   padding: 46px 9px 10px;
   pointer-events: none;
   position: absolute;
+  right: -1px;
   transform: translateY(10px);
   z-index: 2;
 }
