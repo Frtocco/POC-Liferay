@@ -1,15 +1,28 @@
 /* ---------- Hero ---------- */
 
 .nf-hero {
+  /* Cuánto se monta la primera fila de títulos sobre la parte de abajo */
+  --nf-hero-overlap: clamp(40px, 7vw, 140px);
+
   background: #141414;
   color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 90vh;
   height: 90svh;
+  /* Sube debajo del header fijo (la variable la define el fragment Header) */
+  margin-bottom: calc(-1 * var(--nf-hero-overlap));
+  margin-top: calc(-1 * var(--nf-header-height, 0px));
   min-height: 480px;
   overflow: hidden;
   position: relative;
   padding-left: 4%;
   padding-right: 4%;
+}
+
+/* En el editor de páginas no se superpone con los fragments vecinos */
+.has-edit-mode-menu .nf-hero {
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .nf-hero__backdrop {
@@ -30,21 +43,43 @@
    con el fondo de las filas de títulos */
 .nf-hero__shade {
   background:
-    linear-gradient(77deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 80%),
-    linear-gradient(180deg, rgba(20, 20, 20, 0) 55%, #141414 100%);
+    linear-gradient(
+      180deg,
+      rgba(20, 20, 20, 0) 55%,
+      rgba(20, 20, 20, 0.18) 66%,
+      rgba(20, 20, 20, 0.72) 80%,
+      #141414 90%,
+      #141414 100%
+    ),
+    linear-gradient(77deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 80%);
   inset: 0;
   position: absolute;
 }
 
-.nf-hero__content {
-  bottom: 22%;
+.nf-hero__content,
+.nf-hero__skeleton {
+  /* El contenido se centra dentro del espacio seguro entre el header y la
+     fila superpuesta. "safe center" evita que un título largo invada el nav. */
+  bottom: calc(var(--nf-hero-overlap) + clamp(24px, 4vh, 56px));
   left: 4%;
   position: absolute;
+  top: calc(var(--nf-header-height, 68px) + clamp(24px, 4vh, 56px));
   width: min(40%, 620px);
   z-index: 1;
 }
 
+.nf-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+}
+
+.nf-hero__content[hidden] {
+  display: none;
+}
+
 .nf-hero__title {
+  flex-shrink: 0;
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.05;
@@ -61,6 +96,32 @@
   margin: 0 0 24px;
   overflow: hidden;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Los títulos largos usan menos espacio vertical y liberan la sinopsis del
+   recorte de tres líneas. La clase se aplica según la longitud desde el JS. */
+.nf-hero__content--long-title .nf-hero__title {
+  font-size: clamp(1.75rem, 3.5vw, 3.5rem);
+  margin-bottom: 12px;
+}
+
+.nf-hero__content--long-title .nf-hero__synopsis {
+  -webkit-line-clamp: unset;
+  display: block;
+  flex-shrink: 0;
+  font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+  overflow: visible;
+}
+
+.nf-hero__content--extra-long-title .nf-hero__title {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+.nf-hero__actions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nf-hero__button {
@@ -81,6 +142,15 @@
   background: rgba(109, 109, 110, 0.45);
 }
 
+.nf-hero__button--play {
+  background: #fff;
+  color: #000;
+}
+
+.nf-hero__button--play:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
 .nf-hero__button:focus-visible,
 .nf-hero__dialog-close:focus-visible {
   outline: 2px solid #fff;
@@ -92,8 +162,44 @@
   width: 1.4em;
 }
 
+/* Bloques vacíos que se ven mientras carga el título */
+.nf-hero__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: safe center;
+}
+
+.nf-hero__skeleton[hidden] {
+  display: none;
+}
+
+.nf-hero__skeleton span {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  display: block;
+  height: clamp(0.95rem, 1.3vw, 1.25rem);
+}
+
+.nf-hero__skeleton .nf-hero__skeleton-title {
+  height: clamp(2rem, 5vw, 4.5rem);
+  margin-bottom: 6px;
+  width: 75%;
+}
+
+.nf-hero__skeleton .nf-hero__skeleton-short {
+  width: 60%;
+}
+
+.nf-hero__skeleton .nf-hero__skeleton-buttons {
+  height: clamp(2.6rem, 3.4vw, 3.4rem);
+  margin-top: 10px;
+  width: min(100%, 300px);
+}
+
 .nf-hero__status {
-  bottom: 22%;
+  bottom: calc(var(--nf-hero-overlap) + 10%);
   color: #b3b3b3;
   left: 4%;
   margin: 0;
@@ -112,7 +218,29 @@
   max-height: 92vh;
   overflow-y: auto;
   padding: 0;
+  scrollbar-color: #737373 #181818;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
   width: min(850px, 94vw);
+}
+
+.nf-hero__dialog::-webkit-scrollbar {
+  width: 10px;
+}
+
+.nf-hero__dialog::-webkit-scrollbar-track {
+  background: #181818;
+  border-radius: 0 8px 8px 0;
+}
+
+.nf-hero__dialog::-webkit-scrollbar-thumb {
+  background: #737373;
+  border: 2px solid #181818;
+  border-radius: 999px;
+}
+
+.nf-hero__dialog::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
 }
 
 .nf-hero__dialog::backdrop {
@@ -225,6 +353,20 @@ html.nf-hero-lock {
     animation: nf-hero-pop 0.25s ease-out;
   }
 
+  .nf-hero__skeleton span {
+    animation: nf-hero-shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes nf-hero-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+
+    to {
+      background-position: -100% 0;
+    }
+  }
+
   @keyframes nf-hero-pop {
     from {
       opacity: 0;
@@ -243,9 +385,17 @@ html.nf-hero-lock {
     height: 70vh;
     height: 70svh;
     min-height: 420px;
+    /* En celular la fila no se monta: taparía los botones */
+    --nf-hero-overlap: 0px;
   }
 
   .nf-hero__content,
+  .nf-hero__skeleton {
+    bottom: 12%;
+    top: calc(var(--nf-header-height, 56px) + 24px);
+    width: 92%;
+  }
+
   .nf-hero__status {
     bottom: 12%;
     width: 92%;

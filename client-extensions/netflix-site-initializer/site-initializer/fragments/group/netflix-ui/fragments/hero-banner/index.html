@@ -1,18 +1,38 @@
-<section class="nf-hero" aria-label="Título destacado">
+<section
+  class="nf-hero"
+  aria-label="Título destacado"
+  data-chihiro-backdrop="[resources:el-viaje-de-chihiro-backdrop.jpg]"
+>
   <img alt="" class="nf-hero__backdrop" decoding="async" fetchpriority="high" hidden />
   <div class="nf-hero__shade" aria-hidden="true"></div>
 
   <div class="nf-hero__content" hidden>
     <h1 class="nf-hero__title"></h1>
     <p class="nf-hero__synopsis"></p>
-    <button class="nf-hero__button" type="button" aria-haspopup="dialog">
-      <svg aria-hidden="true" class="nf-hero__icon" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
-        <line x1="12" y1="11" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        <circle cx="12" cy="7.5" r="1.25" fill="currentColor" />
-      </svg>
-      Más información
-    </button>
+    <div class="nf-hero__actions">
+      <button class="nf-hero__button nf-hero__button--play" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" class="nf-hero__icon" viewBox="0 0 24 24">
+          <path d="M6 4l15 8-15 8z" fill="currentColor" />
+        </svg>
+        Reproducir
+      </button>
+      <button class="nf-hero__button nf-hero__button--info" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" class="nf-hero__icon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+          <line x1="12" y1="11" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="7.5" r="1.25" fill="currentColor" />
+        </svg>
+        Más información
+      </button>
+    </div>
+  </div>
+
+  <div class="nf-hero__skeleton" aria-hidden="true">
+    <span class="nf-hero__skeleton-title"></span>
+    <span></span>
+    <span></span>
+    <span class="nf-hero__skeleton-short"></span>
+    <span class="nf-hero__skeleton-buttons"></span>
   </div>
 
   <p class="nf-hero__status" hidden></p>

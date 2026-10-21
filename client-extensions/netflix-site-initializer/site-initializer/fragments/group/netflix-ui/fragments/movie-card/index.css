@@ -1,22 +1,51 @@
+/* Mismo look que las cards de la Fila de títulos: imagen 16:9 con el
+   título encima */
 .nf-movie-card {
-  width: 200px;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #141414;
+  background: #1f1f1f;
+  border-radius: 4px;
   color: #fff;
-  transition: transform 0.25s ease;
-}
-.nf-movie-card:hover {
-  transform: scale(1.08);
-}
-.nf-movie-card__poster img {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 320px;
+  overflow: hidden;
+  position: relative;
   width: 100%;
+}
+
+.nf-movie-card__poster {
+  aspect-ratio: 16 / 9;
+  background: #2a2a2a;
+}
+
+.nf-movie-card__poster img {
   display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
+
 .nf-movie-card__info {
-  padding: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+  bottom: 0;
+  left: 0;
+  padding: 24px 10px 8px;
+  position: absolute;
+  right: 0;
 }
+
 .nf-movie-card__info h3 {
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .nf-movie-card {
+    transition: transform 0.25s ease;
+  }
+
+  .nf-movie-card:hover {
+    transform: scale(1.08);
+  }
 }

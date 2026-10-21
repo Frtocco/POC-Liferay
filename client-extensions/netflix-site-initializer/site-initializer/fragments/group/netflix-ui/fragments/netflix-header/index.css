@@ -1,15 +1,60 @@
+/* ---------- Estilos generales del sitio ----------
+   El header está en todas las páginas, así que lo que vale para todo el
+   sitio vive acá: el fondo de la página (para que no aparezcan franjas
+   blancas del tema entre fragments) y la altura del header, que también
+   usa el fragment "Título destacado" para meterse debajo. */
+
+:root {
+  /* El tema Classic usa este token para pintar #wrapper. */
+  --body-bg: #141414;
+  --nf-header-height: 68px;
+}
+
+body {
+  background-color: #141414;
+}
+
+/* ---------- Header ---------- */
+
 .nf-header {
   align-items: center;
-  background-color: #000;
+  /* Arriba de todo es un degradé que deja ver el hero; al scrollear se
+     vuelve sólido (clase is-scrolled, la pone el JS) */
+  background-color: transparent;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
   display: flex;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   gap: 40px;
-  height: 68px;
+  height: var(--nf-header-height);
+  left: 0;
   padding: 0 4%;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  right: 0;
+  top: var(--nf-header-top, 0px);
+  transition: background-color 0.4s ease;
   z-index: 100;
 }
 
+.nf-header.is-scrolled {
+  background-color: #141414;
+}
+
+/* Ocupa el lugar del header fijo para que no tape el contenido de abajo */
+.nf-header-spacer {
+  height: var(--nf-header-height);
+}
+
+/* En el editor de páginas el header vuelve al flujo normal para no tapar
+   los otros fragments mientras se edita */
+.has-edit-mode-menu .nf-header {
+  background-color: #141414;
+  position: relative;
+  top: auto;
+}
+
+.has-edit-mode-menu .nf-header-spacer {
+  display: none;
+}
 
 .nf-header__brand {
   display: flex;
@@ -75,12 +120,16 @@
 }
 
 @media (max-width: 768px) {
+  :root {
+    --nf-header-height: 56px;
+  }
+
   .nf-header {
     gap: 24px;
   }
 
   .nf-header__logo {
-    height: 24px;
+    height: 40px;
   }
 
   .nf-header__toggle {
