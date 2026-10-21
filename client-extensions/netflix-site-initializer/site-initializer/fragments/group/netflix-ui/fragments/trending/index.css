@@ -154,16 +154,61 @@
 }
 
 .nf-trending-card__title {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
+  display: -webkit-box;
+  font-size: clamp(0.78rem, 1vw, 1rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 7px;
   overflow: hidden;
-  padding: 0;
+  text-shadow: 0 1px 3px #000;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.nf-trending-card__info {
+  background: linear-gradient(0deg, rgba(8, 8, 8, 0.98) 0%, rgba(8, 8, 8, 0.86) 62%, transparent 100%);
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  padding: 46px 9px 10px;
+  pointer-events: none;
   position: absolute;
-  white-space: nowrap;
-  width: 1px;
+  right: 0;
+  transform: translateY(10px);
+  z-index: 2;
+}
+
+.nf-trending-card__meta,
+.nf-trending-card__genres {
+  font-size: clamp(0.62rem, 0.72vw, 0.74rem);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.nf-trending-card__meta {
+  color: #bcbcbc;
+}
+
+.nf-trending-card__badge {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  margin-right: 5px;
+  padding: 0 3px;
+}
+
+.nf-trending-card__genres {
+  color: #fff;
+  display: -webkit-box;
+  margin-top: 5px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.nf-trending-card:hover .nf-trending-card__info,
+.nf-trending-card:focus-visible .nf-trending-card__info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nf-trending-card--skeleton {
@@ -351,13 +396,26 @@ html.nf-trending-dialog-lock {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .nf-trending-card__info {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .nf-trending-card__poster img {
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
   .nf-trending-card__poster {
     transition: filter 0.2s ease, transform 0.2s ease;
   }
 
   .nf-trending-card:hover .nf-trending-card__poster,
   .nf-trending-card:focus-visible .nf-trending-card__poster {
-    filter: brightness(1.08);
+    transform: scale(1.035);
+  }
+
+  .nf-trending-card:hover .nf-trending-card__poster img,
+  .nf-trending-card:focus-visible .nf-trending-card__poster img {
+    filter: brightness(0.72);
     transform: scale(1.035);
   }
 

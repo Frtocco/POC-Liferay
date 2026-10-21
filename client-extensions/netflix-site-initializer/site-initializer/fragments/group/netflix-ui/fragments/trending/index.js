@@ -320,9 +320,28 @@ function buildCard(item, index) {
 		poster.appendChild(image);
 	}
 
+	const names = (item.taxonomyCategoryBriefs || []).map(
+		(category) => category.taxonomyCategoryName
+	);
+	const tipoName = names.find((name) => TIPOS.includes(normalize(name)));
+	const generos = names.filter((name) => !TIPOS.includes(normalize(name)));
+	const info = createElement('div', 'nf-trending-card__info');
 	const title = createElement('h3', 'nf-trending-card__title', item.title);
+	const meta = createElement('p', 'nf-trending-card__meta');
+	const clasificacion = fieldText(item, FIELDS.clasificacion);
 
-	card.append(rankNumber, poster, title);
+	if (clasificacion) {
+		meta.appendChild(createElement('span', 'nf-trending-card__badge', clasificacion));
+	}
+
+	meta.append([fieldText(item, FIELDS.anio), tipoName].filter(Boolean).join(' · '));
+
+	const genres = createElement('p', 'nf-trending-card__genres', generos.join(' • '));
+
+	info.append(title, meta, genres);
+	poster.appendChild(info);
+
+	card.append(rankNumber, poster);
 	card.addEventListener('click', () => {
 		recordClick(item);
 		openDialog(item, card);
