@@ -4,7 +4,7 @@
   --nf-row-hover-delay: 275ms;
   --nf-row-hover-duration: 250ms;
   --nf-row-hover-scale: 1.28;
-
+  
   /* Sin fondo propio (usa el de la página) para poder montarse sobre la
      parte de abajo del Título destacado */
   color: #e5e5e5;

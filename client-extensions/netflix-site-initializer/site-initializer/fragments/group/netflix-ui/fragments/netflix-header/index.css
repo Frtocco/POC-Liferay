@@ -107,6 +107,91 @@ body {
   font-weight: 700;
 }
 
+/* ---------- Perfil activo (derecha) ---------- */
+
+.nf-header__profile {
+  margin-left: auto;
+  position: relative;
+}
+
+.nf-header__profile-toggle {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  padding: 0;
+}
+
+.nf-header__profile-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.nf-header__avatar {
+  border-radius: 4px;
+  display: block;
+  height: 32px;
+  overflow: hidden;
+  width: 32px;
+}
+
+.nf-header__avatar svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.nf-header__caret {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.nf-header__profile-toggle[aria-expanded="true"] .nf-header__caret {
+  transform: rotate(180deg);
+}
+
+.nf-header__profile-menu {
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 8px 0;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 14px);
+}
+
+.nf-header__profile-menu[hidden] {
+  display: none;
+}
+
+.nf-header__profile-name {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  padding: 6px 16px 12px;
+}
+
+.nf-header__profile-link {
+  color: #e5e5e5;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.nf-header__profile-link:hover,
+.nf-header__profile-link:focus-visible {
+  color: #fff;
+  outline: none;
+  text-decoration: underline;
+}
+
 /* Botón "Explorar": solo en pantallas chicas */
 .nf-header__toggle {
   background: none;
@@ -164,7 +249,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .nf-header,
-  .nf-header__link {
+  .nf-header__link,
+  .nf-header__caret {
     transition: none;
   }
 }
