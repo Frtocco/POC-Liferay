@@ -1,7 +1,8 @@
 .nf-trending {
   --nf-trending-page-gutter: 4%;
 
-  background: #141414;
+  /* Usa el fondo de la página para no tapar el degradado inferior del hero. */
+  background: transparent;
   color: #e5e5e5;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 20px 0 28px;
