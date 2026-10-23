@@ -1,40 +1,46 @@
+[#assign skeletonCount = (configuration.columns?number + 1)!7]
+
 <section
-  class="nf-row"
-  data-chihiro-backdrop="[resources:el-viaje-de-chihiro-backdrop.jpg]"
+	class="nf-row"
+	data-ratio="${configuration.ratio}"
+	style="--nf-cols: ${configuration.columns};"
+	aria-labelledby="nf-row-title-${fragmentEntryLinkNamespace}"
+	aria-busy="true"
 >
-  <h2 class="nf-row__title">${configuration.rowTitle}</h2>
-  <div class="nf-row__viewport">
-    <button class="nf-row__nav nf-row__nav--prev" type="button" aria-label="Ver anteriores" disabled>&#8249;</button>
-    <div class="nf-row__track" role="list" aria-busy="true">
-      [#-- Cards vacías que se ven mientras cargan los títulos --]
-      [#list 1..8 as i]
-        <div class="nf-movie-card nf-movie-card--skeleton" aria-hidden="true">
-          <div class="nf-movie-card__poster"></div>
-        </div>
-      [/#list]
-    </div>
-    <button class="nf-row__nav nf-row__nav--next" type="button" aria-label="Ver siguientes" disabled>&#8250;</button>
-  </div>
-  <p class="nf-row__status" hidden></p>
+	<h2
+		class="nf-row__title"
+		id="nf-row-title-${fragmentEntryLinkNamespace}"
+		data-lfr-editable-id="row-title"
+		data-lfr-editable-type="text"
+	>
+		Series de EE. UU.
+	</h2>
 
-  <dialog class="nf-row__dialog">
-    <div class="nf-row__dialog-inner">
-      <div class="nf-row__dialog-media">
-        <img alt="" class="nf-row__dialog-image" />
-        <h2 class="nf-row__dialog-title"></h2>
-        <button class="nf-row__dialog-close" type="button" aria-label="Cerrar">&times;</button>
-      </div>
+	<div class="nf-row__viewport">
+		<button class="nf-row__arrow nf-row__arrow--prev" type="button" aria-label="Ver títulos anteriores" hidden>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<polyline points="15 18 9 12 15 6"></polyline>
+			</svg>
+		</button>
 
-      <div class="nf-row__dialog-body">
-        <ul class="nf-row__dialog-meta"></ul>
-        <p class="nf-row__dialog-synopsis"></p>
-        <p class="nf-row__dialog-extra" data-field="elenco" hidden>
-          <span class="nf-row__dialog-label">Elenco:</span> <span class="nf-row__dialog-value"></span>
-        </p>
-        <p class="nf-row__dialog-extra" data-field="generos" hidden>
-          <span class="nf-row__dialog-label">Géneros:</span> <span class="nf-row__dialog-value"></span>
-        </p>
-      </div>
-    </div>
-  </dialog>
+		<ul class="nf-row__track" role="list">
+			[#-- Esqueleto de carga: el JS lo reemplaza por los títulos de la headless API --]
+			[#list 1..skeletonCount as i]
+				<li class="nf-row__item" aria-hidden="true">
+					<div class="nf-card">
+						<div class="nf-card__media nf-card__media--placeholder"></div>
+					</div>
+				</li>
+			[/#list]
+		</ul>
+		
+		<button class="nf-row__arrow nf-row__arrow--next" type="button" aria-label="Ver más títulos" hidden>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<polyline points="9 18 15 12 9 6"></polyline>
+			</svg>
+		</button>
+		
+	</div>
+
+	<p class="nf-row__status" hidden></p>
 </section>

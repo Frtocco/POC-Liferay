@@ -1,65 +1,44 @@
 // Fila de títulos
-// Busca los contenidos del Content Type "Título" del sitio y muestra los que
-// tienen la categoría de género configurada (y opcionalmente la de tipo),
-// en orden aleatorio para que la fila cambie en cada carga.
-// Liferay inyecta "fragmentElement" (el HTML de este fragment) y
-// "configuration" (los valores cargados en el panel de configuración).
+// Trae los web contents de la estructura "Título" por la headless API,
+// los filtra por Tipo / Género (categorías), los ordena y los pinta como tarjetas.
 
 const STRUCTURE_NAME = 'Título';
 
-// Referencias de campo configuradas en la estructura
+// Mismas referencias de campo que usa el Título destacado
 const FIELDS = {
-	anio: 'anio',
-	clasificacion: 'clasificacion',
-	duracion: 'duracion',
-	elenco: 'elenco',
 	fondo: 'fondo',
 	poster: 'poster',
-	sinopsis: 'sinopsis',
-	temporadas: 'temporadas',
 };
 
-const TIPOS = ['pelicula', 'serie'];
+// Días durante los cuales un título se marca como "Recién agregado"
+const NEW_DAYS = 14;
+const PAGE_SIZE = 100;
 
 const row = fragmentElement.querySelector('.nf-row');
 const track = fragmentElement.querySelector('.nf-row__track');
+const prev = fragmentElement.querySelector('.nf-row__arrow--prev');
+const next = fragmentElement.querySelector('.nf-row__arrow--next');
 const status = fragmentElement.querySelector('.nf-row__status');
-const prevButton = fragmentElement.querySelector('.nf-row__nav--prev');
-const nextButton = fragmentElement.querySelector('.nf-row__nav--next');
-const dialog = fragmentElement.querySelector('.nf-row__dialog');
-const dialogImage = fragmentElement.querySelector('.nf-row__dialog-image');
-const dialogTitle = fragmentElement.querySelector('.nf-row__dialog-title');
-const dialogMeta = fragmentElement.querySelector('.nf-row__dialog-meta');
-const dialogSynopsis = fragmentElement.querySelector('.nf-row__dialog-synopsis');
-const closeButton = fragmentElement.querySelector('.nf-row__dialog-close');
 
 const siteId = Liferay.ThemeDisplay.getScopeGroupId();
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const popularityStorageKey = `nf-title-popularity:v1:${siteId}`;
+const isEditMode = typeof layoutMode !== 'undefined' && layoutMode === 'edit';
 
-const dialogId = `nf-row-dialog-${Math.random().toString(36).slice(2, 8)}`;
+// ---------- Utilidades ----------
 
-dialog.id = dialogId;
-dialogTitle.id = `${dialogId}-title`;
-dialog.setAttribute('aria-labelledby', dialogTitle.id);
-
-// Compara sin mayúsculas ni tildes: "Comedia" = "comedia", "Película" = "pelicula"
 function normalize(value) {
 	return (value || '')
 		.trim()
 		.toLowerCase()
 		.normalize('NFD')
-		.replace(/[\u0300-\u036f]/g, '');
+		.replace(/[̀-ͯ]/g, '');
 }
-
-const genero = normalize(configuration.genero);
-const tipo = configuration.tipo === 'todos' ? '' : normalize(configuration.tipo);
 
 async function getJSON(path) {
 	const response = await fetch(path, {
 		credentials: 'include',
 		headers: {
 			'Accept': 'application/json',
+			'Accept-Language': Liferay.ThemeDisplay.getBCP47LanguageId(),
 			'x-csrf-token': Liferay.authToken,
 		},
 	});
@@ -71,343 +50,257 @@ async function getJSON(path) {
 	return response.json();
 }
 
-function showStatus(message) {
+function fieldImage(item, name) {
+	const field = (item.contentFields || []).find((field) => field.name === name);
+
+	return field?.contentFieldValue?.image?.contentUrl || '';
+}
+
+function categories(item) {
+	return (item.taxonomyCategoryBriefs || []).map(
+		(category) => category.taxonomyCategoryName
+	);
+}
+
+function isNew(item) {
+	const created = Date.parse(item.datePublished || item.dateCreated);
+
+	return created && Date.now() - created < NEW_DAYS * 24 * 60 * 60 * 1000;
+}
+
+// ---------- Datos (con caché compartida) ----------
+// En una home hay varias filas (y el hero) pidiendo lo mismo. Guardamos la
+// promesa en window para que la estructura y los contenidos se pidan una sola
+// vez por carga de página, sin importar cuántos fragments haya.
+
+const cache = (window.__nfStreamingCache = window.__nfStreamingCache || {});
+
+function getStructure() {
+	cache.structure =
+		cache.structure ||
+		getJSON(
+			`/o/headless-delivery/v1.0/sites/${siteId}/content-structures?pageSize=${PAGE_SIZE}`
+		).then((structures) => {
+			const structure = structures.items.find(
+				(item) => normalize(item.name) === normalize(STRUCTURE_NAME)
+			);
+
+			if (!structure) {
+				throw new Error(`No existe el Content Type "${STRUCTURE_NAME}" en este sitio.`);
+			}
+
+			return structure;
+		});
+
+	return cache.structure;
+}
+
+async function fetchAllContents(structureId) {
+	const items = [];
+	let page = 1;
+	let lastPage = 1;
+
+	do {
+		const data = await getJSON(
+			`/o/headless-delivery/v1.0/content-structures/${structureId}/structured-contents` +
+				`?page=${page}&pageSize=${PAGE_SIZE}&sort=dateCreated:desc`
+		);
+
+		items.push(...data.items);
+		lastPage = data.lastPage || 1;
+		page++;
+	} while (page <= lastPage);
+
+	return items;
+}
+
+function getContents() {
+	cache.contents =
+		cache.contents || getStructure().then((structure) => fetchAllContents(structure.id));
+
+	// Si falla, se limpia para que un reintento (u otra fila) vuelva a pedir
+	cache.contents.catch(() => {
+		cache.structure = null;
+		cache.contents = null;
+	});
+
+	return cache.contents;
+}
+
+// ---------- Filtro y orden ----------
+
+function selectTitles(items) {
+	const genero = normalize(configuration.genero);
+	const tipo = configuration.tipo === 'todos' ? '' : normalize(configuration.tipo);
+	const max = parseInt(configuration.cardCount, 10) || 20;
+
+	const filtered = items.filter((item) => {
+		const names = categories(item).map(normalize);
+
+		return (!genero || names.includes(genero)) && (!tipo || names.includes(tipo));
+	});
+
+	// Copia: el array cacheado lo comparten todas las filas
+	const sorted = [...filtered];
+
+	if (configuration.orden === 'titulo') {
+		sorted.sort((a, b) => a.title.localeCompare(b.title, undefined, {sensitivity: 'base'}));
+	}
+	else if (configuration.orden === 'azar') {
+		for (let i = sorted.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+
+			[sorted[i], sorted[j]] = [sorted[j], sorted[i]];
+		}
+	}
+
+	// "recientes" ya viene ordenado por la API (sort=dateCreated:desc)
+
+	return sorted.slice(0, max);
+}
+
+// ---------- Render ----------
+
+function cardImage(item) {
+	return configuration.ratio === 'poster'
+		? fieldImage(item, FIELDS.poster) || fieldImage(item, FIELDS.fondo)
+		: fieldImage(item, FIELDS.fondo) || fieldImage(item, FIELDS.poster);
+}
+
+function cardUrl(item) {
+	// Requiere un Display Page Template asociado a la estructura
+	return item.friendlyUrlPath ? `/w/${item.friendlyUrlPath}` : '#';
+}
+
+function createCard(item, index) {
+	const li = document.createElement('li');
+	const link = document.createElement('a');
+	const media = document.createElement('img');
+	const title = document.createElement('span');
+
+	li.className = 'nf-row__item';
+
+	link.className = 'nf-card';
+	link.href = cardUrl(item);
+	link.setAttribute('aria-label', item.title);
+	link.dataset.contentId = item.id;
+
+	media.className = 'nf-card__media nf-card__media--placeholder';
+	media.alt = '';
+	media.decoding = 'async';
+	// Las primeras tarjetas visibles cargan ya; el resto, al acercarse
+	media.loading = index < 8 ? 'eager' : 'lazy';
+
+	const src = cardImage(item);
+
+	if (src) {
+		media.addEventListener('load', () => media.classList.remove('nf-card__media--placeholder'), {
+			once: true,
+		});
+		media.src = src;
+	}
+
+	title.className = 'nf-card__title';
+	title.textContent = item.title;
+
+	link.appendChild(media);
+
+	if (isNew(item)) {
+		const badge = document.createElement('span');
+
+		badge.className = 'nf-card__badge';
+		badge.textContent = 'Recién agregado';
+		link.appendChild(badge);
+	}
+
+	link.appendChild(title);
+
+	// Aviso para otros fragments (ej.: abrir el modal de "Más información")
+	link.addEventListener('click', (event) => {
+		const detail = {contentId: item.id, item};
+		const notified = fragmentElement.dispatchEvent(
+			new CustomEvent('nf:titulo-click', {bubbles: true, cancelable: true, detail})
+		);
+
+		if (!notified || link.getAttribute('href') === '#') {
+			event.preventDefault();
+		}
+	});
+
+	li.appendChild(link);
+
+	return li;
+}
+
+function render(items) {
+	const fragment = document.createDocumentFragment();
+
+	items.forEach((item, index) => fragment.appendChild(createCard(item, index)));
+
+	track.replaceChildren(fragment);
+	track.scrollLeft = 0;
+	row.removeAttribute('aria-busy');
+	updateArrows();
+}
+
+function showEmpty(message) {
 	track.replaceChildren();
-	track.removeAttribute('aria-busy');
+	row.removeAttribute('aria-busy');
+	updateArrows();
+
+	// En el editor siempre se ve el mensaje, para que el autor sepa qué pasa
+	if (configuration.ocultarVacia && !isEditMode) {
+		row.hidden = true;
+
+		return;
+	}
+
 	status.textContent = message;
 	status.hidden = false;
 }
 
-function categoryNames(item) {
-	return (item.taxonomyCategoryBriefs || []).map((category) =>
-		normalize(category.taxonomyCategoryName)
-	);
+// ---------- Flechas ----------
+
+function pageWidth() {
+	const item = track.querySelector('.nf-row__item');
+	const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+	const visible = parseFloat(getComputedStyle(row).getPropertyValue('--nf-visible')) || 1;
+
+	return item ? (item.offsetWidth + gap) * Math.floor(visible) : track.clientWidth;
 }
 
-// Mezcla la lista al azar (algoritmo Fisher-Yates): recorre el array de atrás
-// hacia adelante e intercambia cada elemento con otro elegido al azar entre
-// los que todavía no se movieron. Devuelve una copia y no toca el original.
-function shuffle(list) {
-	const result = [...list];
+function updateArrows() {
+	const max = track.scrollWidth - track.clientWidth - 1;
 
-	for (let i = result.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-
-		[result[i], result[j]] = [result[j], result[i]];
-	}
-
-	return result;
+	prev.hidden = track.scrollLeft <= 0;
+	next.hidden = max <= 0 || track.scrollLeft >= max;
 }
 
-function fieldValues(item, name) {
-	return (item.contentFields || [])
-		.filter((field) => field.name === name)
-		.map((field) => field.contentFieldValue)
-		.filter(Boolean);
-}
+prev.addEventListener('click', () => track.scrollBy({left: -pageWidth()}));
+next.addEventListener('click', () => track.scrollBy({left: pageWidth()}));
+track.addEventListener('scroll', updateArrows, {passive: true});
 
-function fieldValue(item, name) {
-	return fieldValues(item, name)[0];
-}
+// ResizeObserver en vez de window.resize: también reacciona a cambios del layout
+new ResizeObserver(updateArrows).observe(track);
 
-function fieldText(item, name) {
-	const value = fieldValue(item, name);
-
-	return value?.data ? String(value.data).trim() : '';
-}
-
-// Las cards son horizontales (16:9), por eso usan el fondo horizontal. Los
-// pósters son verticales y "cover" los recorta demasiado; quedan como fallback.
-function imageUrl(item) {
-	if (normalize(item.title).includes('viaje de chihiro') && row.dataset.chihiroBackdrop) {
-		return row.dataset.chihiroBackdrop;
-	}
-
-	return (
-		fieldValue(item, FIELDS.fondo)?.image?.contentUrl ||
-		fieldValue(item, FIELDS.poster)?.image?.contentUrl ||
-		''
-	);
-}
-
-function formatDuration(minutes) {
-	const total = parseInt(minutes, 10);
-
-	if (!total) {
-		return '';
-	}
-
-	const hours = Math.floor(total / 60);
-	const rest = total % 60;
-
-	return hours ? `${hours} h ${rest} min` : `${rest} min`;
-}
-
-// ---------- Modal de detalle ----------
-
-function addDialogMeta(text, badge = false) {
-	if (!text) {
-		return;
-	}
-
-	const entry = document.createElement('li');
-
-	entry.textContent = text;
-
-	if (badge) {
-		entry.className = 'nf-row__dialog-badge';
-	}
-
-	dialogMeta.appendChild(entry);
-}
-
-function setDialogExtra(field, values) {
-	const detail = dialog.querySelector(`.nf-row__dialog-extra[data-field="${field}"]`);
-
-	detail.querySelector('.nf-row__dialog-value').textContent = values.join(', ');
-	detail.hidden = !values.length;
-}
-
-function renderDialog(item) {
-	const names = (item.taxonomyCategoryBriefs || []).map(
-		(category) => category.taxonomyCategoryName
-	);
-	const esSerie = names.some((name) => normalize(name) === 'serie');
-	const image = imageUrl(item);
-
-	dialogImage.hidden = !image;
-
-	if (image) {
-		dialogImage.src = image;
-	}
-	else {
-		dialogImage.removeAttribute('src');
-	}
-	dialogTitle.textContent = item.title;
-	dialogSynopsis.textContent = fieldText(item, FIELDS.sinopsis);
-
-	dialogMeta.replaceChildren();
-	addDialogMeta(fieldText(item, FIELDS.anio));
-	addDialogMeta(fieldText(item, FIELDS.clasificacion), true);
-
-	if (esSerie) {
-		const temporadas = parseInt(fieldText(item, FIELDS.temporadas), 10);
-
-		addDialogMeta(
-			temporadas ? `${temporadas} ${temporadas === 1 ? 'temporada' : 'temporadas'}` : ''
-		);
-	}
-	else {
-		addDialogMeta(formatDuration(fieldText(item, FIELDS.duracion)));
-	}
-
-	const elenco = fieldValues(item, FIELDS.elenco)
-		.map((value) => String(value.data || '').trim())
-		.filter(Boolean);
-	const generos = names.filter((name) => !TIPOS.includes(normalize(name)));
-
-	setDialogExtra('elenco', elenco);
-	setDialogExtra('generos', generos);
-}
-
-let dialogOpener = null;
-
-function openDialog(item, opener) {
-	dialogOpener = opener;
-	renderDialog(item);
-	dialog.scrollTop = 0;
-	dialog.showModal();
-	document.documentElement.classList.add('nf-row-dialog-lock');
-	closeButton.focus();
-}
-
-closeButton.addEventListener('click', () => dialog.close());
-
-dialog.addEventListener('click', (event) => {
-	if (event.target === dialog) {
-		dialog.close();
-	}
-});
-
-dialog.addEventListener('close', () => {
-	document.documentElement.classList.remove('nf-row-dialog-lock');
-	dialogOpener?.focus();
-});
-
-function createElement(tagName, className, text) {
-	const element = document.createElement(tagName);
-
-	element.className = className;
-
-	if (text) {
-		element.textContent = text;
-	}
-
-	return element;
-}
-
-// Ranking local compartido con el fragmento Tendencias. sessionStorage
-// conserva los clicks al recargar la página y los descarta al cerrar la pestaña.
-function titleKey(item) {
-	if (item.externalReferenceCode) {
-		return `erc:${item.externalReferenceCode}`;
-	}
-
-	if (item.id) {
-		return `id:${item.id}`;
-	}
-
-	return `title:${normalize(item.title)}`;
-}
-
-function recordClick(item) {
-	try {
-		const popularity = JSON.parse(
-			sessionStorage.getItem(popularityStorageKey) || '{}'
-		);
-		const key = titleKey(item);
-		const previous = popularity[key] || {};
-
-		popularity[key] = {
-			clicks: (Number(previous.clicks) || 0) + 1,
-			lastClick: Date.now(),
-		};
-
-		sessionStorage.setItem(popularityStorageKey, JSON.stringify(popularity));
-	}
-	catch (error) {
-		console.warn('[Fila de títulos] No se pudo guardar el click para Tendencias.', error);
-	}
-}
-
-// Las cards se arman con createElement (no innerHTML) para no inyectar HTML
-// que venga del contenido.
-function buildCard(item) {
-	const card = createElement('article', 'nf-movie-card');
-	card.setAttribute('aria-controls', dialogId);
-	card.setAttribute('aria-haspopup', 'dialog');
-	card.setAttribute('aria-label', item.title);
-	card.setAttribute('role', 'listitem');
-	card.tabIndex = 0;
-
-	const poster = createElement('div', 'nf-movie-card__poster');
-
-	const url = imageUrl(item);
-
-	if (url) {
-		const image = document.createElement('img');
-		image.alt = '';
-		image.loading = 'lazy';
-		image.src = url;
-		poster.appendChild(image);
-	}
-
-	const info = createElement('div', 'nf-movie-card__info');
-
-	const title = createElement('h3', '', item.title);
-	title.title = item.title;
-
-	// Datos que aparecen en hover / foco: clasificación, año, tipo y géneros
-	const names = (item.taxonomyCategoryBriefs || []).map(
-		(category) => category.taxonomyCategoryName
-	);
-	const tipoName = names.find((name) => TIPOS.includes(normalize(name)));
-	const generos = names.filter((name) => !TIPOS.includes(normalize(name)));
-
-	const meta = createElement('p', 'nf-movie-card__meta');
-	const clasificacion = fieldText(item, FIELDS.clasificacion);
-
-	if (clasificacion) {
-		meta.appendChild(createElement('span', 'nf-movie-card__badge', clasificacion));
-	}
-
-	meta.append([fieldText(item, FIELDS.anio), tipoName].filter(Boolean).join(' · '));
-
-	const details = createElement('div', 'nf-movie-card__details');
-	details.append(meta, createElement('p', 'nf-movie-card__genres', generos.join(' • ')));
-
-	info.append(title, details);
-	card.append(poster, info);
-	card.addEventListener('click', () => {
-		recordClick(item);
-		openDialog(item, card);
-	});
-	card.addEventListener('keydown', (event) => {
-		if (event.key === 'Enter' || event.key === ' ') {
-			event.preventDefault();
-			recordClick(item);
-			openDialog(item, card);
-		}
-	});
-
-	return card;
-}
-
-function updateNav() {
-	const maxScroll = track.scrollWidth - track.clientWidth - 1;
-
-	prevButton.disabled = track.scrollLeft <= 0;
-	nextButton.disabled = track.scrollLeft >= maxScroll;
-}
-
-function scrollRow(direction) {
-	track.scrollBy({
-		behavior: reduceMotion ? 'auto' : 'smooth',
-		left: direction * track.clientWidth * 0.9,
-	});
-}
+// ---------- Carga ----------
 
 async function load() {
-	if (!genero) {
-		showStatus('Configurá un género para esta fila.');
-
-		return;
-	}
-
 	try {
-		const structures = await getJSON(
-			`/o/headless-delivery/v1.0/sites/${siteId}/content-structures?pageSize=100`
-		);
+		const titles = selectTitles(await getContents());
 
-		const structure = structures.items.find(
-			(item) => normalize(item.name) === normalize(STRUCTURE_NAME)
-		);
-
-		if (!structure) {
-			showStatus(`No existe el Content Type "${STRUCTURE_NAME}" en este sitio.`);
+		if (!titles.length) {
+			showEmpty('No hay títulos que coincidan con la configuración.');
 
 			return;
 		}
 
-		const contents = await getJSON(
-			`/o/headless-delivery/v1.0/content-structures/${structure.id}/structured-contents?pageSize=100`
-		);
-
-		const items = contents.items.filter((item) => {
-			const categories = categoryNames(item);
-
-			return categories.includes(genero) && (!tipo || categories.includes(tipo));
-		});
-
-		if (!items.length) {
-			showStatus(`Todavía no hay títulos con el género "${configuration.genero}".`);
-
-			return;
-		}
-
-		track.replaceChildren(...shuffle(items).map(buildCard));
-		track.removeAttribute('aria-busy');
-		updateNav();
+		render(titles);
 	}
 	catch (error) {
 		console.error('[Fila de títulos]', error);
-		showStatus('No se pudieron cargar los títulos. El detalle está en la consola del navegador.');
+		showEmpty('No se pudieron cargar los títulos. El detalle está en la consola del navegador.');
 	}
 }
-
-prevButton.addEventListener('click', () => scrollRow(-1));
-nextButton.addEventListener('click', () => scrollRow(1));
-track.addEventListener('scroll', updateNav, {passive: true});
-window.addEventListener('resize', updateNav);
 
 load();
