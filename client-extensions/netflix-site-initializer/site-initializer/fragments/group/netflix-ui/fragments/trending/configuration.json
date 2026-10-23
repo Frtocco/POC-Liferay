@@ -1,0 +1,38 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Tendencias: Top 10",
+          "label": "Título de la fila",
+          "name": "rowTitle",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "todos",
+          "label": "Mostrar",
+          "name": "tipo",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Películas y series",
+                "value": "todos"
+              },
+              {
+                "label": "Solo películas",
+                "value": "Película"
+              },
+              {
+                "label": "Solo series",
+                "value": "Serie"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

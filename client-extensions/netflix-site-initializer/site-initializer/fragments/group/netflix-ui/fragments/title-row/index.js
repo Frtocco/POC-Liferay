@@ -35,6 +35,7 @@ const closeButton = fragmentElement.querySelector('.nf-row__dialog-close');
 
 const siteId = Liferay.ThemeDisplay.getScopeGroupId();
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const popularityStorageKey = `nf-title-popularity:v1:${siteId}`;
 
 const dialogId = `nf-row-dialog-${Math.random().toString(36).slice(2, 8)}`;
 
@@ -245,6 +246,40 @@ function createElement(tagName, className, text) {
 	return element;
 }
 
+// Ranking local compartido con el fragmento Tendencias. sessionStorage
+// conserva los clicks al recargar la página y los descarta al cerrar la pestaña.
+function titleKey(item) {
+	if (item.externalReferenceCode) {
+		return `erc:${item.externalReferenceCode}`;
+	}
+
+	if (item.id) {
+		return `id:${item.id}`;
+	}
+
+	return `title:${normalize(item.title)}`;
+}
+
+function recordClick(item) {
+	try {
+		const popularity = JSON.parse(
+			sessionStorage.getItem(popularityStorageKey) || '{}'
+		);
+		const key = titleKey(item);
+		const previous = popularity[key] || {};
+
+		popularity[key] = {
+			clicks: (Number(previous.clicks) || 0) + 1,
+			lastClick: Date.now(),
+		};
+
+		sessionStorage.setItem(popularityStorageKey, JSON.stringify(popularity));
+	}
+	catch (error) {
+		console.warn('[Fila de títulos] No se pudo guardar el click para Tendencias.', error);
+	}
+}
+
 // Las cards se arman con createElement (no innerHTML) para no inyectar HTML
 // que venga del contenido.
 function buildCard(item) {
@@ -293,10 +328,14 @@ function buildCard(item) {
 
 	info.append(title, details);
 	card.append(poster, info);
-	card.addEventListener('click', () => openDialog(item, card));
+	card.addEventListener('click', () => {
+		recordClick(item);
+		openDialog(item, card);
+	});
 	card.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
+			recordClick(item);
 			openDialog(item, card);
 		}
 	});
