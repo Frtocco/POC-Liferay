@@ -1,0 +1,46 @@
+[#assign skeletonCount = (configuration.columns?number + 1)!7]
+
+<section
+	class="nf-row"
+	data-ratio="${configuration.ratio}"
+	style="--nf-cols: ${configuration.columns};"
+	aria-labelledby="nf-row-title-${fragmentEntryLinkNamespace}"
+	aria-busy="true"
+>
+	<h2
+		class="nf-row__title"
+		id="nf-row-title-${fragmentEntryLinkNamespace}"
+		data-lfr-editable-id="row-title"
+		data-lfr-editable-type="text"
+	>
+		Series de EE. UU.
+	</h2>
+
+	<div class="nf-row__viewport">
+		<button class="nf-row__arrow nf-row__arrow--prev" type="button" aria-label="Ver títulos anteriores" hidden>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<polyline points="15 18 9 12 15 6"></polyline>
+			</svg>
+		</button>
+
+		<ul class="nf-row__track" role="list">
+			[#-- Esqueleto de carga: el JS lo reemplaza por los títulos de la headless API --]
+			[#list 1..skeletonCount as i]
+				<li class="nf-row__item" aria-hidden="true">
+					<div class="nf-card">
+						<div class="nf-card__media nf-card__media--placeholder"></div>
+					</div>
+				</li>
+			[/#list]
+		</ul>
+		
+		<button class="nf-row__arrow nf-row__arrow--next" type="button" aria-label="Ver más títulos" hidden>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<polyline points="9 18 15 12 9 6"></polyline>
+			</svg>
+		</button>
+		
+	</div>
+
+	<p class="nf-row__status" hidden></p>
+</section>
