@@ -1,0 +1,89 @@
+{
+	"fieldSets": [
+		{
+			"label": "Contenido",
+			"fields": [
+				{
+					"name": "tipo",
+					"label": "Mostrar",
+					"type": "select",
+					"dataType": "string",
+					"defaultValue": "todos",
+					"typeOptions": {
+						"validValues": [
+							{ "value": "todos", "label": "Películas y series" },
+							{ "value": "Película", "label": "Solo películas" },
+							{ "value": "Serie", "label": "Solo series" }
+						]
+					}
+				},
+				{
+					"name": "genero",
+					"label": "Género (opcional)",
+					"description": "Nombre de la categoría, tal cual está en el vocabulario. Vacío = todos.",
+					"type": "text",
+					"dataType": "string",
+					"defaultValue": ""
+				},
+				{
+					"name": "orden",
+					"label": "Orden",
+					"type": "select",
+					"dataType": "string",
+					"defaultValue": "recientes",
+					"typeOptions": {
+						"validValues": [
+							{ "value": "recientes", "label": "Más recientes primero" },
+							{ "value": "titulo", "label": "Alfabético" },
+							{ "value": "azar", "label": "Al azar" }
+						]
+					}
+				},
+				{
+					"name": "cardCount",
+					"label": "Cantidad máxima de títulos",
+					"type": "text",
+					"dataType": "int",
+					"defaultValue": "20",
+					"typeOptions": {
+						"validation": { "type": "number", "min": 1, "max": 50 }
+					}
+				}
+			]
+		},
+		{
+			"label": "Diseño",
+			"fields": [
+				{
+					"name": "columns",
+					"label": "Tarjetas visibles (desktop)",
+					"type": "select",
+					"dataType": "string",
+					"defaultValue": "6",
+					"typeOptions": {
+						"validValues": [
+							{ "value": "4", "label": "4" },
+							{ "value": "5", "label": "5" },
+							{ "value": "6", "label": "6" },
+							{ "value": "7", "label": "7" }
+						]
+					}
+				},
+				{
+					"name": "ratio",
+					"label": "Formato de imagen",
+					"description": "Horizontal usa el campo Fondo; póster usa el campo Póster (cada uno cae en el otro si falta).",
+					"type": "select",
+					"dataType": "string",
+					"defaultValue": "landscape",
+					"typeOptions": {
+						"validValues": [
+							{ "value": "landscape", "label": "Horizontal (16:9)" },
+							{ "value": "poster", "label": "Póster (2:3)" }
+						]
+					}
+				}
+			]
+		}
+	]
+}

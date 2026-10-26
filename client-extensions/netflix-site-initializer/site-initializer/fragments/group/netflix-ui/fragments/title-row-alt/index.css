@@ -1,0 +1,328 @@
+/* ---------- Fila de títulos ----------
+   Paleta compartida con Título destacado y Login:
+   fondo #141414 · superficie #181818 · texto #fff / #b3b3b3 / #737373
+   acento #e50914 (hover #c11119) · foco: contorno blanco */
+
+.nf-row {
+  --nf-bg: #141414;
+  --nf-surface: #181818;
+  --nf-text: #fff;
+  --nf-text-secondary: #b3b3b3;
+  --nf-text-muted: #737373;
+  --nf-accent: #e50914;
+  --nf-accent-hover: #c11119;
+  --nf-radius: 4px;
+
+  --nf-cols: 6;
+  --nf-visible: var(--nf-cols);
+  --nf-gap: 8px;
+  --nf-peek: 4%;
+  --nf-ratio: 16 / 9;
+  --nf-hover-scale: 1.08;
+
+  background: var(--nf-bg);
+  color: var(--nf-text);
+  padding: 12px 0;
+  position: relative;
+}
+
+.nf-row[data-ratio="poster"] {
+  --nf-ratio: 2 / 3;
+  --nf-visible: calc(var(--nf-cols) + 1);
+}
+
+/* ---------- Título de la fila ---------- */
+
+/* Doble clase para ganarle a los estilos de h2 del tema */
+.nf-row .nf-row__title {
+  color: var(--nf-text);
+  font-size: clamp(1rem, 0.8rem + 0.8vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 4px;
+  padding: 0 var(--nf-peek);
+}
+
+/* ---------- Viewport + track ---------- */
+
+.nf-row__viewport {
+  position: relative;
+}
+
+.nf-row__track {
+  display: grid;
+  gap: var(--nf-gap);
+  grid-auto-columns: calc(
+    (100% - (var(--nf-peek) * 2) - (var(--nf-gap) * (var(--nf-visible) - 1))) / var(--nf-visible)
+  );
+  grid-auto-flow: column;
+  list-style: none;
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  /* Padding vertical para que el zoom del hover no quede recortado */
+  padding: 24px var(--nf-peek);
+  scroll-behavior: smooth;
+  scroll-padding-inline: var(--nf-peek);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.nf-row__track::-webkit-scrollbar {
+  display: none;
+}
+
+.nf-row__item {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* ---------- Tarjeta ---------- */
+
+/* Se repite .nf-row delante para pisar los estilos de <a> de Clay
+   (color azul, subrayado y box-shadow azul en el foco) */
+.nf-row .nf-card,
+.nf-row .nf-card:hover,
+.nf-row .nf-card:focus {
+  box-shadow: none;
+  color: var(--nf-text);
+  text-decoration: none;
+}
+
+.nf-row .nf-card {
+  aspect-ratio: var(--nf-ratio);
+  background: var(--nf-surface);
+  border-radius: var(--nf-radius);
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.nf-card__media {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+/* Esqueleto mientras carga la imagen */
+.nf-card__media--placeholder {
+  background:
+    linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%) 0 0 / 200% 100%,
+    var(--nf-surface);
+}
+
+/* Degradé inferior para que el título se lea sobre cualquier imagen */
+.nf-row .nf-card::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+  content: "";
+  inset: 50% 0 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.nf-card__title {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  bottom: 8px;
+  display: -webkit-box;
+  font-size: clamp(0.75rem, 0.6rem + 0.5vw, 1rem);
+  font-weight: 800;
+  left: 10px;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  overflow: hidden;
+  position: absolute;
+  right: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* "Recién agregado" */
+.nf-card__badge {
+  background: var(--nf-accent);
+  border-radius: 2px 2px 0 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  left: 50%;
+  padding: 2px 8px;
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.nf-card__badge ~ .nf-card__title {
+  bottom: 26px;
+}
+
+/* ---------- Hover / foco ---------- */
+
+@media (hover: hover) {
+  .nf-row__item:hover {
+    position: relative;
+    z-index: 2;
+  }
+
+  .nf-row .nf-card:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.75);
+    transform: scale(var(--nf-hover-scale));
+  }
+
+  .nf-row__item:first-child .nf-card {
+    transform-origin: left center;
+  }
+
+  .nf-row__item:last-child .nf-card {
+    transform-origin: right center;
+  }
+}
+
+.nf-row .nf-card:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ---------- Flechas ---------- */
+
+.nf-row .nf-row__arrow {
+  -webkit-appearance: none;
+  align-items: center;
+  appearance: none;
+  background: rgba(20, 20, 20, 0.5);
+  border: 0;
+  bottom: 24px;
+  box-shadow: none;
+  color: var(--nf-text);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-width: 40px;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 24px;
+  width: var(--nf-peek);
+  z-index: 3;
+}
+
+.nf-row__arrow--prev {
+  border-radius: 0 var(--nf-radius) var(--nf-radius) 0;
+  left: 0;
+}
+
+.nf-row__arrow--next {
+  border-radius: var(--nf-radius) 0 0 var(--nf-radius);
+  right: 0;
+}
+
+.nf-row__arrow svg {
+  height: 28px;
+  width: 28px;
+}
+
+.nf-row:hover .nf-row__arrow,
+.nf-row .nf-row__arrow:focus-visible {
+  opacity: 1;
+}
+
+.nf-row .nf-row__arrow:hover {
+  background: rgba(20, 20, 20, 0.75);
+  color: var(--nf-text);
+}
+
+.nf-row .nf-row__arrow:hover svg {
+  transform: scale(1.25);
+}
+
+.nf-row .nf-row__arrow:focus {
+  box-shadow: none;
+}
+
+.nf-row .nf-row__arrow:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.nf-row .nf-row__arrow[hidden] {
+  display: none;
+}
+
+@media (hover: none) {
+  .nf-row .nf-row__arrow {
+    display: none;
+  }
+}
+
+/* ---------- Estado (vacío / error) ---------- */
+
+.nf-row .nf-row__status {
+  color: var(--nf-text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0 var(--nf-peek) 16px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1400px) {
+  .nf-row { --nf-visible: min(var(--nf-cols), 5); }
+  .nf-row[data-ratio="poster"] { --nf-visible: min(var(--nf-cols) + 1, 6); }
+}
+
+@media (max-width: 1100px) {
+  .nf-row { --nf-visible: min(var(--nf-cols), 4); }
+  .nf-row[data-ratio="poster"] { --nf-visible: 5; }
+}
+
+@media (max-width: 768px) {
+  .nf-row { --nf-visible: 3; }
+  .nf-row[data-ratio="poster"] { --nf-visible: 4; }
+}
+
+@media (max-width: 500px) {
+  .nf-row { --nf-peek: 5%; --nf-visible: 2; }
+  .nf-row[data-ratio="poster"] { --nf-visible: 3; }
+}
+
+/* ---------- Animaciones (mismo criterio que el hero) ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .nf-row__track {
+    scroll-behavior: smooth;
+  }
+
+  .nf-row .nf-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .nf-row__arrow {
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+
+  .nf-row__arrow svg {
+    transition: transform 0.2s ease;
+  }
+
+  .nf-card__media--placeholder {
+    animation: nf-row-shimmer 1.6s linear infinite;
+  }
+
+  @keyframes nf-row-shimmer {
+    to {
+      background-position: -200% 0, 0 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-row__track {
+    scroll-behavior: auto;
+  }
+}
