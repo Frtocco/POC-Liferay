@@ -1,13 +1,14 @@
 // Continuar viendo
 // Escucha los clics de los fragments de títulos y guarda, por perfil, los
-// cuatro más recientes. El progreso avanza 25 puntos por clic y se refleja
-// en la próxima carga de la página.
+// cuatro más recientes. El progreso avanza 25 puntos hasta llegar a 90;
+// el quinto clic marca el titulo como terminado y lo elimina de la fila.
 
 const STRUCTURE_NAME = 'Título';
 const CLICK_EVENT = 'nf:titulo-click';
 const ACTIVE_PROFILE_KEY = 'nf-perfil-activo';
 const MAX_TITLES = 4;
 const PROGRESS_STEP = 25;
+const MAX_PROGRESS = 90;
 const PAGE_SIZE = 100;
 
 const FIELDS = {
@@ -125,7 +126,18 @@ function recordTitle(item) {
 	const history = readHistory();
 	const key = titleKey(item);
 	const previous = history.find((entry) => entry.key === key);
-	const progress = Math.min(100, (Number(previous?.progress) || 0) + PROGRESS_STEP);
+
+	if ((Number(previous?.progress) || 0) >= MAX_PROGRESS) {
+		writeHistory(history.filter((entry) => entry.key !== key));
+		load();
+
+		return;
+	}
+
+	const progress = Math.min(
+		MAX_PROGRESS,
+		(Number(previous?.progress) || 0) + PROGRESS_STEP
+	);
 	const nextEntry = {
 		contentId: item.id || previous?.contentId || null,
 		key,
@@ -495,6 +507,11 @@ function buildCard(item, progress) {
 
 	const activate = () => {
 		notifyTitleClick(item);
+
+		if (progress >= MAX_PROGRESS) {
+			return;
+		}
+
 		openDialog(item, card);
 	};
 
