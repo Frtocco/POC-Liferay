@@ -140,13 +140,80 @@ function recordTitle(item) {
 	writeHistory(nextHistory);
 }
 
+function clickedTitle(target) {
+	if (!(target instanceof Element)) {
+		return '';
+	}
+
+	const card = target.closest('.nf-movie-card, .nf-trending-card, .nf-card');
+
+	if (card && !card.closest('.nf-continue')) {
+		return (
+			card.querySelector(
+				'.nf-movie-card__info h3, .nf-trending-card__title, .nf-card__title'
+			)?.textContent.trim() || ''
+		);
+	}
+
+	const heroButton = target.closest('.nf-hero__button--play, .nf-hero__button--info');
+
+	return heroButton?.closest('.nf-hero')?.querySelector('.nf-hero__title')?.textContent.trim() || '';
+}
+
+async function recordTitleByName(title) {
+	if (!title) {
+		return;
+	}
+
+	try {
+		const normalizedTitle = normalize(title);
+		const contents = await getContents();
+		const item = contents.find((content) => normalize(content.title) === normalizedTitle);
+
+		if (item) {
+			recordTitle(item);
+		}
+	}
+	catch (error) {
+		console.warn('[Continuar viendo] No se pudo registrar el clic detectado.', error);
+	}
+}
+
 // Una sola escucha por sitio/perfil, incluso si por error se agrega el fragment
 // más de una vez a la página.
 const recorderRegistry = (window.__nfContinueWatchingRecorders =
 	window.__nfContinueWatchingRecorders || {});
 
 if (!recorderRegistry[storageKey]) {
-	document.addEventListener(CLICK_EVENT, (event) => recordTitle(event.detail?.item));
+	let lastCustomClick = {at: 0, title: ''};
+
+	document.addEventListener(CLICK_EVENT, (event) => {
+		lastCustomClick = {
+			at: Date.now(),
+			title: normalize(event.detail?.item?.title),
+		};
+		recordTitle(event.detail?.item);
+	});
+
+	// Compatibilidad con instancias antiguas de los fragments, que Liferay no
+	// actualiza por si solo cuando cambia el codigo fuente del fragment.
+	const recordLegacyClick = (event) => {
+		const title = clickedTitle(event.target);
+
+		if (
+			title &&
+			(normalize(title) !== lastCustomClick.title || Date.now() - lastCustomClick.at > 1000)
+		) {
+			recordTitleByName(title);
+		}
+	};
+
+	document.addEventListener('click', recordLegacyClick);
+	document.addEventListener('keydown', (event) => {
+		if ((event.key === 'Enter' || event.key === ' ') && event.target?.matches?.('article')) {
+			recordLegacyClick(event);
+		}
+	});
 	recorderRegistry[storageKey] = true;
 }
 
