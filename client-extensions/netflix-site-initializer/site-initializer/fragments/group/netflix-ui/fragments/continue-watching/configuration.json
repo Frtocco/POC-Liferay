@@ -1,0 +1,15 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Continuar viendo",
+          "label": "Título de la fila",
+          "name": "rowTitle",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

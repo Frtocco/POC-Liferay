@@ -119,6 +119,15 @@ function recordClick(item) {
 	}
 }
 
+function notifyTitleClick(item) {
+	fragmentElement.dispatchEvent(
+		new CustomEvent('nf:titulo-click', {
+			bubbles: true,
+			detail: {contentId: item.id, item},
+		})
+	);
+}
+
 function fieldValues(item, name) {
 	return (item.contentFields || [])
 		.filter((field) => field.name === name)
@@ -344,12 +353,14 @@ function buildCard(item, index) {
 	card.append(rankNumber, poster);
 	card.addEventListener('click', () => {
 		recordClick(item);
+		notifyTitleClick(item);
 		openDialog(item, card);
 	});
 	card.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			recordClick(item);
+			notifyTitleClick(item);
 			openDialog(item, card);
 		}
 	});

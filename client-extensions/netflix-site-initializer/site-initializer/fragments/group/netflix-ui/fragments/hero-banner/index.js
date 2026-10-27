@@ -247,9 +247,20 @@ function renderDialog(item) {
 
 // Botón que abrió el modal, para devolverle el foco al cerrarlo
 let opener = infoButton;
+let activeItem = null;
 
 function openDialog(event) {
 	opener = event.currentTarget;
+
+	if (activeItem) {
+		fragmentElement.dispatchEvent(
+			new CustomEvent('nf:titulo-click', {
+				bubbles: true,
+				detail: {contentId: activeItem.id, item: activeItem},
+			})
+		);
+	}
+
 	dialog.showModal();
 	document.documentElement.classList.add('nf-hero-lock');
 	closeButton.focus();
@@ -303,6 +314,7 @@ async function load() {
 			return;
 		}
 
+		activeItem = item;
 		renderHero(item);
 		renderDialog(item);
 	}

@@ -280,6 +280,15 @@ function recordClick(item) {
 	}
 }
 
+function notifyTitleClick(item) {
+	fragmentElement.dispatchEvent(
+		new CustomEvent('nf:titulo-click', {
+			bubbles: true,
+			detail: {contentId: item.id, item},
+		})
+	);
+}
+
 // Las cards se arman con createElement (no innerHTML) para no inyectar HTML
 // que venga del contenido.
 function buildCard(item) {
@@ -330,12 +339,14 @@ function buildCard(item) {
 	card.append(poster, info);
 	card.addEventListener('click', () => {
 		recordClick(item);
+		notifyTitleClick(item);
 		openDialog(item, card);
 	});
 	card.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			recordClick(item);
+			notifyTitleClick(item);
 			openDialog(item, card);
 		}
 	});
