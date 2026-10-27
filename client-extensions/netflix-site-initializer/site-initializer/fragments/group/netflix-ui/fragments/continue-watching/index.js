@@ -129,7 +129,6 @@ function recordTitle(item) {
 
 	if ((Number(previous?.progress) || 0) >= MAX_PROGRESS) {
 		writeHistory(history.filter((entry) => entry.key !== key));
-		load();
 
 		return;
 	}
@@ -507,11 +506,6 @@ function buildCard(item, progress) {
 
 	const activate = () => {
 		notifyTitleClick(item);
-
-		if (progress >= MAX_PROGRESS) {
-			return;
-		}
-
 		openDialog(item, card);
 	};
 
