@@ -1,0 +1,4 @@
+Bundle-Name: nttv-osgi-module-custom-sign-in
+Bundle-SymbolicName: com.nttv.rest
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration
