@@ -1,0 +1,55 @@
+{
+  "fieldSets": [
+    {
+      "label": "Registro",
+      "fields": [
+        {
+          "name": "registrationEndpoint",
+          "label": "Endpoint de registro",
+          "description": "URL del backend que crea la cuenta (OSGi o microservicio).",
+          "type": "text",
+          "dataType": "string",
+          "defaultValue": "/o/sign-in/v1.0"
+        },
+        {
+          "name": "minPasswordLength",
+          "label": "Largo mínimo de contraseña",
+          "description": "Solo para validar en el navegador. Tiene que coincidir con la política de contraseñas de Liferay.",
+          "type": "text",
+          "dataType": "int",
+          "defaultValue": "8",
+          "typeOptions": {
+            "validation": { "type": "number", "min": 1, "max": 64 }
+          }
+        }
+      ]
+    },
+    {
+      "label": "Links",
+      "fields": [
+        {
+          "name": "loginURL",
+          "label": "URL de inicio de sesión",
+          "type": "text",
+          "dataType": "string",
+          "defaultValue": "/c/portal/login"
+        },
+        {
+          "name": "termsURL",
+          "label": "URL de términos y condiciones",
+          "type": "text",
+          "dataType": "string",
+          "defaultValue": ""
+        },
+        {
+          "name": "successURL",
+          "label": "URL al terminar",
+          "description": "Destino del botón final cuando la cuenta queda activa, y adonde se redirige a un usuario ya logueado. Vacío = login / inicio.",
+          "type": "text",
+          "dataType": "string",
+          "defaultValue": ""
+        }
+      ]
+    }
+  ]
+}

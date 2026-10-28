@@ -1,0 +1,125 @@
+<div class="nf-signup" data-lfr-background-image-id="fondo" id="nf-signup-${fragmentEntryLinkNamespace}">
+  <div aria-hidden="true" class="nf-signup__shade"></div>
+
+  <main class="nf-signup__card">
+
+    <!-- ===== Wizard ===== -->
+
+    <div class="nf-signup__wizard" data-wizard>
+      <div aria-hidden="true" class="nf-signup__progress">
+        <span class="nf-signup__progress-bar" data-progress-bar></span>
+      </div>
+
+      <p class="nf-signup__counter" data-counter>Paso 1 de 4</p>
+
+      <div class="nf-signup__alert" data-alert hidden role="alert"></div>
+
+      <div class="nf-signup__form" data-form role="form">
+
+        <!-- Paso 1: email -->
+        <section class="nf-signup__step is-active" data-step="email">
+          <h1 class="nf-signup__title" data-lfr-editable-id="paso-email-titulo" data-lfr-editable-type="text">Creá tu cuenta</h1>
+          <p class="nf-signup__subtitle" data-lfr-editable-id="paso-email-texto" data-lfr-editable-type="text">Ingresá tu email para empezar a ver películas y series.</p>
+
+          <div class="nf-signup__field">
+            <input autocomplete="email" class="nf-signup__input" id="${fragmentEntryLinkNamespace}-emailAddress" inputmode="email" name="emailAddress" placeholder=" " type="email" />
+            <label class="nf-signup__label" for="${fragmentEntryLinkNamespace}-emailAddress">Email</label>
+            <p class="nf-signup__error" data-error-for="emailAddress" hidden></p>
+          </div>
+        </section>
+
+        <!-- Paso 2: nombre -->
+        <section class="nf-signup__step" data-step="name">
+          <h1 class="nf-signup__title" data-lfr-editable-id="paso-nombre-titulo" data-lfr-editable-type="text">¿Cómo te llamás?</h1>
+          <p class="nf-signup__subtitle" data-lfr-editable-id="paso-nombre-texto" data-lfr-editable-type="text">Así vamos a saludarte cuando entres.</p>
+
+          <div class="nf-signup__field">
+            <input autocomplete="given-name" class="nf-signup__input" id="${fragmentEntryLinkNamespace}-givenName" maxlength="75" name="givenName" placeholder=" " type="text" />
+            <label class="nf-signup__label" for="${fragmentEntryLinkNamespace}-givenName">Nombre</label>
+            <p class="nf-signup__error" data-error-for="givenName" hidden></p>
+          </div>
+
+          <div class="nf-signup__field">
+            <input autocomplete="family-name" class="nf-signup__input" id="${fragmentEntryLinkNamespace}-familyName" maxlength="75" name="familyName" placeholder=" " type="text" />
+            <label class="nf-signup__label" for="${fragmentEntryLinkNamespace}-familyName">Apellido</label>
+            <p class="nf-signup__error" data-error-for="familyName" hidden></p>
+          </div>
+        </section>
+
+        <!-- Paso 3: contraseña -->
+        <section class="nf-signup__step" data-step="password">
+          <h1 class="nf-signup__title" data-lfr-editable-id="paso-password-titulo" data-lfr-editable-type="text">Elegí una contraseña</h1>
+          <p class="nf-signup__subtitle" data-lfr-editable-id="paso-password-texto" data-lfr-editable-type="text">Es la clave para entrar desde cualquier dispositivo.</p>
+
+          <div class="nf-signup__field nf-signup__field--password">
+            <input autocomplete="new-password" class="nf-signup__input" id="${fragmentEntryLinkNamespace}-password" name="password" placeholder=" " type="password" />
+            <label class="nf-signup__label" for="${fragmentEntryLinkNamespace}-password">Contraseña</label>
+            <button aria-pressed="false" class="nf-signup__toggle" data-toggle-password type="button">Mostrar</button>
+            <p class="nf-signup__hint" data-password-hint></p>
+            <p class="nf-signup__error" data-error-for="password" hidden></p>
+          </div>
+
+          <div class="nf-signup__field">
+            <input autocomplete="new-password" class="nf-signup__input" id="${fragmentEntryLinkNamespace}-passwordConfirm" name="passwordConfirm" placeholder=" " type="password" />
+            <label class="nf-signup__label" for="${fragmentEntryLinkNamespace}-passwordConfirm">Repetí la contraseña</label>
+            <p class="nf-signup__error" data-error-for="passwordConfirm" hidden></p>
+          </div>
+        </section>
+
+        <!-- Paso 4: revisión -->
+        <section class="nf-signup__step" data-step="review">
+          <h1 class="nf-signup__title" data-lfr-editable-id="paso-revision-titulo" data-lfr-editable-type="text">Revisá tus datos</h1>
+          <p class="nf-signup__subtitle" data-lfr-editable-id="paso-revision-texto" data-lfr-editable-type="text">Confirmá que todo esté bien antes de crear tu cuenta.</p>
+
+          <dl class="nf-signup__summary">
+            <div class="nf-signup__summary-row">
+              <dt>Email</dt>
+              <dd data-summary="emailAddress"></dd>
+              <button class="nf-signup__edit" data-goto="email" type="button">Editar</button>
+            </div>
+            <div class="nf-signup__summary-row">
+              <dt>Nombre</dt>
+              <dd data-summary="fullName"></dd>
+              <button class="nf-signup__edit" data-goto="name" type="button">Editar</button>
+            </div>
+            <div class="nf-signup__summary-row">
+              <dt>Contraseña</dt>
+              <dd data-summary="password"></dd>
+              <button class="nf-signup__edit" data-goto="password" type="button">Editar</button>
+            </div>
+          </dl>
+
+          <div class="nf-signup__check">
+            <!-- Checkbox manual: botón con role="checkbox" en lugar de un input -->
+            <button aria-checked="false" aria-labelledby="${fragmentEntryLinkNamespace}-acceptTerms-label" class="nf-signup__toggle-check" data-accept-terms name="acceptTerms" role="checkbox" type="button">
+              <svg aria-hidden="true" class="nf-signup__tick" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" /></svg>
+            </button>
+            <span class="nf-signup__check-text" data-accept-terms-text id="${fragmentEntryLinkNamespace}-acceptTerms-label">
+              Acepto los <a class="nf-signup__link" data-terms-link href="#" rel="noopener" target="_blank">términos y condiciones</a>
+            </span>
+          </div>
+          <p class="nf-signup__error" data-error-for="acceptTerms" hidden></p>
+        </section>
+
+        <div class="nf-signup__actions">
+          <button class="nf-signup__btn nf-signup__btn--primary" data-next type="button">Siguiente</button>
+          <button class="nf-signup__btn nf-signup__btn--back" data-back hidden type="button">Atrás</button>
+        </div>
+      </div>
+
+      <pre class="nf-signup__debug" data-debug hidden></pre>
+    </div>
+
+    <!-- ===== Resultado ===== -->
+
+    <section class="nf-signup__result" data-result hidden tabindex="-1">
+      <h1 class="nf-signup__title" data-result-title></h1>
+      <p class="nf-signup__subtitle" data-result-text></p>
+      <a class="nf-signup__btn nf-signup__btn--primary" data-result-action href="#" hidden></a>
+    </section>
+
+    <p class="nf-signup__login" data-login-row>
+      ¿Ya tenés cuenta? <a class="nf-signup__login-link" data-login-link href="/c/portal/login">Iniciá sesión</a>
+    </p>
+  </main>
+</div>

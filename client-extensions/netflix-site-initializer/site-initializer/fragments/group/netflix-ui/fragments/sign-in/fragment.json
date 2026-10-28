@@ -1,0 +1,10 @@
+{
+  "configurationPath": "configuration.json",
+  "cssPath": "index.css",
+  "fragmentEntryKey": "nf-registro",
+  "htmlPath": "index.html",
+  "icon": "user",
+  "jsPath": "index.js",
+  "name": "Registro",
+  "type": "component"
+}
