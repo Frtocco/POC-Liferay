@@ -326,6 +326,79 @@
   color: #777;
 }
 
+/* ---------- Botón "Mi lista" del modal (lo agrega el JS) ---------- */
+
+.nf-row__dialog-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.nf-row__dialog-actions[hidden] {
+  display: none;
+}
+
+.nf-row__list-button {
+  align-items: center;
+  background: rgba(42, 42, 42, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 8px;
+  padding: 0.5em 1.1em 0.5em 0.8em;
+}
+
+.nf-row__list-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+.nf-row__list-button[aria-pressed="true"] {
+  border-color: #fff;
+}
+
+.nf-row__list-button[aria-busy="true"] {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.nf-row__list-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.nf-row__list-icon {
+  flex-shrink: 0;
+  height: 1.25em;
+  width: 1.25em;
+}
+
+.nf-row__list-icon--check,
+.nf-row__list-button[aria-pressed="true"] .nf-row__list-icon--plus {
+  display: none;
+}
+
+.nf-row__list-button[aria-pressed="true"] .nf-row__list-icon--check {
+  display: block;
+}
+
+.nf-row__list-message {
+  color: #e87c03;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.nf-row__list-message:empty {
+  display: none;
+}
+
 html.nf-row-dialog-lock {
   overflow: hidden;
 }

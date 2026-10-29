@@ -1,0 +1,37 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Mi lista",
+          "label": "Título",
+          "name": "titulo",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "Todavía no agregaste títulos a tu lista.",
+          "label": "Texto cuando la lista está vacía",
+          "name": "textoVacio",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/home",
+          "label": "Página para explorar títulos",
+          "name": "homePath",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "/web/netflix-poc/perfiles",
+          "description": "Si no hay un perfil activo, se redirige acá.",
+          "label": "Página de perfiles",
+          "name": "perfilesPath",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
