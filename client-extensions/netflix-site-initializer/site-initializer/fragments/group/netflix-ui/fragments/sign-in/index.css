@@ -1,0 +1,549 @@
+/* ---------- Registro (wizard) ----------
+   Paleta compartida con Login, Título destacado y Fila de títulos:
+   fondo #000 / #141414 · superficie #181818 · texto #fff / #b3b3b3 / #737373
+   acento #e50914 (hover #c11119) · error #e87c03 · foco: contorno blanco */
+
+.nf-signup {
+  --nf-bg: #000;
+  --nf-surface: #181818;
+  --nf-text: #fff;
+  --nf-text-secondary: #b3b3b3;
+  --nf-text-muted: #737373;
+  --nf-accent: #e50914;
+  --nf-accent-hover: #c11119;
+  --nf-error: #e87c03;
+  --nf-input-bg: rgba(22, 22, 22, 0.7);
+  --nf-input-border: rgba(128, 128, 128, 0.7);
+  --nf-radius: 4px;
+
+  background-color: var(--nf-bg);
+  background-position: center;
+  background-size: cover;
+  color: var(--nf-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  box-sizing: border-box;
+  padding: 32px 16px;
+  position: relative;
+}
+
+/* Oscurece la imagen de fondo, igual que el login */
+.nf-signup__shade {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.8) 100%),
+    rgba(0, 0, 0, 0.4);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Card centrada en ambos ejes; margin: auto la centra dentro del flex
+   y, si es más alta que la pantalla, deja scroll sin recortar arriba */
+.nf-signup__card {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: var(--nf-radius);
+  box-sizing: border-box;
+  margin: auto;
+  max-width: 450px;
+  padding: 40px 68px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ---------- Progreso ---------- */
+
+.nf-signup__progress {
+  background: #333;
+  border-radius: 2px;
+  height: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.nf-signup__progress-bar {
+  background: var(--nf-accent);
+  display: block;
+  height: 100%;
+  width: 25%;
+}
+
+.nf-signup .nf-signup__counter {
+  color: var(--nf-text-secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+/* ---------- Pasos ---------- */
+
+.nf-signup__step {
+  display: none;
+}
+
+.nf-signup__step.is-active {
+  display: block;
+}
+
+/* Modo edición de la página: todos los pasos visibles para editar sus textos */
+.nf-signup.is-editing .nf-signup__step {
+  border-bottom: 1px dashed #444;
+  display: block;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+}
+
+/* Doble clase para ganarle a los h1/p del tema */
+.nf-signup .nf-signup__title {
+  color: var(--nf-text);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.nf-signup .nf-signup__subtitle {
+  color: var(--nf-text-secondary);
+  font-size: 1rem;
+  margin: 0 0 24px;
+}
+
+/* ---------- Campos con label flotante ---------- */
+
+.nf-signup__field {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.nf-signup .nf-signup__input {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--nf-input-bg);
+  border: 1px solid var(--nf-input-border);
+  border-radius: var(--nf-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--nf-text);
+  font-size: 1rem;
+  height: 56px;
+  padding: 22px 16px 6px;
+  width: 100%;
+}
+
+.nf-signup .nf-signup__input:focus {
+  border-color: var(--nf-text);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+.nf-signup .nf-signup__input.is-invalid {
+  border-color: var(--nf-error);
+}
+
+/* Autocompletado del navegador sin fondo amarillo/celeste */
+.nf-signup .nf-signup__input:-webkit-autofill {
+  -webkit-text-fill-color: var(--nf-text);
+  box-shadow: 0 0 0 1000px #222 inset;
+  caret-color: var(--nf-text);
+}
+
+.nf-signup__label {
+  color: var(--nf-text-secondary);
+  font-size: 1rem;
+  left: 16px;
+  margin: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 17px;
+  transform-origin: left top;
+}
+
+.nf-signup__input:focus + .nf-signup__label,
+.nf-signup__input:not(:placeholder-shown) + .nf-signup__label {
+  transform: translateY(-10px) scale(0.75);
+}
+
+/* Botón "Mostrar" dentro del campo de contraseña */
+.nf-signup__field--password .nf-signup__input {
+  padding-right: 88px;
+}
+
+.nf-signup .nf-signup__toggle {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--nf-text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  height: 56px;
+  padding: 0 16px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.nf-signup .nf-signup__toggle:hover {
+  color: var(--nf-text);
+}
+
+.nf-signup .nf-signup__toggle:focus-visible {
+  outline: 2px solid var(--nf-text);
+  outline-offset: -4px;
+}
+
+.nf-signup .nf-signup__hint {
+  color: var(--nf-text-muted);
+  font-size: 0.8rem;
+  margin: 6px 0 0;
+}
+
+.nf-signup .nf-signup__hint:empty {
+  display: none;
+}
+
+.nf-signup .nf-signup__error {
+  color: var(--nf-error);
+  font-size: 0.85rem;
+  margin: 6px 0 0;
+}
+
+/* ---------- Resumen (paso de revisión) ---------- */
+
+.nf-signup__summary {
+  border-top: 1px solid #333;
+  margin: 0 0 20px;
+}
+
+.nf-signup__summary-row {
+  align-items: center;
+  border-bottom: 1px solid #333;
+  display: grid;
+  gap: 2px 12px;
+  grid-template-areas: "term edit" "value edit";
+  grid-template-columns: 1fr auto;
+  padding: 12px 0;
+}
+
+.nf-signup .nf-signup__summary dt {
+  color: var(--nf-text-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  grid-area: term;
+}
+
+.nf-signup .nf-signup__summary dd {
+  color: var(--nf-text);
+  grid-area: value;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.nf-signup .nf-signup__edit {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--nf-text-secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  grid-area: edit;
+  padding: 4px 0;
+  text-decoration: underline;
+}
+
+.nf-signup .nf-signup__edit:hover {
+  color: var(--nf-text);
+}
+
+/* ---------- Términos ---------- */
+
+.nf-signup__check {
+  align-items: flex-start;
+  color: var(--nf-text-secondary);
+  display: flex;
+  gap: 10px;
+}
+
+.nf-signup .nf-signup__check label {
+  color: var(--nf-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Checkbox manual (botón con role="checkbox") */
+.nf-signup .nf-signup__toggle-check {
+  -webkit-appearance: none;
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 2px solid var(--nf-text-secondary);
+  border-radius: 2px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  flex: none;
+  height: 20px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+  position: relative;
+  width: 20px;
+  z-index: 1;
+}
+
+.nf-signup .nf-signup__toggle-check:hover {
+  border-color: var(--nf-text);
+}
+
+.nf-signup .nf-signup__toggle-check[aria-checked="true"] {
+  background: var(--nf-accent);
+  border-color: var(--nf-accent);
+  color: var(--nf-text);
+}
+
+.nf-signup .nf-signup__toggle-check.is-invalid {
+  border-color: var(--nf-error);
+}
+
+.nf-signup .nf-signup__toggle-check:focus {
+  box-shadow: none;
+}
+
+.nf-signup .nf-signup__toggle-check:focus-visible {
+  outline: 2px solid var(--nf-text);
+  outline-offset: 2px;
+}
+
+.nf-signup__tick {
+  height: 14px;
+  pointer-events: none;
+  width: 14px;
+}
+
+.nf-signup .nf-signup__check-text {
+  color: var(--nf-text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 20px;
+}
+
+/* ---------- Botones ---------- */
+
+.nf-signup__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.nf-signup .nf-signup__btn {
+  align-items: center;
+  border: 0;
+  border-radius: var(--nf-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 44px;
+  justify-content: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.nf-signup .nf-signup__btn--primary,
+.nf-signup .nf-signup__btn--primary:visited {
+  background: var(--nf-accent);
+  color: var(--nf-text);
+}
+
+.nf-signup .nf-signup__btn--primary:hover,
+.nf-signup .nf-signup__btn--primary:focus-visible {
+  background: var(--nf-accent-hover);
+  color: var(--nf-text);
+  text-decoration: none;
+}
+
+.nf-signup .nf-signup__btn--back {
+  background: rgba(128, 128, 128, 0.4);
+  color: var(--nf-text);
+}
+
+.nf-signup .nf-signup__btn--back:hover {
+  background: rgba(128, 128, 128, 0.6);
+}
+
+.nf-signup .nf-signup__btn:focus {
+  box-shadow: none;
+}
+
+.nf-signup .nf-signup__btn:focus-visible {
+  outline: 2px solid var(--nf-text);
+  outline-offset: 2px;
+}
+
+.nf-signup .nf-signup__btn[disabled] {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.nf-signup .nf-signup__btn[hidden] {
+  display: none;
+}
+
+/* Spinner mientras se envía */
+.nf-signup .nf-signup__btn.is-loading::before {
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  border-top-color: var(--nf-text);
+  content: "";
+  height: 16px;
+  margin-right: 10px;
+  width: 16px;
+}
+
+/* ---------- Alerta general (errores del servidor) ---------- */
+
+.nf-signup .nf-signup__alert {
+  background: var(--nf-error);
+  border-radius: var(--nf-radius);
+  color: var(--nf-text);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+}
+
+.nf-signup .nf-signup__alert a {
+  color: var(--nf-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---------- Links ---------- */
+
+.nf-signup .nf-signup__link,
+.nf-signup .nf-signup__link:hover {
+  color: var(--nf-text);
+  text-decoration: underline;
+}
+
+.nf-signup .nf-signup__login {
+  color: var(--nf-text-muted);
+  font-size: 1rem;
+  margin: 32px 0 0;
+}
+
+.nf-signup .nf-signup__login-link {
+  color: var(--nf-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nf-signup .nf-signup__login-link:hover,
+.nf-signup .nf-signup__login-link:focus-visible {
+  color: var(--nf-text);
+  text-decoration: underline;
+}
+
+.nf-signup .nf-signup__link:focus,
+.nf-signup .nf-signup__login-link:focus {
+  box-shadow: none;
+}
+
+.nf-signup .nf-signup__link:focus-visible,
+.nf-signup .nf-signup__login-link:focus-visible {
+  outline: 2px solid var(--nf-text);
+  outline-offset: 2px;
+}
+
+/* ---------- Resultado ---------- */
+
+.nf-signup__result:focus {
+  outline: none;
+}
+
+.nf-signup__result .nf-signup__btn {
+  margin-top: 8px;
+}
+
+/* ---------- Debug (solo en modo edición, si se activa) ---------- */
+
+.nf-signup .nf-signup__debug {
+  background: #111;
+  border: 1px dashed #444;
+  border-radius: var(--nf-radius);
+  color: #8fd18f;
+  font-size: 0.75rem;
+  margin: 20px 0 0;
+  padding: 12px;
+  white-space: pre-wrap;
+}
+
+/* ---------- Pantallas chicas: sin caja, como en Netflix ---------- */
+
+@media (max-width: 740px) {
+  .nf-signup__shade {
+    display: none;
+  }
+
+  .nf-signup {
+    padding: 0;
+  }
+
+  .nf-signup__card {
+    background: #000;
+    margin: auto 0;
+    max-width: none;
+    padding: 24px 5%;
+  }
+}
+
+/* ---------- Animaciones ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .nf-signup__progress-bar {
+    transition: width 0.3s ease;
+  }
+
+  .nf-signup__label {
+    transition: transform 0.15s ease;
+  }
+
+  .nf-signup__step.is-active {
+    animation: nf-signup-in 0.25s ease;
+  }
+
+  .nf-signup .nf-signup__btn {
+    transition: background-color 0.2s ease;
+  }
+
+  .nf-signup .nf-signup__btn.is-loading::before {
+    animation: nf-signup-spin 0.8s linear infinite;
+  }
+
+  @keyframes nf-signup-in {
+    from {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes nf-signup-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
