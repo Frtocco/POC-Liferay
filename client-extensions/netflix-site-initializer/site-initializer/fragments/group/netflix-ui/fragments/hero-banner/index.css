@@ -339,6 +339,79 @@
   color: #777;
 }
 
+/* ---------- Botón "Mi lista" del modal (lo agrega el JS) ---------- */
+
+.nf-hero__dialog-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.nf-hero__dialog-actions[hidden] {
+  display: none;
+}
+
+.nf-hero__list-button {
+  align-items: center;
+  background: rgba(42, 42, 42, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 8px;
+  padding: 0.5em 1.1em 0.5em 0.8em;
+}
+
+.nf-hero__list-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+.nf-hero__list-button[aria-pressed="true"] {
+  border-color: #fff;
+}
+
+.nf-hero__list-button[aria-busy="true"] {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.nf-hero__list-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.nf-hero__list-icon {
+  flex-shrink: 0;
+  height: 1.25em;
+  width: 1.25em;
+}
+
+.nf-hero__list-icon--check,
+.nf-hero__list-button[aria-pressed="true"] .nf-hero__list-icon--plus {
+  display: none;
+}
+
+.nf-hero__list-button[aria-pressed="true"] .nf-hero__list-icon--check {
+  display: block;
+}
+
+.nf-hero__list-message {
+  color: #e87c03;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.nf-hero__list-message:empty {
+  display: none;
+}
+
 /* Evita que la página de fondo se scrollee con el modal abierto */
 html.nf-hero-lock {
   overflow: hidden;

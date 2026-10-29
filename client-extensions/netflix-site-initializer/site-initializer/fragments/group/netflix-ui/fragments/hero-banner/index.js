@@ -243,13 +243,301 @@ function renderDialog(item) {
 	setExtra('generos', generos);
 }
 
+// ---------- Mi lista (bloque compartido) ----------
+// Este bloque es IGUAL en Título destacado, Fila de títulos y Mi lista: si lo
+// cambiás en uno, copialo en los otros dos. El primer fragment que corre lo
+// publica en window.NetflixMiLista y los demás lo reusan, así todos los
+// fragments de la página comparten una sola copia de la lista en memoria y se
+// enteran de los cambios con el evento "nf-mi-lista-change".
+
+// Ruta del Object y nombre del campo de la relación Perfil → MiListaItem.
+// Se confirman en /o/api → c/milistaitems (POST, schema del body).
+const MI_LISTA_API = '/o/c/milistaitems';
+const MI_LISTA_RELATION = 'r_miLista_c_perfilId';
+const ACTIVE_PROFILE_KEY = 'nf-perfil-activo';
+const MI_LISTA_EVENT = 'nf-mi-lista-change';
+
+function createMiLista() {
+	// {perfilId, promise} — la promesa resuelve a [{entryId, tituloId}],
+	// del más nuevo al más viejo
+	let cache = null;
+
+	function perfil() {
+		try {
+			const value = JSON.parse(sessionStorage.getItem(ACTIVE_PROFILE_KEY) || 'null');
+
+			return value && value.id ? value : null;
+		}
+		catch (error) {
+			return null;
+		}
+	}
+
+	async function request(path, {body, method = 'GET'} = {}) {
+		const response = await fetch(path, {
+			body: body ? JSON.stringify(body) : undefined,
+			credentials: 'include',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'x-csrf-token': Liferay.authToken,
+			},
+			method,
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP ${response.status} en ${method} ${path}`);
+		}
+
+		// DELETE responde 204 sin cuerpo
+		return response.status === 204 ? null : response.json();
+	}
+
+	function entries() {
+		const current = perfil();
+
+		if (!current || !Liferay.ThemeDisplay.isSignedIn()) {
+			return Promise.resolve([]);
+		}
+
+		// Se pide una sola vez por perfil; si cambia el perfil activo, se recarga
+		if (!cache || cache.perfilId !== current.id) {
+			const filter = encodeURIComponent(`${MI_LISTA_RELATION} eq '${current.id}'`);
+			const promise = request(
+				`${MI_LISTA_API}?filter=${filter}&pageSize=500&sort=dateCreated:desc`
+			).then((data) =>
+				(data.items || []).map((entry) => ({
+					entryId: entry.id,
+					tituloId: String(entry.tituloId),
+				}))
+			);
+
+			cache = {perfilId: current.id, promise};
+
+			// Si falla, el próximo pedido vuelve a intentar
+			promise.catch(() => {
+				if (cache?.promise === promise) {
+					cache = null;
+				}
+			});
+		}
+
+		return cache.promise;
+	}
+
+	async function has(tituloId) {
+		const list = await entries();
+
+		return list.some((entry) => entry.tituloId === String(tituloId));
+	}
+
+	function notify(tituloId, added) {
+		document.dispatchEvent(
+			new CustomEvent(MI_LISTA_EVENT, {detail: {added, tituloId: String(tituloId)}})
+		);
+	}
+
+	async function add(tituloId) {
+		const current = perfil();
+
+		if (!current) {
+			throw new Error('No hay un perfil activo.');
+		}
+
+		const list = await entries();
+
+		if (list.some((entry) => entry.tituloId === String(tituloId))) {
+			return;
+		}
+
+		const entry = await request(`${MI_LISTA_API}/`, {
+			body: {
+				[MI_LISTA_RELATION]: Number(current.id),
+				tituloId: Number(tituloId),
+			},
+			method: 'POST',
+		});
+
+		// La lista en memoria se actualiza en el lugar: el más nuevo va primero
+		list.unshift({entryId: entry.id, tituloId: String(tituloId)});
+		notify(tituloId, true);
+	}
+
+	async function remove(tituloId) {
+		const list = await entries();
+		const matches = list.filter((entry) => entry.tituloId === String(tituloId));
+
+		await Promise.all(
+			matches.map((entry) =>
+				request(`${MI_LISTA_API}/${entry.entryId}`, {method: 'DELETE'})
+			)
+		);
+
+		matches.forEach((entry) => list.splice(list.indexOf(entry), 1));
+		notify(tituloId, false);
+	}
+
+	// Devuelve true si quedó agregado, false si quedó quitado
+	async function toggle(tituloId) {
+		if (await has(tituloId)) {
+			await remove(tituloId);
+
+			return false;
+		}
+
+		await add(tituloId);
+
+		return true;
+	}
+
+	return {add, entries, has, perfil, remove, toggle, version: 1};
+}
+
+const miLista = window.NetflixMiLista || (window.NetflixMiLista = createMiLista());
+
+// Arma el botón "Mi lista" de un modal. "block" es el prefijo de clases del
+// fragment (nf-hero, nf-row, nf-mylist). El HTML del botón es fijo: el título
+// del contenido nunca pasa por innerHTML.
+function createListButton(block) {
+	const wrapper = document.createElement('div');
+
+	wrapper.className = `${block}__dialog-actions`;
+	wrapper.hidden = true;
+
+	const button = document.createElement('button');
+
+	button.className = `${block}__list-button`;
+	button.type = 'button';
+	button.setAttribute('aria-label', 'Mi lista');
+	button.setAttribute('aria-pressed', 'false');
+	button.innerHTML = `
+		<svg aria-hidden="true" class="${block}__list-icon ${block}__list-icon--plus" viewBox="0 0 24 24">
+			<path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" />
+		</svg>
+		<svg aria-hidden="true" class="${block}__list-icon ${block}__list-icon--check" viewBox="0 0 24 24">
+			<path d="M4.5 12.5l5 5 10-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" />
+		</svg>
+		<span class="${block}__list-label">Mi lista</span>`;
+
+	const message = document.createElement('p');
+
+	message.className = `${block}__list-message`;
+	message.setAttribute('role', 'status');
+
+	wrapper.append(button, message);
+
+	const label = button.querySelector(`.${block}__list-label`);
+
+	let tituloId = null;
+	let busy = false;
+
+	function render(added) {
+		button.setAttribute('aria-pressed', String(added));
+		button.title = added ? 'Quitar de Mi lista' : 'Agregar a Mi lista';
+		label.textContent = added ? 'En mi lista' : 'Mi lista';
+	}
+
+	// Se llama cada vez que se abre el modal con un título
+	async function sync(id) {
+		const current = String(id);
+
+		tituloId = current;
+		message.textContent = '';
+
+		// Sin sesión o sin perfil elegido no hay lista a la que agregar
+		wrapper.hidden = !Liferay.ThemeDisplay.isSignedIn() || !miLista.perfil();
+
+		if (wrapper.hidden) {
+			return;
+		}
+
+		render(false);
+		busy = true;
+		button.setAttribute('aria-busy', 'true');
+
+		try {
+			const added = await miLista.has(current);
+
+			// Si mientras tanto se abrió otro título, esta respuesta ya no sirve
+			if (tituloId === current) {
+				render(added);
+			}
+		}
+		catch (error) {
+			console.error('[Mi lista]', error);
+
+			if (tituloId === current) {
+				message.textContent = 'No se pudo cargar Mi lista.';
+			}
+		}
+		finally {
+			if (tituloId === current) {
+				busy = false;
+				button.removeAttribute('aria-busy');
+			}
+		}
+	}
+
+	// No se usa "disabled" para que el foco no se pierda dentro del modal
+	button.addEventListener('click', async () => {
+		if (busy || !tituloId) {
+			return;
+		}
+
+		const current = tituloId;
+
+		busy = true;
+		button.setAttribute('aria-busy', 'true');
+		message.textContent = '';
+
+		try {
+			const added = await miLista.toggle(current);
+
+			if (tituloId === current) {
+				render(added);
+			}
+		}
+		catch (error) {
+			console.error('[Mi lista]', error);
+			message.textContent = 'No se pudo actualizar Mi lista. Probá de nuevo.';
+		}
+		finally {
+			busy = false;
+			button.removeAttribute('aria-busy');
+		}
+	});
+
+	// Si otro fragment de la página cambia este mismo título, el botón se entera
+	document.addEventListener(MI_LISTA_EVENT, (event) => {
+		if (wrapper.isConnected && event.detail.tituloId === tituloId) {
+			render(event.detail.added);
+		}
+	});
+
+	return {sync, wrapper};
+}
+
 // ---------- Modal ----------
+
+// Botón "Mi lista": se agrega desde el JS, el HTML del fragment no cambia
+const listButton = createListButton('nf-hero');
+
+dialog.querySelector('.nf-hero__dialog-body').prepend(listButton.wrapper);
+
+// Título que se está mostrando (lo completa load())
+let heroItem = null;
+
 
 // Botón que abrió el modal, para devolverle el foco al cerrarlo
 let opener = infoButton;
 
 function openDialog(event) {
 	opener = event.currentTarget;
+
+	if (heroItem) {
+		listButton.sync(heroItem.id);
+	}
+
 	dialog.showModal();
 	document.documentElement.classList.add('nf-hero-lock');
 	closeButton.focus();
@@ -303,6 +591,7 @@ async function load() {
 			return;
 		}
 
+		heroItem = item;
 		renderHero(item);
 		renderDialog(item);
 	}
